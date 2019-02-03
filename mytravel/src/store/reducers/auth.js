@@ -1,7 +1,7 @@
-export const createProject = project => {
-    return (dispatch, project, { getFirebase, getFirestore }) => {
-        dispatch({
-            type: "a"
-        });
-    };
-};
+const initState = {}
+
+const auth = (state = initState, action) => {
+    return state
+}
+
+export default auth
