@@ -1,22 +1,16 @@
 import * as actionTypes from '../../constants/actionTypes'
 
-export const createProject = project => {
-    return (dispatch, project, { getFirebase, getFirestore }) => {
-        const firestore = getFirestore()
-        firestore.collection('projects').add({
-            ...project,
-            authorName: 'Paw',
-            authorLastName: 'Lee',
-            authorId: 12345,
-            createdAt: new Date(),
-        }).then(() => {
-            dispatch({
-                type: actionTypes.CREATE_PROJECT
-            });
-        }).catch(err => {
-            dispatch({
-                type:  actionTypes.CREATE_PROJECT_ERROR
-            })
-        })
-    };
+const initState = {
+    projects: [
+        {id: '1', title: "test title first", content: "my 111 content!"},
+        {id: '2', title: "test title second", content: "my 222222 content!"},
+        {id: '3', title: "test title third", content: "my 33333 content!"}
+    ]
+}
+export const project = (state=initState, action) => {
+    switch (action.type) {
+        case actionTypes.CREATE_PROJECT:
+            return console.log('create projecttt')
+        default: return state
+    }
 };
