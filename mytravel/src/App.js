@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { createProject } from './store/actions/projectActions'
+import Button from "./components/Form/Button/Button"
 import './App.css';
 
 class App extends Component {
@@ -24,19 +25,17 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Create a New Project</h5>
-          <div className="input-field">
+        <form onSubmit={this.handleSubmit}>
+          <h5>Create a New Project</h5>
+          <div>
             <input type="text" id='title' onChange={this.handleChange} />
             <label htmlFor="title">Project Title</label>
           </div>
-          <div className="input-field">
-            <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
-            <label htmlFor="content">Project Content</label>
+          <div>
+            <input type="text" id='content' onChange={this.handleChange} />
+            <label htmlFor="title">Project content</label>
           </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1">Create</button>
-          </div>
+          <Button title='Create project' />
         </form>
       </div>
     )
