@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from './store/actions/projectActions'
-import Button from 'components/Form/Button/Button'
+import Button from './components/Form/Button/Button'
 import Input from './components/Form/Input/Input'
 import './App.css'
 

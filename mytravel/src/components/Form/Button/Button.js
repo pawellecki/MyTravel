@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Button = ({title}) => (
+const Button = React.memo( ({title}) => (
     <button>{title}</button>
-)
+))
 
 export default Button
