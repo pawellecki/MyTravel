@@ -1,53 +1,50 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createProject } from './store/actions/projectActions'
-import Button from './components/Form/Button/Button'
-import Input from './components/Form/Input/Input'
-import './App.css'
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from './store/reducers/rootReducer'
+import thunk from 'redux-thunk'
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import firebase from './config/firebase.js'
+
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import './index.css'
+
+import Login from './pages/Login/index'
+import NotFound from './pages/NotFound/index'
+// import Home from './pages/Home/index'
+import NewProjectForm from './pages/NewProjectForm/NewProjectForm'
+
+const store = createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(
+            thunk.withExtraArgument({
+                getFirebase,
+                getFirestore
+            })
+        ),
+        reduxFirestore(firebase),
+        reactReduxFirebase(firebase)
+    )
+)
 
 class App extends Component {
-    state = {
-        title: '',
-        content: ''
-    }
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path='/login' render={() => <Login />} />
+            <Route path='/404' render={() => <NotFound />} />
+            <Route path='/' render={() => <NewProjectForm />} />
+          </Switch>
+        </Router>
+      </Provider>
 
-    handleChange = (event, fieldName) => {
-        this.setState({
-            [fieldName]: event.target.value
-        })
-    }
-
-    handleSubmit = event => {
-        event.preventDefault()
-        this.props.createProject(this.state)
-    }
-
-    render() {
-        return (
-            <div className="container">
-                <form onSubmit={this.handleSubmit}>
-                    <h5>Create a New Project</h5>
-                    <Input
-                        onChange={this.handleChange}
-                        name="title"
-                        label="The title"
-                    />
-                    <Input
-                        onChange={this.handleChange}
-                        name="content"
-                        label="The content"
-                    />
-                    <Button title="Create project" />
-                </form>
-            </div>
-        )
-    }
+    )
+  }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        createProject: project => dispatch(createProject(project))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(App)
+export default App
