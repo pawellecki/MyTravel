@@ -6,10 +6,10 @@ import * as serviceWorker from './serviceWorker'
 import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './store/reducers/rootReducer'
 import { Provider } from 'react-redux'
-import thunk from 'react-thunk'
+import thunk from 'redux-thunk'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
-import firebase from './config/firegase.js'
+import firebase from './config/firebase.js'
 
 const store = createStore(
     rootReducer,
