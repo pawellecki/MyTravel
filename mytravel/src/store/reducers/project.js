@@ -10,10 +10,12 @@ const initState = {
 const project = (state = initState, action) => {
     switch (action.type) {
         case actionTypes.CREATE_PROJECT:
-            return console.log('create projecttt')
+            console.log('create projecttt')
+            return state
 
         case actionTypes.CREATE_PROJECT_ERROR:
-            return console.log(action.err)
+            console.log("errrr",action.err)
+            return state
 
         default:
             return state

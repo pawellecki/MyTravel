@@ -1,7 +1,7 @@
 import * as actionTypes from '../../constants/actionTypes'
 
 export const createProject = project => {
-    return (dispatch, project, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore()
         firestore.collection('projects').add({
             ...project,
