@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { createProject } from './store/actions/projectActions'
 import Button from "./components/Form/Button/Button"
+import Input from "./components/Form/Input/Input"
 import './App.css';
 
 class App extends Component {
@@ -11,13 +12,13 @@ class App extends Component {
     content: ''
   }
 
-  handleChange = (e) => {
+  handleChange = (event, fieldName) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [fieldName]: event.target.value
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = event => {
     e.preventDefault();
     this.props.createProject(this.state);
   }
@@ -28,8 +29,13 @@ class App extends Component {
         <form onSubmit={this.handleSubmit}>
           <h5>Create a New Project</h5>
           <div>
-            <input type="text" id='title' onChange={this.handleChange} />
-            <label htmlFor="title">Project Title</label>
+            <Input
+              onChange={this.handleChange} 
+              name='title'
+              label="The title"
+            />
+            {/* <input type="text" id='title' onChange={this.handleChange} />
+            <label htmlFor="title">Project Title</label> */}
           </div>
           <div>
             <input type="text" id='content' onChange={this.handleChange} />
