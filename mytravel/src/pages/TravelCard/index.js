@@ -9,9 +9,6 @@ class TravelCardContainer extends Component {
 
     render() {
         const {project} = this.props
-    console.log(this.props)
-
-        // console.log("uuuu",this.props.match.params.id)
             return (
                 <>
                     {
