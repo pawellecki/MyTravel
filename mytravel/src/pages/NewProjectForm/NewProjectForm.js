@@ -6,6 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
+import Travel from '../../components/Travel/Travel'
 
 import './NewProjectForm.css'
 
@@ -27,6 +28,8 @@ class NewProjectForm extends Component {
     }
 
     render() {
+
+        const {projects} = this.props
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
@@ -43,6 +46,23 @@ class NewProjectForm extends Component {
                     />
                     <Button title="Create project" type="submit" />
                 </form>
+                <div>--------------------------------------------</div>
+                
+                {
+                    projects &&
+                    projects.map(({title}) => {
+                        return (
+
+                            <Travel
+                                title={title}
+                            />
+                        )
+                    })
+                }
+                {
+                    !projects &&
+                    <div>Loading</div>
+                }
             </div>
         )
     }
@@ -51,7 +71,7 @@ class NewProjectForm extends Component {
 const mapStateToProps = state => {
     console.log(state)
     return {
-        projects: state.projects
+        projects: state.firestore.ordered.projects
     }
 }
 const mapDispatchToProps = dispatch => {
