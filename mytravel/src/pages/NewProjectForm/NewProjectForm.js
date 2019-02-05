@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { firestoreConnect } from 'react-redux-firebase'
+
 import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
+
 import './NewProjectForm.css'
 
 class NewProjectForm extends Component {
@@ -37,20 +41,29 @@ class NewProjectForm extends Component {
                         name="content"
                         label="The content"
                     />
-                    {/* <Button 
-                        title="Create project"
-                        type='submit'
-                    /> */}
+                    <Button title="Create project" type="submit" />
                 </form>
             </div>
         )
     }
 }
 
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+        projects: state.projects
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
         createProject: project => dispatch(createProject(project))
     }
 }
 
-export default connect(null, mapDispatchToProps)(NewProjectForm)
+export default compose(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    firestoreConnect([{ collection: 'projects' }])
+)(NewProjectForm)
