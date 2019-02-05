@@ -1,28 +1,50 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from './store/reducers/rootReducer'
+import thunk from 'redux-thunk'
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import firebase from './config/firebase.js'
+
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import './index.css'
+
+import Login from './pages/Login/index'
+import NotFound from './pages/NotFound/index'
+// import Home from './pages/Home/index'
+import NewProjectForm from './pages/NewProjectForm/NewProjectForm'
+
+const store = createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(
+            thunk.withExtraArgument({
+                getFirebase,
+                getFirestore
+            })
+        ),
+        reduxFirestore(firebase),
+        reactReduxFirebase(firebase)
+    )
+)
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path='/login' render={() => <Login />} />
+            <Route path='/404' render={() => <NotFound />} />
+            <Route path='/' render={() => <NewProjectForm />} />
+          </Switch>
+        </Router>
+      </Provider>
+
+    )
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+export default App
