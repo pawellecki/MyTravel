@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { Link } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import Travel from '../../components/Travel/Travel'
 
 import './NewProjectForm.css'
 
@@ -50,12 +50,11 @@ class NewProjectForm extends Component {
                 
                 {
                     projects &&
-                    projects.map(({title}) => {
+                    projects.map(({id, title}) => {
                         return (
-
-                            <Travel
-                                title={title}
-                            />
+                            <Link to={`/travels/${id}`} key={id}>
+                                <div>{title}</div>
+                            </Link>
                         )
                     })
                 }
@@ -69,11 +68,11 @@ class NewProjectForm extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         projects: state.firestore.ordered.projects
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         createProject: project => dispatch(createProject(project))
