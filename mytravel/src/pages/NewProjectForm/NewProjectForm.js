@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { Link } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
+import Navbar from '../../components/Navbar/NavbarContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
@@ -31,7 +32,7 @@ class NewProjectForm extends Component {
 
         const {projects} = this.props
         return (
-            <div className={`${styles.container} ${'kot'}`}>
+            <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
                     <h5>Create a New Project</h5>
                     <Input
@@ -59,6 +60,7 @@ class NewProjectForm extends Component {
                     })
                     : <div>Loading</div>
                 }
+                <Navbar />
             </div>
         )
     }
