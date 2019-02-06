@@ -31,7 +31,7 @@ class NewProjectForm extends Component {
 
         const {projects} = this.props
         return (
-            <div className={styles.container}>
+            <div className={`${styles.container} ${'kot'}`}>
                 <form onSubmit={this.handleSubmit}>
                     <h5>Create a New Project</h5>
                     <Input
