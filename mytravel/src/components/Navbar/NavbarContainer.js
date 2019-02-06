@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { Link } from 'react-router-dom'
 
-import { createProject } from '../../store/actions/project'
-import Button from '../../components/Form/Button/Button'
-import Input from '../../components/Form/Input/Input'
+// import Button from '../../components/Form/Button/Button'
+// import Input from '../../components/Form/Input/Input'
 
 import styles from './NavbarContainer.module.css'
 
@@ -28,16 +24,5 @@ const mapStateToProps = state => {
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//     }
-// }
 
-export default compose(
-    connect(
-        mapStateToProps,
-        null
-        // mapDispatchToProps
-    ),
-    firestoreConnect([{ collection: 'projects' }])
-)(NavbarContainer)
+export default connect(mapStateToProps)(NavbarContainer)
