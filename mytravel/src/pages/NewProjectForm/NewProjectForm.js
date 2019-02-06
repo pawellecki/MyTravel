@@ -8,7 +8,7 @@ import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
-import './NewProjectForm.css'
+import './NewProjectForm.module.css'
 
 class NewProjectForm extends Component {
     state = {
@@ -49,7 +49,7 @@ class NewProjectForm extends Component {
                 <div>--------------------------------------------</div>
                 
                 {
-                    projects &&
+                    projects ?
                     projects.map(({id, title}) => {
                         return (
                             <Link to={`/travels/${id}`} key={id}>
@@ -57,10 +57,7 @@ class NewProjectForm extends Component {
                             </Link>
                         )
                     })
-                }
-                {
-                    !projects &&
-                    <div>Loading</div>
+                    : <div>Loading</div>
                 }
             </div>
         )
