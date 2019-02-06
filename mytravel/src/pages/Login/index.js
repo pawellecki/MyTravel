@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import './Login.css'
+import './Login.module.css'
 
 class Login extends Component {
 

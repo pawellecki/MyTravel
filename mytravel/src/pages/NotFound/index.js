@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './NotFound.css'
+import './NotFound.module.css'
 import Button from '../../components/Form/Button/Button'
 
 class NotFound extends Component {
