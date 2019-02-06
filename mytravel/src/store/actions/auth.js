@@ -1,6 +1,6 @@
 import * as actionTypes from '../../constants/actionTypes'
 
-export const singIn = credentials => {
+export const signIn = credentials => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase()
 

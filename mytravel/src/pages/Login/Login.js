@@ -3,8 +3,13 @@ import { connect } from 'react-redux'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 import './Login.module.css'
+import { signIn } from '../../store/actions/auth'
 
 class Login extends Component {
+    state = {
+        email: '',
+        password: ''
+    }
 
     handleChange = (event, fieldName) => {
         this.setState({
@@ -13,8 +18,9 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
+        const { signIn } = this.props
         event.preventDefault()
-        this.props.createProject(this.state)
+        signIn(this.state)
     }
 
     render() {
@@ -24,19 +30,16 @@ class Login extends Component {
                     <h5>Log here</h5>
                     <Input
                         onChange={this.handleChange}
-                        name="login"
-                        label="Loginnn"
+                        name="email"
+                        label="Emaillll"
                     />
                     <Input
                         onChange={this.handleChange}
                         name="password"
                         label="Passworddd"
-                        type='password'
+                        type="password"
                     />
-                    <Button 
-                        title="Log In!" 
-                        type='submit'
-                    />
+                    <Button title="Log In!" type="submit" />
                 </form>
             </div>
         )
@@ -45,8 +48,12 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
+        signIn: credentials => dispatch(signIn(credentials))
         // createProject: project => dispatch(createProject(project))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(
+    null,
+    mapDispatchToProps
+)(Login)
