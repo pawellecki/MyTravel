@@ -24,6 +24,8 @@ class Login extends Component {
     }
 
     render() {
+        const { authError } = this.props
+
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit}>
@@ -41,11 +43,19 @@ class Login extends Component {
                     />
                     <Button title="Log In!" type="submit" />
                 </form>
+                {
+                    authError &&
+                    <div>{authError}</div>
+                }
             </div>
         )
     }
 }
-
+const mapStatetoProps = state => {
+    return {
+        authError: state.auth.authError
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
         signIn: credentials => dispatch(signIn(credentials))
@@ -54,6 +64,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-    null,
+    mapStatetoProps,
     mapDispatchToProps
 )(Login)
