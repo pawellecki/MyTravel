@@ -18,9 +18,10 @@ class NewProjectForm extends Component {
     }
 
     componentDidUpdate() {
-        console.log("y",this.props.auth)
-        if (this.props.auth.isEmpty) {
-            this.props.history.push('/login')
+        const { auth, history } = this.props
+        console.log('y', auth)
+        if (auth.isEmpty) {
+            history.push('/login')
         }
     }
 
@@ -36,8 +37,7 @@ class NewProjectForm extends Component {
     }
 
     render() {
-
-        const {projects} = this.props
+        const { projects } = this.props
         return (
             <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
@@ -55,18 +55,18 @@ class NewProjectForm extends Component {
                     <Button title="Create project" type="submit" />
                 </form>
                 <div>--------------------------------------------</div>
-                
-                {
-                    projects ?
-                    projects.map(({id, title}) => {
+
+                {projects ? (
+                    projects.map(({ id, title }) => {
                         return (
                             <Link to={`/travels/${id}`} key={id}>
                                 <div>{title}</div>
                             </Link>
                         )
                     })
-                    : <div>Loading</div>
-                }
+                ) : (
+                    <div>Loading</div>
+                )}
                 <Navbar />
             </div>
         )
@@ -74,7 +74,7 @@ class NewProjectForm extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log("new project state",state)
+    console.log('new project state', state)
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects
