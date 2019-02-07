@@ -59,7 +59,6 @@ const mapStatetoProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         signIn: credentials => dispatch(signIn(credentials))
-        // createProject: project => dispatch(createProject(project))
     }
 }
 
