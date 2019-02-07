@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
+import Navbar from '../../components/Navbar/NavbarContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
@@ -14,6 +15,14 @@ class NewProjectForm extends Component {
     state = {
         title: '',
         content: ''
+    }
+
+    componentDidUpdate() {
+        const { auth, history } = this.props
+        console.log('y', auth)
+        if (auth.isEmpty) {
+            history.push('/login')
+        }
     }
 
     handleChange = (event, fieldName) => {
@@ -28,10 +37,9 @@ class NewProjectForm extends Component {
     }
 
     render() {
-
-        const {projects} = this.props
+        const { projects } = this.props
         return (
-            <div className={`${styles.container} ${'kot'}`}>
+            <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
                     <h5>Create a New Project</h5>
                     <Input
@@ -47,25 +55,28 @@ class NewProjectForm extends Component {
                     <Button title="Create project" type="submit" />
                 </form>
                 <div>--------------------------------------------</div>
-                
-                {
-                    projects ?
-                    projects.map(({id, title}) => {
+
+                {projects ? (
+                    projects.map(({ id, title }) => {
                         return (
                             <Link to={`/travels/${id}`} key={id}>
                                 <div>{title}</div>
                             </Link>
                         )
                     })
-                    : <div>Loading</div>
-                }
+                ) : (
+                    <div>Loading</div>
+                )}
+                <Navbar />
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
+    console.log('new project state', state)
     return {
+        auth: state.firebase.auth,
         projects: state.firestore.ordered.projects
     }
 }
@@ -76,10 +87,11 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+const withR = withRouter(NewProjectForm)
 export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
     ),
     firestoreConnect([{ collection: 'projects' }])
-)(NewProjectForm)
+)(withR)

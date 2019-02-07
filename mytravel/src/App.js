@@ -9,9 +9,9 @@ import firebase from './config/firebase.js'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import TravelCard from './pages/TravelCard/index'
-import Login from './pages/Login/index'
-import NotFound from './pages/NotFound/index'
+import TravelCard from './pages/TravelCard/TravelCardContainer'
+import Login from './pages/Login/Login'
+import NotFound from './pages/NotFound/NotFound'
 // import Home from './pages/Home/index'
 import NewProjectForm from './pages/NewProjectForm/NewProjectForm'
 
@@ -40,6 +40,7 @@ class App extends Component {
             <Route path='/404' render={() => <NotFound />} />
             {/* <Route path='/' render={() => <Home />} /> */}
             <Route path='/' render={() => <NewProjectForm />} />
+            <Route path='/login' render={() => <Login />} />
           </Switch>
         </Router>
       </Provider>
