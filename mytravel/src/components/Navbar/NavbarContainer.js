@@ -25,7 +25,9 @@ class NavbarContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    return {}
+    return {
+        auth: state.firebase.auth
+    }
 }
 
 const mapDispatchToProps = dispatch => {

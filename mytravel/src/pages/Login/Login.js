@@ -11,16 +11,10 @@ class Login extends Component {
         password: ''
     }
 
-    handleChange = (event, fieldName) => {
-        this.setState({
-            [fieldName]: event.target.value
-        })
-    }
-
-    handleSubmit = event => {
-        const { signIn } = this.props
-        event.preventDefault()
-        signIn(this.state)
+    componentDidUpdate(prevProps) {
+        if (prevProps.auth !== this.props.auth) {
+            // przenies do home
+        }
     }
 
     render() {
@@ -50,9 +44,23 @@ class Login extends Component {
             </div>
         )
     }
+    
+    handleChange = (event, fieldName) => {
+        this.setState({
+            [fieldName]: event.target.value
+        })
+    }
+
+    handleSubmit = event => {
+        const { signIn } = this.props
+        event.preventDefault()
+        signIn(this.state)
+    }
 }
+
 const mapStatetoProps = state => {
     return {
+        auth: state.firebase.auth,
         authError: state.auth.authError
     }
 }
