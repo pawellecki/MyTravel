@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import TravelCard from './pages/TravelCard/TravelCardContainer'
 import Login from './pages/Login/Login'
 import NotFound from './pages/NotFound/NotFound'
-// import Home from './pages/Home/index'
+import Home from './pages/Home/Home'
 import NewProjectForm from './pages/NewProjectForm/NewProjectForm'
 
 const store = createStore(
@@ -36,11 +36,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/travels/:id' component={TravelCard} /> />
+            <Route path='/new-travel' render={() => <NewProjectForm />} />
             <Route path='/login' render={() => <Login />} />
             <Route path='/404' render={() => <NotFound />} />
-            {/* <Route path='/' render={() => <Home />} /> */}
-            <Route path='/' render={() => <NewProjectForm />} />
-            <Route path='/login' render={() => <Login />} />
+            <Route path='/' render={() => <Home />} />
           </Switch>
         </Router>
       </Provider>

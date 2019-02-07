@@ -1,0 +1,8 @@
+.root {
+  background: blue;
+  height: 100%;
+}
+
+.main {
+  float: left;
+}
