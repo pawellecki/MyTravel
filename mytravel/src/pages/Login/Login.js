@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 import './Login.module.css'
@@ -12,8 +13,9 @@ class Login extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.auth !== this.props.auth) {
+        if (prevProps.auth !== this.props.auth && !this.props.auth.isEmpty) {
             // przenies do home
+            this.props.history.push('/')
         }
     }
 
@@ -59,6 +61,7 @@ class Login extends Component {
 }
 
 const mapStatetoProps = state => {
+    console.log("login state",state)
     return {
         auth: state.firebase.auth,
         authError: state.auth.authError
@@ -69,8 +72,8 @@ const mapDispatchToProps = dispatch => {
         signIn: credentials => dispatch(signIn(credentials))
     }
 }
-
+const withR = withRouter(Login)
 export default connect(
     mapStatetoProps,
     mapDispatchToProps
-)(Login)
+)(withR)

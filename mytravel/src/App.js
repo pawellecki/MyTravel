@@ -40,7 +40,7 @@ class App extends Component {
             <Route path='/404' render={() => <NotFound />} />
             {/* <Route path='/' render={() => <Home />} /> */}
             <Route path='/' render={() => <NewProjectForm />} />
-            {/* <Route path='/' render={() => <Login />} /> */}
+            <Route path='/login' render={() => <Login />} />
           </Switch>
         </Router>
       </Provider>

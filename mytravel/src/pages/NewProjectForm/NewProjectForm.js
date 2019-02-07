@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
 import Navbar from '../../components/Navbar/NavbarContainer'
@@ -15,6 +15,13 @@ class NewProjectForm extends Component {
     state = {
         title: '',
         content: ''
+    }
+
+    componentDidUpdate() {
+        console.log("y",this.props.auth)
+        if (this.props.auth.isEmpty) {
+            this.props.history.push('/login')
+        }
     }
 
     handleChange = (event, fieldName) => {
@@ -67,7 +74,9 @@ class NewProjectForm extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log("new project state",state)
     return {
+        auth: state.firebase.auth,
         projects: state.firestore.ordered.projects
     }
 }
@@ -78,10 +87,11 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+const withR = withRouter(NewProjectForm)
 export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
     ),
     firestoreConnect([{ collection: 'projects' }])
-)(NewProjectForm)
+)(withR)
