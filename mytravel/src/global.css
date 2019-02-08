@@ -49,6 +49,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	color: #212120;
 }
 ol, ul {
 	list-style: none;
@@ -64,6 +65,15 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+button {
+	border: none;
+}
+a {
+    text-decoration: none;
+}
+a:link, a:visited, a:hover {
+    color: #242422;
 }
 
 /* GLOBAL */

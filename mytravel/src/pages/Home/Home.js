@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-
-import Navbar from '../../components/Navbar/NavbarContainer'
-import Button from '../../components/Form/Button/Button'
+import { firestoreConnect } from 'react-redux-firebase'
 
 import styles from './Home.module.css'
 
@@ -22,10 +20,7 @@ class Home extends Component {
         const { projects } = this.props
         return (
             <div className={styles.root}>
-                <Navbar />
-                <Link to={'/new-travel'}>
-                    <Button title='Add new travel'/>
-                </Link>
+                
                 <p className={styles.main}>HOME PAGEEE HOME PAGEEE HOME PAGEEE HOME PAGEEE</p>
                 {projects ? (
                     projects.map(({ id, title }) => {
@@ -44,7 +39,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('new project state', state)
+    console.log('home', state)
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects
@@ -57,4 +52,5 @@ export default compose(
         mapStateToProps,
         null
     ),
+    firestoreConnect([{ collection: 'projects' }])
 )(componentWithRouter)

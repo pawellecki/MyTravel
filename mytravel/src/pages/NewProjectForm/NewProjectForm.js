@@ -71,11 +71,11 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const withR = withRouter(NewProjectForm)
+const componentWithRouter = withRouter(NewProjectForm)
 export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
     ),
     firestoreConnect([{ collection: 'projects' }])
-)(withR)
+)(componentWithRouter)
