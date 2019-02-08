@@ -14,7 +14,7 @@ class Login extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.auth !== this.props.auth && !this.props.auth.isEmpty) {
-            // przenies do home
+            // przenies uzytkiwnika do home gdy niezalogowany
             this.props.history.push('/')
         }
     }

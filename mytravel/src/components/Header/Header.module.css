@@ -1,0 +1,14 @@
+.root {
+    float: left;
+    height: 40px;
+    width: 100%;
+    left: 0;
+    background: #fff;
+    opacity: .8;
+}
+
+.button {
+    width: 100px;
+    float: right;
+    background: green
+}

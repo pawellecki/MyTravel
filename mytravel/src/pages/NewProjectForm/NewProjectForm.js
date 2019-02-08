@@ -5,7 +5,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { withRouter, Link } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
-import Navbar from '../../components/Navbar/NavbarContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
@@ -37,7 +36,6 @@ class NewProjectForm extends Component {
     }
 
     render() {
-        const { projects } = this.props
         return (
             <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
@@ -55,19 +53,6 @@ class NewProjectForm extends Component {
                     <Button title="Create project" type="submit" />
                 </form>
                 <div>--------------------------------------------</div>
-
-                {projects ? (
-                    projects.map(({ id, title }) => {
-                        return (
-                            <Link to={`/travels/${id}`} key={id}>
-                                <div>{title}</div>
-                            </Link>
-                        )
-                    })
-                ) : (
-                    <div>Loading</div>
-                )}
-                <Navbar />
             </div>
         )
     }
@@ -76,8 +61,7 @@ class NewProjectForm extends Component {
 const mapStateToProps = state => {
     console.log('new project state', state)
     return {
-        auth: state.firebase.auth,
-        projects: state.firestore.ordered.projects
+        auth: state.firebase.auth
     }
 }
 
@@ -87,11 +71,11 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const withR = withRouter(NewProjectForm)
+const componentWithRouter = withRouter(NewProjectForm)
 export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
     ),
     firestoreConnect([{ collection: 'projects' }])
-)(withR)
+)(componentWithRouter)

@@ -7,13 +7,10 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import firebase from './config/firebase.js'
 
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import TravelCard from './pages/TravelCard/TravelCardContainer'
-import Login from './pages/Login/Login'
-import NotFound from './pages/NotFound/NotFound'
-// import Home from './pages/Home/index'
-import NewProjectForm from './pages/NewProjectForm/NewProjectForm'
+import Header from './components/Header/HeaderContainer'
+import Content from './components/Content/Content'
 
 const store = createStore(
     rootReducer,
@@ -29,24 +26,15 @@ const store = createStore(
     )
 )
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
+const App = () => (
+    <Provider store={store}>
         <Router>
-          <Switch>
-            <Route path='/travels/:id' component={TravelCard} /> />
-            <Route path='/login' render={() => <Login />} />
-            <Route path='/404' render={() => <NotFound />} />
-            {/* <Route path='/' render={() => <Home />} /> */}
-            <Route path='/' render={() => <NewProjectForm />} />
-            <Route path='/login' render={() => <Login />} />
-          </Switch>
+            <>
+                <Header />
+                <Content />
+            </>
         </Router>
-      </Provider>
-
-    )
-  }
-}
+    </Provider>
+)
 
 export default App
