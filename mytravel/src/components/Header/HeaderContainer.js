@@ -17,6 +17,7 @@ class HeaderContainer extends Component {
     }
     
     handleLogout = () => {
+        
         const { logout } = this.props
         logout()
     }
