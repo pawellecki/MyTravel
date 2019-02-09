@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import Button from '../Form/Button/Button'
 
+import handleOutsideClick from '../../helpers/outsideClick'
+
 import styles from './Header.module.css'
 
 class Header extends Component {
@@ -31,7 +33,7 @@ class Header extends Component {
                     {
                         isSettingsOpen && 
                         <ul className={styles.settings}>
-                            <li className='ignoreList'
+                            <li className='ignore'
                             onClick={handleLogout}>Logout!</li>
                         </ul>
                     }
@@ -49,19 +51,19 @@ class Header extends Component {
     handleClick = e => {
         console.log("eeee", e.target)
         if (this.node.contains(e.target)) return
-        this.handleOutsideClick(e)
+        handleOutsideClick(e.target, this.node)
     }
 
-    handleOutsideClick = e => {
-        console.log("E.target",e.target)
-        console.log("this.node",this.node)
-        const ignore = 'ignoreList'
-        if (!this.node.contains(e.target) && !e.target.classList.contains(ignore)) {
-            this.setState({
-                isSettingsOpen: false
-            })
-        }
-    }
+    // handleOutsideClick = e => {
+    //     console.log("E.target",e.target)
+    //     console.log("this.node",this.node)
+    //     const ignore = 'ignoreList'
+    //     if (!this.node.contains(e.target) && !e.target.classList.contains(ignore)) {
+    //         this.setState({
+    //             isSettingsOpen: false
+    //         })
+    //     }
+    // }
 }
 
 export default Header
