@@ -10,7 +10,6 @@ class Home extends Component {
 
     componentDidUpdate() {
         const { auth, history } = this.props
-        console.log('y', auth)
         if (auth.isEmpty) {
             history.push('/login')
         }
@@ -39,7 +38,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('home', state)
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects

@@ -5,14 +5,17 @@ import { logout } from '../../store/actions/auth'
 import Header from './Header'
 
 class HeaderContainer extends Component {
+
     render() {
+        const { userEmail } = this.props
         return (
-            <Header
-                handleLogout={this.handleLogout}
+            <Header 
+                handleLogout={this.handleLogout} 
+                userEmail={userEmail}
             />
         )
     }
-
+    
     handleLogout = () => {
         const { logout } = this.props
         logout()
@@ -20,8 +23,9 @@ class HeaderContainer extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('hedaer stte:', state)
     return {
-        auth: state.firebase.auth
+        userEmail: state.firebase.auth.email
     }
 }
 
