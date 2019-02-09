@@ -22,7 +22,8 @@ class Home extends Component {
             <div className={styles.root}>
                 
                 <p className={styles.main}>HOME PAGEEE HOME PAGEEE HOME PAGEEE HOME PAGEEE</p>
-                {projects ? (
+                {
+                    projects ?
                     projects.map(({ id, title }) => {
                         return (
                             <Link to={`/travels/${id}`} key={id}>
@@ -30,9 +31,8 @@ class Home extends Component {
                             </Link>
                         )
                     })
-                ) : (
-                    <div>Loading</div>
-                )}
+                    : <div>Loading</div>
+                }
             </div>
         )
     }
