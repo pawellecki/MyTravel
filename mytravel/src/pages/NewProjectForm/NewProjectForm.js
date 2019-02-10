@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
@@ -18,7 +18,6 @@ class NewProjectForm extends Component {
 
     componentDidUpdate() {
         const { auth, history } = this.props
-        console.log('y', auth)
         if (auth.isEmpty) {
             history.push('/login')
         }
@@ -59,7 +58,6 @@ class NewProjectForm extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('new project state', state)
     return {
         auth: state.firebase.auth
     }

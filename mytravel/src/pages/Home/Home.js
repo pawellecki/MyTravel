@@ -10,7 +10,6 @@ class Home extends Component {
 
     componentDidUpdate() {
         const { auth, history } = this.props
-        console.log('y', auth)
         if (auth.isEmpty) {
             history.push('/login')
         }
@@ -22,7 +21,8 @@ class Home extends Component {
             <div className={styles.root}>
                 
                 <p className={styles.main}>HOME PAGEEE HOME PAGEEE HOME PAGEEE HOME PAGEEE</p>
-                {projects ? (
+                {
+                    projects ?
                     projects.map(({ id, title }) => {
                         return (
                             <Link to={`/travels/${id}`} key={id}>
@@ -30,16 +30,14 @@ class Home extends Component {
                             </Link>
                         )
                     })
-                ) : (
-                    <div>Loading</div>
-                )}
+                    : <div>Loading</div>
+                }
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    console.log('home', state)
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects

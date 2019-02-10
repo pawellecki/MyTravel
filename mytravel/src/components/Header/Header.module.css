@@ -4,11 +4,16 @@
     width: 100%;
     left: 0;
     background: #fff;
-    opacity: .8;
+    background: #ebebeb;
 }
 
 .button {
     width: 100px;
     float: right;
-    background: green
+    background: green;
+}
+
+.settings {
+    width: 100px;
+    background: blue;
 }
