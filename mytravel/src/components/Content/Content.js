@@ -1,19 +1,60 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Header from '../Header/HeaderContainer'
 
+import Travels from '../../pages/Travels/Travels'
 import TravelCard from '../../pages/TravelCard/TravelCardContainer'
-import Login from '../../pages/Login/Login'
-import NotFound from '../../pages/NotFound/NotFound'
-import Home from '../../pages/Home/Home'
-import NewProjectForm from '../../pages/NewProjectForm/NewProjectForm'
+import TravelForm from '../../pages/TravelForm/TravelForm'
 
-const Content = () => (
-    <Switch>
-        <Route path="/travels/:id" component={TravelCard} /> />
-        <Route path="/new-travel" component={NewProjectForm} />
-        <Route path="/login" component={Login} />
-        <Route path="/404" component={NotFound} />
-        <Route path="/" component={Home} />
-    </Switch>
-)
-export default Content
+class Content extends Component {
+
+    state = {
+        isLogged: true
+    }
+
+    componentDidMount() {
+        const { auth } = this.props
+        if (auth.isEmpty) {
+            this.setState({
+                isLogged: false
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.auth.isEmpty && this.props.auth.isEmpty) {
+            this.setState({
+                isLogged: false
+            })
+        }
+    }
+
+    render() {
+        const { isLogged } = this.state
+        return (
+            <>
+                <Header />
+                <Switch>
+                    <Route exact path="/" component={Travels} />
+                    <Route exact path="/travels" component={Travels} />
+                    <Route path="/travels/:id" component={TravelCard} /> />
+                    <Route path="/new-travel" component={TravelForm} />
+                </Switch>
+                {
+                    !isLogged &&
+                    <Redirect to='/login' />
+                }
+            </>
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+export default 
+connect(mapStateToProps, null)(Content)

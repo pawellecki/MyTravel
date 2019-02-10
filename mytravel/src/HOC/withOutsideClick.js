@@ -2,12 +2,20 @@ import React, { Component } from 'react'
 
 const withOutsideClick = WrappedComponent => {
     class Enhance extends Component {
+        
         state = {
             isOpen: false
         }
 
-        render() {
+        componentDidMount() {
             document.addEventListener('click', this.handleClick, false)
+        }
+
+        componentWillUnmount() {
+            document.removeEventListener('click', this.handleClick, false)
+        }
+
+        render() {
             const { isOpen } = this.state
             return (
                 <WrappedComponent
@@ -25,11 +33,9 @@ const withOutsideClick = WrappedComponent => {
         }
 
         handleClick = e => {
-            const targetIsTogglerOrIgnore =
-                e.target.classList.contains('ignore') ||
-                e.target.classList.contains('toggler')
+            const targetIsNotIgnored = !e.target.classList.contains('ignore')
 
-            if (!targetIsTogglerOrIgnore) {
+            if (targetIsNotIgnored) {
                 this.setState({
                     isOpen: false
                 })
