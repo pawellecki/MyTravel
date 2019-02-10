@@ -19,7 +19,7 @@ class Header extends Component {
                 </Link>
                 LOGO here
                 <div className={styles.button}>
-                    <p onClick={handleToggleOpen} className='toggler'>
+                    <p onClick={handleToggleOpen} className='ignore'>
                         {userEmail}
                     </p>
                     {
