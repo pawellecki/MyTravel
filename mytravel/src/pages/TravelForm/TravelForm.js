@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { withRouter } from 'react-router-dom'
 
 import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
@@ -16,12 +15,12 @@ class TravelForm extends Component {
         content: ''
     }
 
-    componentDidUpdate() {
-        const { auth, history } = this.props
-        if (auth.isEmpty) {
-            history.push('/login')
-        }
-    }
+    // componentDidUpdate() {
+    //     const { auth, history } = this.props
+    //     if (auth.isEmpty) {
+    //         history.push('/login')
+    //     }
+    // }
 
     handleChange = (event, fieldName) => {
         this.setState({
@@ -57,11 +56,11 @@ class TravelForm extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        auth: state.firebase.auth
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         auth: state.firebase.auth
+//     }
+// }
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -69,11 +68,8 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const componentWithRouter = withRouter(TravelForm)
-export default compose(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    ),
+export default 
+compose(
+    connect(null, mapDispatchToProps),
     firestoreConnect([{ collection: 'projects' }])
-)(componentWithRouter)
+)(TravelForm)

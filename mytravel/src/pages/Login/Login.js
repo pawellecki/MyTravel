@@ -1,27 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom'
+
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 import './Login.module.css'
 import { signIn } from '../../store/actions/auth'
 
 class Login extends Component {
+    
     state = {
         email: '',
-        password: ''
+        password: '',
+        isLogged: false
+    }
+    
+    componentDidMount() {
+        const { auth } = this.props
+        if (auth.isEmpty) {
+            this.setState({
+                isLogged: false
+            })
+        }
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.auth !== this.props.auth && !this.props.auth.isEmpty) {
-            // przenies uzytkiwnika do home gdy niezalogowany
-            this.props.history.push('/')
+            this.setState({
+                isLogged: true
+            })
         }
     }
 
+    // componentWillUnmount() {
+    //     this.setState({
+    //         uu: false
+    //     })
+    //   }
+
     render() {
         const { authError } = this.props
+        const { isLogged } = this.state
 
         return (
             <div className="container">
@@ -41,13 +60,18 @@ class Login extends Component {
                     <Button title="Log In!" type="submit" />
                 </form>
                 {
-                    authError &&
+                    authError && 
                     <div>{authError}</div>
+                }
+                {
+                    // isLogged ?
+                    // <Redirect to="/" />
+                    // : <div/>
                 }
             </div>
         )
     }
-    
+
     handleChange = (event, fieldName) => {
         this.setState({
             [fieldName]: event.target.value
@@ -67,13 +91,15 @@ const mapStatetoProps = state => {
         authError: state.auth.authError
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         signIn: credentials => dispatch(signIn(credentials))
     }
 }
-const withR = withRouter(Login)
-export default connect(
+
+export default 
+connect(
     mapStatetoProps,
     mapDispatchToProps
-)(withR)
+)(Login)
