@@ -8,24 +8,14 @@ import './Login.module.css'
 import { signIn } from '../../store/actions/auth'
 
 class Login extends Component {
-    
     state = {
         email: '',
         password: '',
         isLogged: false
     }
-    
-    componentDidMount() {
-        const { auth } = this.props
-        if (auth.isEmpty) {
-            this.setState({
-                isLogged: false
-            })
-        }
-    }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.auth !== this.props.auth && !this.props.auth.isEmpty) {
+        if (prevProps.auth.isEmpty && !this.props.auth.isEmpty) {
             this.setState({
                 isLogged: true
             })
@@ -58,9 +48,8 @@ class Login extends Component {
                     <div>{authError}</div>
                 }
                 {
-                    // isLogged ?
-                    // <Redirect to="/" />
-                    // : <div/>
+                    isLogged && 
+                    <Redirect to="/" />
                 }
             </div>
         )
@@ -92,8 +81,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default 
-connect(
+export default connect(
     mapStatetoProps,
     mapDispatchToProps
 )(Login)

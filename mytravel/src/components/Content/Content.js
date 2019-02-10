@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../Header/HeaderContainer'
-import { firestoreConnect } from 'react-redux-firebase'
 
 import Travels from '../../pages/Travels/Travels'
 import TravelCard from '../../pages/TravelCard/TravelCardContainer'
@@ -16,7 +14,6 @@ class Content extends Component {
     }
 
     componentDidMount() {
-        console.log ("aaaaaaaaaaaaa")
         const { auth } = this.props
         if (auth.isEmpty) {
             this.setState({
@@ -26,7 +23,6 @@ class Content extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log ("bbbbbbbbbbb")
         if (!prevProps.auth.isEmpty && this.props.auth.isEmpty) {
             this.setState({
                 isLogged: false
@@ -40,20 +36,19 @@ class Content extends Component {
             <>
                 <Header />
                 <Switch>
+                    <Route exact path="/" component={Travels} />
                     <Route exact path="/travels" component={Travels} />
                     <Route path="/travels/:id" component={TravelCard} /> />
                     <Route path="/new-travel" component={TravelForm} />
                 </Switch>
                 {
-                    !isLogged ?
+                    !isLogged &&
                     <Redirect to='/login' />
-                    : <div/>
                 }
             </>
         )
     }
 }
-
 
 const mapStateToProps = state => {
     return {
@@ -62,7 +57,4 @@ const mapStateToProps = state => {
 }
 
 export default 
-compose(
-    connect(mapStateToProps, null),
-    firestoreConnect([{ collection: 'projects' }])
-)(Content)
+connect(mapStateToProps, null)(Content)
