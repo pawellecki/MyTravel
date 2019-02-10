@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
 
 import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
@@ -10,17 +8,11 @@ import Input from '../../components/Form/Input/Input'
 import styles from './TravelForm.module.css'
 
 class TravelForm extends Component {
+
     state = {
         title: '',
         content: ''
     }
-
-    // componentDidUpdate() {
-    //     const { auth, history } = this.props
-    //     if (auth.isEmpty) {
-    //         history.push('/login')
-    //     }
-    // }
 
     handleChange = (event, fieldName) => {
         this.setState({
@@ -56,20 +48,13 @@ class TravelForm extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         auth: state.firebase.auth
-//     }
-// }
-
 const mapDispatchToProps = dispatch => {
     return {
         createProject: project => dispatch(createProject(project))
     }
 }
 
-export default 
-compose(
-    connect(null, mapDispatchToProps),
-    firestoreConnect([{ collection: 'projects' }])
+export default connect(
+    null,
+    mapDispatchToProps
 )(TravelForm)
