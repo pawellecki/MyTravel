@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 
-import styles from './Home.module.css'
+import styles from './Travels.module.css'
 
-class Home extends Component {
+class Travels extends Component {
 
     componentDidUpdate() {
         const { auth, history } = this.props
@@ -44,7 +44,7 @@ const mapStateToProps = state => {
     }
 }
 
-const componentWithRouter = withRouter(Home)
+const componentWithRouter = withRouter(Travels)
 export default compose(
     connect(
         mapStateToProps,

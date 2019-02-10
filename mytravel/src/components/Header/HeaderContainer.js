@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import { logout } from '../../store/actions/auth'
 
 import Header from './Header'

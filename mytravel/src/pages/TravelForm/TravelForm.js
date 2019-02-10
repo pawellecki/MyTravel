@@ -8,9 +8,9 @@ import { createProject } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
-import styles from './NewProjectForm.module.css'
+import styles from './TravelForm.module.css'
 
-class NewProjectForm extends Component {
+class TravelForm extends Component {
     state = {
         title: '',
         content: ''
@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const componentWithRouter = withRouter(NewProjectForm)
+const componentWithRouter = withRouter(TravelForm)
 export default compose(
     connect(
         mapStateToProps,

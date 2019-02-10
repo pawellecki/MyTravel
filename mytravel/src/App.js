@@ -7,10 +7,11 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import firebase from './config/firebase.js'
 
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import Header from './components/Header/HeaderContainer'
+import Login from './pages/Login/Login'
 import Content from './components/Content/Content'
+import NotFound from './pages/NotFound/NotFound'
 
 const store = createStore(
     rootReducer,
@@ -29,10 +30,11 @@ const store = createStore(
 const App = () => (
     <Provider store={store}>
         <Router>
-            <>
-                <Header />
-                <Content />
-            </>
+            <Switch>
+                <Route path="/login" component={Login} />
+                <Route path="/404" component={NotFound} />
+                <Route path="/" component={Content} />
+            </Switch>
         </Router>
     </Provider>
 )
