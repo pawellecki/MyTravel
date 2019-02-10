@@ -7,8 +7,15 @@ const withOutsideClick = WrappedComponent => {
             isOpen: false
         }
 
-        render() {
+        componentDidMount() {
             document.addEventListener('click', this.handleClick, false)
+        }
+
+        componentWillUnmount() {
+            document.removeEventListener('click', this.handleClick, false)
+        }
+
+        render() {
             const { isOpen } = this.state
             return (
                 <WrappedComponent

@@ -32,12 +32,6 @@ class Login extends Component {
         }
     }
 
-    // componentWillUnmount() {
-    //     this.setState({
-    //         uu: false
-    //     })
-    //   }
-
     render() {
         const { authError } = this.props
         const { isLogged } = this.state
