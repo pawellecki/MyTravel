@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import withOutsideClick from '../../HOC/withOutsideClick'
+
 import Button from '../Form/Button/Button'
 
 import styles from './Header.module.css'
 
 class Header extends Component {
 
-    state = {
-        isSettingsOpen: false
-    }
-
     render() {
-        document.addEventListener('click', this.handleClick, false)
-        const { isSettingsOpen } = this.state
-        const { userEmail } = this.props
+        
+        const { userEmail, isOpen, handleToggleOpen, handleLogout } = this.props
         return (
             <div className={styles.root}>
                 <Link to={'/new-travel'}>
@@ -22,13 +19,13 @@ class Header extends Component {
                 </Link>
                 LOGO here
                 <div className={styles.button}>
-                    <p onClick={this.handleToggleSettings}>
+                    <p onClick={handleToggleOpen} className='toggler'>
                         {userEmail}
                     </p>
                     {
-                        isSettingsOpen && 
+                        isOpen && 
                         <ul className={styles.settings}>
-                            <li className='ignore' ref={node => this.node = node}>Logout!</li>
+                            <li className='ignore' onClick={handleLogout}>Logout!</li>
                         </ul>
                     }
                 </div>
@@ -36,27 +33,6 @@ class Header extends Component {
         )
     }
 
-    handleToggleSettings = () => {
-        this.setState({
-            isSettingsOpen: !this.state.isSettingsOpen
-        })
-    }
-
-    handleClick = e => {
-        const { handleLogout } = this.props
-        if (this.node && this.node.contains(e.target)) {
-            handleLogout()
-        }
-        this.handleOutsideClick(e)
-    }
-
-    handleOutsideClick = e => {
-        if (this.node && !this.node.contains(e.target)) {
-            this.setState({
-                isSettingsOpen: false
-            })
-        }
-    }
 }
 
-export default Header
+export default withOutsideClick(Header)

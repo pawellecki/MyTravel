@@ -17,14 +17,12 @@ class HeaderContainer extends Component {
     }
     
     handleLogout = () => {
-        
         const { logout } = this.props
         logout()
     }
 }
 
 const mapStateToProps = state => {
-    console.log('hedaer stte:', state)
     return {
         userEmail: state.firebase.auth.email
     }
