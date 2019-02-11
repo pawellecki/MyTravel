@@ -18,7 +18,12 @@ class Header extends Component {
                 LOGO here
                 <div className={styles.button}>
                     <p onClick={handleToggleOpen} className="ignore">
-                        {userEmail}
+                        {
+                            userEmail
+                            ? userEmail
+                            : "no-user@no-user.example"
+
+                        }
                     </p>
                     {
                         isOpen &&
