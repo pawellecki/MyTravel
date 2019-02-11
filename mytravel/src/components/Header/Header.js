@@ -12,9 +12,6 @@ class Header extends Component {
         const { userEmail, isOpen, handleToggleOpen, handleLogout } = this.props
         return (
             <div className={styles.root}>
-                <Link to={'/new-travel'}>
-                    <Button title="Add new travel" />
-                </Link>
                 LOGO here
                 <div className={`${styles.button} ${'ignore'}`} onClick={handleToggleOpen}>
                     <p >
@@ -34,6 +31,9 @@ class Header extends Component {
                         </ul>
                     }
                 </div>
+                <Link to={'/new-travel'} className={styles.add}>
+                    <Button title="Add new travel" />
+                </Link>
             </div>
         )
     }

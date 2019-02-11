@@ -1,4 +1,5 @@
 .root {
+    position: relative;
     float: left;
     height: 40px;
     width: 100%;
@@ -7,9 +8,13 @@
     background: #ebebeb;
 }
 
+.add {
+    float: right;
+    margin: 5px 10px 0 0;
+}
+
 .button {
     position: relative;
-    /* width: 100px; */
     height: 40px;
     padding: 0 10px;
     margin-right: 10px;
@@ -40,7 +45,9 @@
 .button p {
     pointer-events: none;
 }
+
 .settings {
+    position: absolute;
     width: 100px;
     background: blue;
 }
