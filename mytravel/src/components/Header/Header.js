@@ -16,8 +16,8 @@ class Header extends Component {
                     <Button title="Add new travel" />
                 </Link>
                 LOGO here
-                <div className={styles.button}>
-                    <p onClick={handleToggleOpen} className="ignore">
+                <div className={`${styles.button} ${'ignore'}`} onClick={handleToggleOpen}>
+                    <p >
                         {
                             userEmail
                             ? userEmail

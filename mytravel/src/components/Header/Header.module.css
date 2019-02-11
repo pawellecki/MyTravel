@@ -8,11 +8,38 @@
 }
 
 .button {
-    width: 100px;
+    position: relative;
+    /* width: 100px; */
+    height: 40px;
+    padding: 0 10px;
+    margin-right: 10px;
+    line-height: 40px;
     float: right;
     background: green;
+    padding-right: 36px;
+    cursor: pointer;
+}
+.button:before,
+.button:after {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 2px;
+    background: #212120;
+    top: 19px;
+}
+.button:before {
+    right: 16px;
+    transform: rotate(45deg)
+}
+.button:after {
+    right: 10px;
+    transform: rotate(135deg)
 }
 
+.button p {
+    pointer-events: none;
+}
 .settings {
     width: 100px;
     background: blue;
