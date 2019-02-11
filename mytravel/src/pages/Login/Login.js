@@ -7,6 +7,8 @@ import Input from '../../components/Form/Input/Input'
 import './Login.module.css'
 import { signIn } from '../../store/actions/auth'
 
+import styles from './Login.module.css'
+
 class Login extends Component {
     state = {
         email: '',
@@ -27,7 +29,7 @@ class Login extends Component {
         const { isLogged } = this.state
 
         return (
-            <div className="container">
+            <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
                     <h5>Log here</h5>
                     <Input

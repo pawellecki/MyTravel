@@ -1,4 +1,13 @@
-.container {
+.root {
   background: grey;
-  min-height: 100vh;
+  height: 100%;
+  padding-top: 10%;
+}
+
+.root form {
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
 }
