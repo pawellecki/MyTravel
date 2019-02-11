@@ -13,7 +13,7 @@ class Header extends Component {
         const { userEmail, isOpen, handleToggleOpen, handleLogout } = this.props
         return (
             <div className={styles.root}>
-                <World />
+                <World className={styles.logo} />
                 <div className={`${styles.button} ${'ignore'}`} onClick={handleToggleOpen}>
                     <p >
                         {
