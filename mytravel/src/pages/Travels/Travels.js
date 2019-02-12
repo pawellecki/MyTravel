@@ -25,16 +25,20 @@ class Travels extends Component {
                         projects ?
                         projects.map(({ id, title }) => {
                             return (
-                                <Link to={`/travels/${id}`} key={id}>
-                                    <div className={styles.card}>
-                                        <div className={styles.photo} />
-                                        <h3>{title}</h3>
-                                    </div>
-                                </Link>
+                                <div className={styles.cardPlace}>
+                                    <Link to={`/travels/${id}`} key={id}>
+                                        <div className={styles.card}>
+
+                                                <div className={styles.photo} />
+                                                <h3>{title}</h3>
+                                        </div>
+                                    </Link>
+                                </div>
                             )
                         })
                         : <div>Loading</div>
                     }
+                    <div style={{clear: 'both'}} />
                 </div>
             </div>
         )

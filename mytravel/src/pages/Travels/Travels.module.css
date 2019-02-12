@@ -5,39 +5,54 @@
 
 .cardsCover {
   background: green;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
-.cardsCover a:last-of-type:after {
-  content: '';
-  display: table;
-  clear: both;
+
+.cardPlace {
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 300px;
+  margin: 20px;
+  overflow: hidden;
+  box-shadow: rgb(128, 128, 128) 0 8px 24px -1px;
 }
 
 .card {
-  position: relative;
-  float: left;
-  width: 160px;
-  height: 250px;
-  margin: 20px;
+  height: 100%;
   padding: 10px;
-  background: #fff;
-  box-shadow: rgb(128, 128, 128) 0 8px 24px -1px;
+  background: #f7f5f3;
 }
 
 .photo {
   width: 100%;
-  height: 150px;
+  height: 230px;
   background: grey;
+}
+
+.photo:after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 50px;
+  left: -30px;
+  top: 50px;
+  background: #fff;
+  transform: rotate(-20deg);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(255, 255, 255, .7));
 }
 
 .card h3 {
   position: absolute;
-  top: 20px;
+  top: 30px;
   height: 30px;
+  max-width: 150px;
+  padding-right: 12px;
+  background: #f7f5f3;
   line-height: 30px;
-  padding: 0 20px;
-  text-align: center;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
