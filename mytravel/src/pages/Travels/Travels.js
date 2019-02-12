@@ -19,19 +19,23 @@ class Travels extends Component {
         const { projects } = this.props
         return (
             <div className={styles.root}>
-                
-                <p className={styles.main}>HOME PAGEEE HOME PAGEEE HOME PAGEEE HOME PAGEEE</p>
-                {
-                    projects ?
-                    projects.map(({ id, title }) => {
-                        return (
-                            <Link to={`/travels/${id}`} key={id}>
-                                <div>{title}</div>
-                            </Link>
-                        )
-                    })
-                    : <div>Loading</div>
-                }
+            
+                <div className={styles.cardsCover}>
+                    {
+                        projects ?
+                        projects.map(({ id, title }) => {
+                            return (
+                                <Link to={`/travels/${id}`} key={id}>
+                                    <div className={styles.card}>
+                                        <div className={styles.photo} />
+                                        <h3>{title}</h3>
+                                    </div>
+                                </Link>
+                            )
+                        })
+                        : <div>Loading</div>
+                    }
+                </div>
             </div>
         )
     }
