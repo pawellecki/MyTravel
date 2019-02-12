@@ -15,7 +15,7 @@ class Content extends Component {
 
     componentDidMount() {
         const { auth } = this.props
-        if (auth.isEmpty) {
+        if (auth.isEmpty && auth.isLoaded) {
             this.setState({
                 isLogged: false
             })
@@ -23,7 +23,7 @@ class Content extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.auth.isEmpty && this.props.auth.isEmpty) {
+        if (!prevProps.auth.isEmpty && this.props.auth.isEmpty && this.props.auth.isLoaded) {
             this.setState({
                 isLogged: false
             })
