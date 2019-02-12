@@ -5,7 +5,7 @@
 
 .cardsCover {
   background: green;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
 }
 
@@ -55,4 +55,9 @@
   border-bottom-right-radius: 15px;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.card p {
+  margin-top: 10px;
+  font-size: 14px;
 }

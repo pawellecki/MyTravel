@@ -23,14 +23,14 @@ class Travels extends Component {
                 <div className={styles.cardsCover}>
                     {
                         projects ?
-                        projects.map(({ id, title }) => {
+                        projects.map(({ id, title, content }) => {
                             return (
                                 <div className={styles.cardPlace}>
                                     <Link to={`/travels/${id}`} key={id}>
                                         <div className={styles.card}>
-
-                                                <div className={styles.photo} />
                                                 <h3>{title}</h3>
+                                                <div className={styles.photo} />
+                                                <p>{content}</p>
                                         </div>
                                     </Link>
                                 </div>
