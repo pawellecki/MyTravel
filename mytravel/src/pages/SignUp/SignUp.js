@@ -22,12 +22,13 @@ class SignUp extends Component {
     render() {
         const { authError, auth } = this.props
         if (auth.uid) return <Redirect to='/' />
+        
         return (
             <div className={styles.root}>
                 {
                     auth.isLoaded ?
                     <form onSubmit={this.handleSubmit}>
-                        <h5>Log here</h5>
+                        <h5>Sign up here</h5>
                         <Input
                             onChange={this.handleChange}
                             name="email"
@@ -39,7 +40,17 @@ class SignUp extends Component {
                             label="Passworddd"
                             type="password"
                         />
-                        <Button title="Log In!" type="submit" />
+                        <Input
+                            onChange={this.handleChange}
+                            name="firstName"
+                            label="firstName"
+                        />
+                        <Input
+                            onChange={this.handleChange}
+                            name="lastName"
+                            label="lastName"
+                        />
+                        <Button title="Sign up!" type="submit" />
                         {
                             authError && 
                             <div>{authError}</div>
@@ -61,9 +72,9 @@ class SignUp extends Component {
     }
 
     handleSubmit = e => {
-        const { logIn } = this.props
+        const { signUp } = this.props
         e.preventDefault()
-        logIn(this.state)
+        signUp(this.state)
     }
 }
 
@@ -76,7 +87,7 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signUp: credentials => dispatch(signUp(credentials))
+        signUp: newUser => dispatch(signUp(newUser))
     }
 }
 
