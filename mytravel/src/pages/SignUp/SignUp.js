@@ -4,28 +4,31 @@ import { Redirect } from 'react-router-dom'
 
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import { logIn } from '../../store/actions/auth'
+import { signUp } from '../../store/actions/auth'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 
-import styles from './LogIn.module.css'
+import styles from './SignUp.module.css'
 
-class LogIn extends Component {
+class SignUp extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        firstName: '',
+        lastName: ''
     }
 
     render() {
         const { authError, auth } = this.props
         if (auth.uid) return <Redirect to='/' />
+        
         return (
             <div className={styles.root}>
                 {
                     auth.isLoaded ?
                     <form onSubmit={this.handleSubmit}>
-                        <h5>Log here</h5>
+                        <h5>Sign up here</h5>
                         <Input
                             onChange={this.handleChange}
                             name="email"
@@ -37,7 +40,17 @@ class LogIn extends Component {
                             label="Passworddd"
                             type="password"
                         />
-                        <Button title="Log In!" type="submit" />
+                        <Input
+                            onChange={this.handleChange}
+                            name="firstName"
+                            label="firstName"
+                        />
+                        <Input
+                            onChange={this.handleChange}
+                            name="lastName"
+                            label="lastName"
+                        />
+                        <Button title="Sign up!" type="submit" />
                         {
                             authError && 
                             <div>{authError}</div>
@@ -59,9 +72,9 @@ class LogIn extends Component {
     }
 
     handleSubmit = e => {
-        const { logIn } = this.props
+        const { signUp } = this.props
         e.preventDefault()
-        logIn(this.state)
+        signUp(this.state)
     }
 }
 
@@ -74,11 +87,11 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logIn: credentials => dispatch(logIn(credentials))
+        signUp: newUser => dispatch(signUp(newUser))
     }
 }
 
 export default connect(
     mapStatetoProps,
     mapDispatchToProps
-)(LogIn)
+)(SignUp)
