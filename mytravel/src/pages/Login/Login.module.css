@@ -1,0 +1,8 @@
+.root {
+  background: grey;
+  width: 500px;
+  display: block;
+  margin: 200px auto;
+  background: rgb(218, 213, 213);
+  border-radius: 10px;
+}
