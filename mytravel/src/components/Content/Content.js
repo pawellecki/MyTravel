@@ -11,14 +11,14 @@ class Content extends Component {
 
     render() {
         const { auth } = this.props
-        if (!auth.uid) return <Redirect to='/login' />
+        if (auth.isLoaded && !auth.uid) return <Redirect to='/login' />
         return (
             <>
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Travels} />
                     <Route exact path="/travels" component={Travels} />
-                    <Route path="/travels/:id" component={TravelCard} /> />
+                    <Route path="/travels/:id" component={TravelCard} />
                     <Route path="/new-travel" component={TravelForm} />
                 </Switch>
             </>
