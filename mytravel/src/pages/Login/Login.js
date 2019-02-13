@@ -4,54 +4,49 @@ import { Redirect } from 'react-router-dom'
 
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import './Login.module.css'
 import { signIn } from '../../store/actions/auth'
+
+import { ReactComponent as World } from '../../assets/icons/world.svg'
 
 import styles from './Login.module.css'
 
 class Login extends Component {
+
     state = {
         email: '',
-        password: '',
-        isLogged: false
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.auth.isEmpty && !this.props.auth.isEmpty) {
-            this.setState({
-                isLogged: true
-            })
-        }
+        password: ''
     }
 
     render() {
-        const { authError } = this.props
-        const { isLogged } = this.state
-
+        const { authError, auth } = this.props
+        if (auth.uid) return <Redirect to='/' />
         return (
             <div className={styles.root}>
-                <form onSubmit={this.handleSubmit}>
-                    <h5>Log here</h5>
-                    <Input
-                        onChange={this.handleChange}
-                        name="email"
-                        label="Emaillll"
-                    />
-                    <Input
-                        onChange={this.handleChange}
-                        name="password"
-                        label="Passworddd"
-                        type="password"
-                    />
-                    <Button title="Log In!" type="submit" />
-                </form>
                 {
-                    authError && 
-                    <div>{authError}</div>
-                }
-                {
-                    isLogged && 
-                    <Redirect to="/" />
+                    auth.isLoaded ?
+                    <form onSubmit={this.handleSubmit}>
+                        <h5>Log here</h5>
+                        <Input
+                            onChange={this.handleChange}
+                            name="email"
+                            label="Emaillll"
+                        />
+                        <Input
+                            onChange={this.handleChange}
+                            name="password"
+                            label="Passworddd"
+                            type="password"
+                        />
+                        <Button title="Log In!" type="submit" />
+                        {
+                            authError && 
+                            <div>{authError}</div>
+                        }
+                    </form>
+                    : 
+                    <div className={styles.loader}>
+                        <World />
+                    </div>
                 }
             </div>
         )
