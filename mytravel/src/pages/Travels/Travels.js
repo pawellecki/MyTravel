@@ -8,33 +8,29 @@ import styles from './Travels.module.css'
 
 class Travels extends Component {
 
-    componentDidUpdate() {
-        const { auth, history } = this.props
-        if (auth.isEmpty) {
-            history.push('/login')
-        }
-    }
-
     render() {
         const { projects } = this.props
         return (
             <div className={styles.root}>
-            
                 <div className={styles.cardsCover}>
                     {
                         projects ?
-                        projects.map(({ id, title }) => {
+                        projects.map(({ id, title, content }) => {
                             return (
-                                <Link to={`/travels/${id}`} key={id}>
-                                    <div className={styles.card}>
-                                        <div className={styles.photo} />
-                                        <h3>{title}</h3>
-                                    </div>
-                                </Link>
+                                <div className={styles.cardPlace} key={id}>
+                                    <Link to={`/travels/${id}`}>
+                                        <div className={styles.card}>
+                                                <h3>{title}</h3>
+                                                <div className={styles.photo} />
+                                                <p>{content}</p>
+                                        </div>
+                                    </Link>
+                                </div>
                             )
                         })
                         : <div>Loading</div>
                     }
+                    <div style={{clear: 'both'}} />
                 </div>
             </div>
         )

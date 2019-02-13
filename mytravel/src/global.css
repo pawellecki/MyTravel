@@ -11,7 +11,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
 }
-
+* { 
+	box-sizing: border-box
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -50,9 +52,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-body * {
-	color: #242422;
-}
 ol, ul {
 	list-style: none;
 }
@@ -80,6 +79,9 @@ a:link, a:visited, a:hover {
 
 /* GLOBAL */
 
+p, h1, h2 ,h3 ,h4, h5, h6 {
+	color: #242422;
+}
 h1 { font-size: 12px }
 h2 { font-size: 14px }
 h3 { font-size: 16px }

@@ -5,7 +5,7 @@ button {
     background: #d95700;
     color: #fff;
     cursor: pointer;
-    box-shadow: rgb(128, 128, 128) 0 8px 24px -1px;
+    box-shadow: #808080 0 8px 24px -1px;
     opacity: 0.8;
     transition: 0.2s;
 }
