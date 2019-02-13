@@ -4,17 +4,19 @@ import { Redirect } from 'react-router-dom'
 
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import { logIn } from '../../store/actions/auth'
+import { signUp } from '../../store/actions/auth'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 
-import styles from './Login.module.css'
+import styles from './SignUp.module.css'
 
-class Login extends Component {
+class SignUp extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        firstName: '',
+        lastName: ''
     }
 
     render() {
@@ -52,15 +54,15 @@ class Login extends Component {
         )
     }
 
-    handleChange = (event, fieldName) => {
+    handleChange = (e, fieldName) => {
         this.setState({
-            [fieldName]: event.target.value
+            [fieldName]: e.target.value
         })
     }
 
-    handleSubmit = event => {
+    handleSubmit = e => {
         const { logIn } = this.props
-        event.preventDefault()
+        e.preventDefault()
         logIn(this.state)
     }
 }
@@ -74,11 +76,11 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logIn: credentials => dispatch(logIn(credentials))
+        signUp: credentials => dispatch(signUp(credentials))
     }
 }
 
 export default connect(
     mapStatetoProps,
     mapDispatchToProps
-)(Login)
+)(SignUp)

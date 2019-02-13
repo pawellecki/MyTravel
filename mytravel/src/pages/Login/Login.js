@@ -52,15 +52,15 @@ class LogIn extends Component {
         )
     }
 
-    handleChange = (event, fieldName) => {
+    handleChange = (e, fieldName) => {
         this.setState({
-            [fieldName]: event.target.value
+            [fieldName]: e.target.value
         })
     }
 
-    handleSubmit = event => {
+    handleSubmit = e => {
         const { logIn } = this.props
-        event.preventDefault()
+        e.preventDefault()
         logIn(this.state)
     }
 }

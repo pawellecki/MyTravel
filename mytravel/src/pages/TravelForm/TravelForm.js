@@ -14,14 +14,14 @@ class TravelForm extends Component {
         content: ''
     }
 
-    handleChange = (event, fieldName) => {
+    handleChange = (e, fieldName) => {
         this.setState({
-            [fieldName]: event.target.value
+            [fieldName]: e.target.value
         })
     }
 
-    handleSubmit = event => {
-        event.preventDefault()
+    handleSubmit = e => {
+        e.preventDefault()
         this.props.createProject(this.state)
     }
 
