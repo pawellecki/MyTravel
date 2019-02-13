@@ -33,6 +33,8 @@ class Content extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('test:',state)
+
     return {
         auth: state.firebase.auth
     }

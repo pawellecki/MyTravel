@@ -4,7 +4,7 @@ import rootReducer from './store/reducers/rootReducer'
 import thunk from 'redux-thunk'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
-import firebase from './config/firebase.js'
+import firebaseConfig from './config/firebase.js'
 
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -23,8 +23,8 @@ const store = createStore(
                 getFirestore
             })
         ),
-        reduxFirestore(firebase),
-        reactReduxFirebase(firebase)
+        reduxFirestore(firebaseConfig),
+        reactReduxFirebase(firebaseConfig, { useFirestoreForProfile: true, userProfile: 'users' })
     )
 )
 
@@ -40,5 +40,6 @@ const App = () => (
         </Router>
     </Provider>
 )
+
 
 export default App

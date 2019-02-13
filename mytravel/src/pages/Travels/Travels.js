@@ -38,6 +38,7 @@ class Travels extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log('testsss:',state);
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects

@@ -23,9 +23,6 @@ const auth = (state = initState, action) => {
             console.log("Log out ...")
             return state
 
-        default:
-            return state
-
         case 'SIGNUP_SUCCESS':
             console.log("signUP success!!")
             return {
