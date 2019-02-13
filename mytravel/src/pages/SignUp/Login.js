@@ -8,9 +8,9 @@ import { logIn } from '../../store/actions/auth'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 
-import styles from './LogIn.module.css'
+import styles from './Login.module.css'
 
-class LogIn extends Component {
+class Login extends Component {
 
     state = {
         email: '',
@@ -81,4 +81,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStatetoProps,
     mapDispatchToProps
-)(LogIn)
+)(Login)
