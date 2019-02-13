@@ -10,23 +10,10 @@ import { signIn } from '../../store/actions/auth'
 import styles from './Login.module.css'
 
 class Login extends Component {
-    state = {
-        email: '',
-        password: '',
-        isLogged: false
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.auth.isEmpty && !this.props.auth.isEmpty) {
-            this.setState({
-                isLogged: true
-            })
-        }
-    }
-
+    
     render() {
-        const { authError } = this.props
-        const { isLogged } = this.state
+        const { authError, auth } = this.props
+        if (auth.uid) return <Redirect to='/' />
 
         return (
             <div className={styles.root}>
@@ -48,10 +35,6 @@ class Login extends Component {
                 {
                     authError && 
                     <div>{authError}</div>
-                }
-                {
-                    isLogged && 
-                    <Redirect to="/" />
                 }
             </div>
         )

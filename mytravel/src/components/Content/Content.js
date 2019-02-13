@@ -9,29 +9,9 @@ import TravelForm from '../../pages/TravelForm/TravelForm'
 
 class Content extends Component {
 
-    state = {
-        isLogged: true
-    }
-
-    componentDidMount() {
-        const { auth } = this.props
-        if (auth.isEmpty && auth.isLoaded) {
-            this.setState({
-                isLogged: false
-            })
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        if (!prevProps.auth.isEmpty && this.props.auth.isEmpty && this.props.auth.isLoaded) {
-            this.setState({
-                isLogged: false
-            })
-        }
-    }
-
     render() {
-        const { isLogged } = this.state
+        const { auth } = this.props
+        if (!auth.uid) return <Redirect to='/login' />
         return (
             <>
                 <Header />
@@ -41,10 +21,6 @@ class Content extends Component {
                     <Route path="/travels/:id" component={TravelCard} /> />
                     <Route path="/new-travel" component={TravelForm} />
                 </Switch>
-                {
-                    !isLogged &&
-                    <Redirect to='/login' />
-                }
             </>
         )
     }
