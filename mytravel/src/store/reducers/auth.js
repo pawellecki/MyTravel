@@ -19,8 +19,8 @@ const auth = (state = initState, action) => {
                 authError: 'Login failed'
             }
             
-        case 'SIGNOUT_SUCCESS':
-            console.log("SIGN out ...")
+        case 'LOGOUT_SUCCESS':
+            console.log("Log out ...")
             return state
 
         default:

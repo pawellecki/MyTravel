@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { logout } from '../../store/actions/auth'
+import { logOut } from '../../store/actions/auth'
 
 import Header from './Header'
 
@@ -12,8 +12,8 @@ class HeaderContainer extends Component {
     }
 
     handleLogout = () => {
-        const { logout } = this.props
-        logout()
+        const { logOut } = this.props
+        logOut()
     }
 }
 
@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch(logout())
+        logOut: () => dispatch(logOut())
     }
 }
 

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import { signIn } from '../../store/actions/auth'
+import { logIn } from '../../store/actions/auth'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 
@@ -59,9 +59,9 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
-        const { signIn } = this.props
+        const { logIn } = this.props
         event.preventDefault()
-        signIn(this.state)
+        logIn(this.state)
     }
 }
 
@@ -74,7 +74,7 @@ const mapStatetoProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signIn: credentials => dispatch(signIn(credentials))
+        logIn: credentials => dispatch(logIn(credentials))
     }
 }
 
