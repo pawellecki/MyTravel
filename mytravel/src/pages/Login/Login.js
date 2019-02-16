@@ -1,84 +1,65 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import { logIn } from '../../store/actions/auth'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 
 import styles from './LogIn.module.css'
 
 class LogIn extends Component {
-
-    state = {
-        email: '',
-        password: ''
-    }
-
     render() {
-        const { authError, auth } = this.props
-        if (auth.uid) return <Redirect to='/' />
+        const { auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit } = this.props
+
         return (
             <div className={styles.root}>
+                <div>
+                    <div onClick={() => handleChooseTab(true)}>Log In</div>
+                    <div onClick={() => handleChooseTab(false)}>
+                        Sign up
+                    </div>
+                </div>
                 {
-                    auth.isLoaded ?
-                    <form onSubmit={this.handleSubmit}>
-                        <h5>Log here</h5>
+                    auth && auth.isLoaded ?
+                    <form onSubmit={handleSubmit}>
                         <Input
-                            onChange={this.handleChange}
+                            onChange={handleChangeField}
                             name="email"
                             label="Emaillll"
                         />
                         <Input
-                            onChange={this.handleChange}
+                            onChange={handleChangeField}
                             name="password"
                             label="Passworddd"
                             type="password"
                         />
-                        <Button title="Log In!" type="submit" />
                         {
-                            authError && 
-                            <div>{authError}</div>
+                            !isLogIn &&
+                            <>
+                                <Input
+                                    onChange={handleChangeField}
+                                    name="firstName"
+                                    label="firstName"
+                                />
+                                <Input
+                                    onChange={handleChangeField}
+                                    name="lastName"
+                                    label="lastName"
+                                />
+                            </>
                         }
+                        <Button
+                            title={isLogIn ? 'Log in!' : 'Sign up!'}
+                            type="submit"
+                        />
+                        {authError && <div>{authError}</div>}
                     </form>
-                    : 
-                    <div className={styles.loader}>
-                        <World />
-                    </div>
+                    :
+                    <div className={styles.loader}><World /></div>
                 }
             </div>
         )
     }
-
-    handleChange = (e, fieldName) => {
-        this.setState({
-            [fieldName]: e.target.value
-        })
-    }
-
-    handleSubmit = e => {
-        const { logIn } = this.props
-        e.preventDefault()
-        logIn(this.state)
-    }
 }
 
-const mapStatetoProps = state => {
-    return {
-        auth: state.firebase.auth,
-        authError: state.auth.authError
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        logIn: credentials => dispatch(logIn(credentials))
-    }
-}
-
-export default connect(
-    mapStatetoProps,
-    mapDispatchToProps
-)(LogIn)
+export default LogIn
