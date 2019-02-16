@@ -16,11 +16,18 @@
 }
 
 .tab {
+    width: 50%;
     border-radius: 4px;
     background: #FF055C;
+    cursor: auto;
 }
 
 .disabled {
     border-radius: 4px;
     background: #A77B81;
+    color: #ebebeb;
+    cursor: pointer;
+}
+.disabled:hover {
+    color: #fff;
 }
