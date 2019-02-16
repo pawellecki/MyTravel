@@ -1,4 +1,4 @@
-button {
+.root  {
     padding: 0 20px;
     height: 30px;
     border-radius: 15px;
@@ -10,7 +10,24 @@ button {
     transition: 0.2s;
 }
 
-button:hover {
+.root :hover {
     opacity: 1;
     transition: 0.2s;
+}
+
+.tab {
+    width: 50%;
+    border-radius: 4px;
+    background: #FF055C;
+    cursor: auto;
+}
+
+.disabled {
+    border-radius: 4px;
+    background: #A77B81;
+    color: #ebebeb;
+    cursor: pointer;
+}
+.disabled:hover {
+    color: #fff;
 }

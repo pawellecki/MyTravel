@@ -1,10 +1,19 @@
 import React from 'react'
 
-import './Button.module.css'
+import styles from './Button.module.css'
 
-const Button = React.memo( ({ title, type, onClick }) => 
-    <button onClick={onClick} type={type}>
+const Button = React.memo( ({ title, type, onClick, isTab, isDisabled }) => 
+    <button 
+        onClick={onClick} 
+        type={type} 
+        className={`
+            ${styles.root}
+            ${isTab ? styles.tab : ''}
+            ${isDisabled ? styles.disabled : ''}
+        `}
+    >
         {title}
-    </button>)
+    </button>
+)
 
 export default Button

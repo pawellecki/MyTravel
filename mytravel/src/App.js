@@ -9,8 +9,7 @@ import firebaseConfig from './config/firebase.js'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import SignUp from './pages/SignUp/SignUp'
-import LogIn from './pages/LogIn/LogIn'
+import LogIn from './pages/LogIn/LogInContainer'
 import Content from './components/Content/Content'
 import NotFound from './pages/NotFound/NotFound'
 
@@ -32,7 +31,6 @@ const App = () => (
     <Provider store={store}>
         <Router>
             <Switch>
-                <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={LogIn} />
                 <Route path="/" component={Content} />
                 <Route path="/404" component={NotFound} />
