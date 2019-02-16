@@ -22,12 +22,15 @@
     cursor: auto;
 }
 
-.disabled {
-    border-radius: 4px;
-    background: #A77B81;
-    color: #ebebeb;
+.faded {
+    background: #ebebeb;
+    opacity: .5;
     cursor: pointer;
 }
-.disabled:hover {
-    color: #fff;
+
+.disabled {
+    pointer-events: none;
+    cursor: auto;
+    opacity: .5;
 }
+
