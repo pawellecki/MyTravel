@@ -14,10 +14,18 @@ class LogIn extends Component {
         return (
             <div className={styles.root}>
                 <div>
-                    <div onClick={() => handleChooseTab(true)}>Log In</div>
-                    <div onClick={() => handleChooseTab(false)}>
-                        Sign up
-                    </div>
+                    <Button
+                        title='Log in!'
+                        onClick={() => handleChooseTab(true)}
+                        isDisabled={isLogIn}
+                        isTab
+                    />
+                    <Button
+                        title='Sign up!'
+                        onClick={() => handleChooseTab(false)}
+                        isDisabled={!isLogIn}
+                        isTab
+                    />
                 </div>
                 {
                     auth && auth.isLoaded ?
