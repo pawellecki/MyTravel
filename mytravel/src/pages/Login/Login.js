@@ -7,14 +7,6 @@ import { ReactComponent as World } from '../../assets/icons/world.svg'
 
 import styles from './LogIn.module.css'
 
-const kot = {
-    '.root': {
-        background: 'red',
-        color: 'green',
-        height: '100px'
-    }
-}
-
 class LogIn extends Component {
     render() {
         const { auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit } = this.props
@@ -27,7 +19,6 @@ class LogIn extends Component {
                         onClick={() => handleChooseTab(true)}
                         isDisabled={!isLogIn}
                         isTab
-                        custom={kot}
                     />
                     <Button
                         title='Sign up!'

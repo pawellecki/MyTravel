@@ -2,19 +2,16 @@ import React from 'react'
 
 import styles from './Button.module.css'
 
-const Button = React.memo( ({ title, type, onClick, isTab, isDisabled, custom }) => 
+const Button = React.memo( ({ title, type, onClick, isTab, isDisabled }) => 
     <button 
         onClick={onClick} 
         type={type} 
         className={`
-            ${styles.root} 
-            ${custom} 
+            ${styles.root}
             ${isTab ? styles.tab : ''}
             ${isDisabled ? styles.disabled : ''}
         `}
-        style={custom}
     >
-    {console.log('test:',styles)}
         {title}
     </button>
 )
