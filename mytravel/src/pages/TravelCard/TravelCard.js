@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ImageUpload from '../../components/ImageUpload/ImageUpload'
 
 class TravelCard extends Component {
 
@@ -9,6 +10,7 @@ class TravelCard extends Component {
                 <div>{title}</div>
                 <div>{content}</div>
                 <div>{id}</div>
+                <ImageUpload />
             </div>
         )
     }
