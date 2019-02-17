@@ -6,19 +6,19 @@ import { firestoreConnect } from 'react-redux-firebase'
 import TravelCard from './TravelCard'
 
 class TravelCardContainer extends Component {
-
     render() {
-        const {project} = this.props
-            return (
-                <>
-                    {
-                        project &&
-                        <TravelCard 
-                            travelData={project}
-                        />
-                    }
-                </>
-            )
+        const { project, auth } = this.props
+        return (
+            <>
+                {
+                    project &&
+                    <TravelCard
+                        auth={auth}
+                        travelData={project}
+                    />
+                }
+            </>
+        )
     }
 }
 
@@ -27,13 +27,12 @@ const mapStateToProps = (state, ownProps) => {
     const projects = state.firestore.data.projects
     const project = projects ? projects[id] : null
     return {
-        project
+        project,
+        auth: state.firebase.auth
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'projects' }
-    ])
+    firestoreConnect([{ collection: 'projects' }])
 )(TravelCardContainer)

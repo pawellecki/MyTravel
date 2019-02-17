@@ -13,7 +13,7 @@ class LogIn extends Component {
     
     render() {
         const { auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit } = this.props
-        const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
+        const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background-3680.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
         
         return (
             <>
