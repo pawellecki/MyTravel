@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { storage } from '../../config/firebase'
+
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
@@ -11,8 +13,11 @@ class LogIn extends Component {
     render() {
         const { auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit } = this.props
 
+
+        let url = ''
+        storage.ref('global').child('login-background.jpg').getDownloadURL().then(url => url)
         return (
-            <div className={styles.root}>
+            <div className={styles.root} style={{background: `url(${url})`}}>
                 <div>
                     <Button
                         title='Log in!'
