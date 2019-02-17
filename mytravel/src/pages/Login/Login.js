@@ -10,66 +10,70 @@ import { ReactComponent as World } from '../../assets/icons/world.svg'
 import styles from './LogIn.module.css'
 
 class LogIn extends Component {
+    
     render() {
         const { auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit } = this.props
-
-
-        let url = ''
-        storage.ref('global').child('login-background.jpg').getDownloadURL().then(url => url)
+        const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
+        
         return (
-            <div className={styles.root} style={{background: `url(${url})`}}>
-                <div>
-                    <Button
-                        title='Log in!'
-                        onClick={() => handleChooseTab(true)}
-                        isFaded={!isLogIn}
-                        isTab
-                    />
-                    <Button
-                        title='Sign up!'
-                        onClick={() => handleChooseTab(false)}
-                        isFaded={isLogIn}
-                        isTab
-                    />
-                </div>
-                {
-                    auth && auth.isLoaded ?
-                    <form onSubmit={handleSubmit}>
-                        <Input
-                            onChange={handleChangeField}
-                            name="email"
-                            label="Emaillll"
-                        />
-                        <Input
-                            onChange={handleChangeField}
-                            name="password"
-                            label="Passworddd"
-                            type="password"
-                        />
-                        {
-                            !isLogIn &&
-                            <>
-                                <Input
-                                    onChange={handleChangeField}
-                                    name="firstName"
-                                    label="firstName"
-                                />
-                                <Input
-                                    onChange={handleChangeField}
-                                    name="lastName"
-                                    label="lastName"
-                                />
-                            </>
-                        }
+            <div className={styles.zzz}>
+                    {/* <div style={{background: `url(${backgroundUrl})`}} className={styles.image}/> */}
+                    <img src={backgroundUrl} alt='background' />
+                <div className={styles.root}>
+                    {/* <img src={backgroundUrl} alt='background' /> */}
+                    <div>
                         <Button
-                            title={isLogIn ? 'Log in!' : 'Sign up!'}
-                            type="submit"
+                            title='Log in!'
+                            onClick={() => handleChooseTab(true)}
+                            isFaded={!isLogIn}
+                            isTab
                         />
-                        {authError && <div>{authError}</div>}
-                    </form>
-                    :
-                    <div className={styles.loader}><World /></div>
-                }
+                        <Button
+                            title='Sign up!'
+                            onClick={() => handleChooseTab(false)}
+                            isFaded={isLogIn}
+                            isTab
+                        />
+                    </div>
+                    {
+                        auth && auth.isLoaded ?
+                        <form onSubmit={handleSubmit}>
+                            <Input
+                                onChange={handleChangeField}
+                                name="email"
+                                label="Emaillll"
+                            />
+                            <Input
+                                onChange={handleChangeField}
+                                name="password"
+                                label="Passworddd"
+                                type="password"
+                            />
+                            {
+                                !isLogIn &&
+                                <>
+                                    <Input
+                                        onChange={handleChangeField}
+                                        name="firstName"
+                                        label="firstName"
+                                    />
+                                    <Input
+                                        onChange={handleChangeField}
+                                        name="lastName"
+                                        label="lastName"
+                                    />
+                                </>
+                            }
+                            <Button
+                                title={isLogIn ? 'Log in!' : 'Sign up!'}
+                                type="submit"
+                            />
+                            {authError && <div>{authError}</div>}
+                        </form>
+                        :
+                        <div className={styles.loader}><World /></div>
+                    }
+                </div>
             </div>
         )
     }
