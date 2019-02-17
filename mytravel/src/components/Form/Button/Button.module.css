@@ -20,14 +20,18 @@
     border-radius: 4px;
     background: #FF055C;
     cursor: auto;
+    box-shadow: none;
+}
+
+.faded {
+    background: #ebebeb;
+    opacity: .5;
+    cursor: pointer;
 }
 
 .disabled {
-    border-radius: 4px;
-    background: #A77B81;
-    color: #ebebeb;
-    cursor: pointer;
+    pointer-events: none;
+    cursor: auto;
+    opacity: .5;
 }
-.disabled:hover {
-    color: #fff;
-}
+

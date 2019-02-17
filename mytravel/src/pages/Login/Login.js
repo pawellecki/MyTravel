@@ -17,13 +17,13 @@ class LogIn extends Component {
                     <Button
                         title='Log in!'
                         onClick={() => handleChooseTab(true)}
-                        isDisabled={!isLogIn}
+                        isFaded={!isLogIn}
                         isTab
                     />
                     <Button
                         title='Sign up!'
                         onClick={() => handleChooseTab(false)}
-                        isDisabled={isLogIn}
+                        isFaded={isLogIn}
                         isTab
                     />
                 </div>

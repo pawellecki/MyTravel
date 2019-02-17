@@ -83,6 +83,11 @@ a:link, a:visited, a:hover {
 p, h1, h2 ,h3 ,h4, h5, h6 {
 	color: #242422;
 }
+input:-webkit-autofill {
+	-webkit-text-fill-color: #242422;
+	outline: none;
+}
+
 h1 { font-size: 12px }
 h2 { font-size: 14px }
 h3 { font-size: 16px }
