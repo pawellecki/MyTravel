@@ -20,6 +20,7 @@
     border-radius: 4px;
     background: #FF055C;
     cursor: auto;
+    box-shadow: none;
 }
 
 .faded {
