@@ -16,11 +16,9 @@ class LogIn extends Component {
         const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
         
         return (
-            <div className={styles.zzz}>
-                    {/* <div style={{background: `url(${backgroundUrl})`}} className={styles.image}/> */}
-                    <img src={backgroundUrl} alt='background' />
+            <>
+                <img src={backgroundUrl} className={styles.image} alt='background' />
                 <div className={styles.root}>
-                    {/* <img src={backgroundUrl} alt='background' /> */}
                     <div>
                         <Button
                             title='Log in!'
@@ -74,7 +72,7 @@ class LogIn extends Component {
                         <div className={styles.loader}><World /></div>
                     }
                 </div>
-            </div>
+            </>
         )
     }
 }
