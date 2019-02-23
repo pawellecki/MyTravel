@@ -1,8 +1,21 @@
+.image {
+  position: absolute;
+  width: 1840px;
+  height: 1228px;
+  z-index: -1;
+  top:0;
+  bottom:0;
+  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .root {
-  background: grey;
+  position: absolute;
   width: 500px;
-  display: block;
-  margin: 200px auto;
+  top: 50%;
+  margin-left: calc(50% - 250px);
+  transform: translateY(-50%);
   background: rgb(218, 213, 213);
   border-radius: 10px;
 }
