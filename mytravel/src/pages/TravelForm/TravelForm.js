@@ -21,8 +21,9 @@ class TravelForm extends Component {
     }
 
     handleSubmit = e => {
+        const { auth } = this.props
         e.preventDefault()
-        this.props.createProject(this.state)
+        this.props.createProject(this.state, auth.uid)
     }
 
     render() {
@@ -48,13 +49,19 @@ class TravelForm extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
-        createProject: project => dispatch(createProject(project))
+        createProject: (project, uid) => dispatch(createProject(project, uid))
     }
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(TravelForm)

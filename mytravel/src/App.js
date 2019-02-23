@@ -32,8 +32,8 @@ const App = () => (
         <Router>
             <Switch>
                 <Route path="/login" component={LogIn} />
-                <Route path="/" component={Content} />
                 <Route path="/404" component={NotFound} />
+                <Route path="/" component={Content} />
             </Switch>
         </Router>
     </Provider>
