@@ -9,14 +9,14 @@ import styles from './Travels.module.css'
 class Travels extends Component {
 
     render() {
-        const { projects } = this.props  
+        const { travels } = this.props  
         return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
-                {console.log('PROJ:',projects)}
+                {console.log('PROJ:',travels)}
                     {
-                        projects ?
-                        projects.map(({ id, title, content }) => {
+                        travels ?
+                        travels.map(({ id, title, content }) => {
                             return (
                                 <div className={styles.cardPlace} key={id}>
                                     <Link to={`/travels/${id}`}>
@@ -39,9 +39,9 @@ class Travels extends Component {
 const mapStateToProps = state => {
     console.log('test!!!:',state);
     return {
+        ...state,
         auth: state.firebase.auth,
-        // projects: (state.firestore.ordered.projects && state.firestore.ordered.projects[0] && state.firestore.ordered.projects[0].travels) || []
-        projects: state.firestore.ordered.projects
+        travels: state.firestore.data.projects && state.firestore.data.projects[state.firebase.auth] && state.firestore.data.projects[state.firebase.auth].travels
     }
 }
 
@@ -57,6 +57,7 @@ export default compose(
         subcollections: [{
             collection: 'travels',
         //     // where: [['id', '==', props.auth.uid]] 
-        }]
+        }],
+        ko: console.log('CONNECT PROPS:',props)
     }])
 )(componentWithRouter)
