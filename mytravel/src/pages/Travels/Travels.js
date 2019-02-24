@@ -40,7 +40,8 @@ const mapStateToProps = state => {
     console.log('test!!!:',state);
     return {
         auth: state.firebase.auth,
-        projects: state.firestore.ordered.projects && state.firestore.ordered.projects[0] && state.firestore.ordered.projects[0].travels
+        // projects: (state.firestore.ordered.projects && state.firestore.ordered.projects[0] && state.firestore.ordered.projects[0].travels) || []
+        projects: state.firestore.ordered.projects
     }
 }
 
@@ -55,7 +56,7 @@ export default compose(
         doc: props.auth.uid,
         subcollections: [{
             collection: 'travels',
-            // where: [['id', '==', props.auth.uid]] 
+        //     // where: [['id', '==', props.auth.uid]] 
         }]
     }])
 )(componentWithRouter)

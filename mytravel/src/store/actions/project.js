@@ -1,18 +1,20 @@
 import * as actionTypes from '../../constants/actionTypes'
 
 export const addTravel = project => {
-    console.log('CERATE collection Travel:',);
-
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore()
         const profile = getState().firebase.profile
         const authorId = getState().firebase.auth.uid
-        console.log('authorId:',authorId);
-        firestore.collection('projects').doc(authorId).collection('travels').doc().set({
+        const email = getState().firebase.auth.email
+        // const allProjects = getState().firebase
+        console.log('getFirestore',getFirestore);
+        console.log('firestore',firestore);
+        firestore.collection('projects').doc(authorId).collection('travels').add({
             ...project,
             authorName: profile.firstName,
             authorLastName: profile.lastName,
             authorId,
+            email,
             createdAt: new Date(),
         }).then(() => {
             dispatch({
