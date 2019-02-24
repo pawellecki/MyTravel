@@ -13,6 +13,7 @@ class Travels extends Component {
         return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
+                {console.log('PROJ:',projects)}
                     {
                         projects ?
                         projects.map(({ id, title, content }) => {
@@ -39,7 +40,7 @@ const mapStateToProps = state => {
     console.log('test!!!:',state);
     return {
         auth: state.firebase.auth,
-        projects: state.firestore.ordered.projects
+        projects: state.firestore.ordered.projects && state.firestore.ordered.projects[0] && state.firestore.ordered.projects[0].travels
     }
 }
 
@@ -49,5 +50,12 @@ export default compose(
         mapStateToProps,
         null
     ),
-    firestoreConnect(props => [{ collection: 'projects', where: [['authorId', '==', props.auth.uid]] }])
+    firestoreConnect(props => [{ 
+        collection: 'projects',
+        doc: props.auth.uid,
+        subcollections: [{
+            collection: 'travels',
+            // where: [['id', '==', props.auth.uid]] 
+        }]
+    }])
 )(componentWithRouter)

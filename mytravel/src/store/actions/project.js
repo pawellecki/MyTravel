@@ -1,12 +1,14 @@
 import * as actionTypes from '../../constants/actionTypes'
 
-export const createProject = (project, uid) => {
-    console.log('uid:',uid);
+export const addTravel = project => {
+    console.log('CERATE collection Travel:',);
+
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore()
         const profile = getState().firebase.profile
         const authorId = getState().firebase.auth.uid
-        firestore.collection('projects').doc(uid).set({
+        console.log('authorId:',authorId);
+        firestore.collection('projects').doc(authorId).collection('travels').doc().set({
             ...project,
             authorName: profile.firstName,
             authorLastName: profile.lastName,
