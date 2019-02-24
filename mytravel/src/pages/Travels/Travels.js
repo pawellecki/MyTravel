@@ -9,8 +9,8 @@ import styles from './Travels.module.css'
 class Travels extends Component {
 
     render() {
-        const { projects } = this.props
-        return (
+        const { projects } = this.props  
+        return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
                     {
@@ -20,8 +20,7 @@ class Travels extends Component {
                                 <div className={styles.cardPlace} key={id}>
                                     <Link to={`/travels/${id}`}>
                                         <div className={styles.card}>
-                                                <h3>{title}</h3>
-                                                <div className={styles.photo} />
+                                                  <div className={styles.photo} />
                                                 <p>{content}</p>
                                         </div>
                                     </Link>
@@ -30,7 +29,6 @@ class Travels extends Component {
                         })
                         : <div>Loading</div>
                     }
-                    <div style={{clear: 'both'}} />
                 </div>
             </div>
         )
@@ -38,7 +36,7 @@ class Travels extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('testsss:',state);
+    console.log('test!!!:',state);
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects
@@ -51,5 +49,5 @@ export default compose(
         mapStateToProps,
         null
     ),
-    firestoreConnect([{ collection: 'projects' }])
+    firestoreConnect(props => [{ collection: 'projects', where: [['authorId', '==', props.auth.uid]] }])
 )(componentWithRouter)
