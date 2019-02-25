@@ -3,6 +3,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
+import idx from 'idx';
 
 import styles from './Travels.module.css'
 
@@ -38,10 +39,12 @@ class Travels extends Component {
 
 const mapStateToProps = state => {
     console.log('test!!!:',state);
+    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
+    // const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
     return {
         ...state,
-        auth: state.firebase.auth,
-        travels: state.firestore.data.projects && state.firestore.data.projects[state.firebase.auth] && state.firestore.data.projects[state.firebase.auth].travels
+        auth: state.firebase.auth.uid,
+        travels: Object.values(travelsCollection)
     }
 }
 
@@ -53,11 +56,8 @@ export default compose(
     ),
     firestoreConnect(props => [{ 
         collection: 'projects',
-        doc: props.auth.uid,
-        subcollections: [{
-            collection: 'travels',
-        //     // where: [['id', '==', props.auth.uid]] 
-        }],
-        ko: console.log('CONNECT PROPS:',props)
+        doc: props.auth,
+        subcollections: [{ collection: 'travels' }],
+        ko: console.log('CONNECT PROPS:',props),
     }])
 )(componentWithRouter)

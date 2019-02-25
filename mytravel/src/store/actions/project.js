@@ -9,7 +9,7 @@ export const addTravel = project => {
         // const allProjects = getState().firebase
         console.log('getFirestore',getFirestore);
         console.log('firestore',firestore);
-        firestore.collection('projects').doc(authorId).collection('travels').add({
+        firestore.collection('projects' + authorId + '/travels').add({
             ...project,
             authorName: profile.firstName,
             authorLastName: profile.lastName,
