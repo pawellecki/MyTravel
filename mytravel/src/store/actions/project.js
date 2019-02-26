@@ -1,4 +1,5 @@
 import * as actionTypes from '../../constants/actionTypes'
+import createRandomString from '../../helpers/string'
 
 export const addTravel = project => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -6,21 +7,26 @@ export const addTravel = project => {
         const profile = getState().firebase.profile
         const authorId = getState().firebase.auth.uid
         const email = getState().firebase.auth.email
-        // const allProjects = getState().firebase
-        console.log('getFirestore',getFirestore);
-        console.log('firestore',firestore);
-        firestore.collection('projects' + authorId + '/travels').add({
+        const randomId = createRandomString()
+
+        firestore
+        .collection('projects').doc(authorId)
+        .collection('travels').doc(randomId)
+        .set({
             ...project,
+            id: randomId,
+            authorId,
             authorName: profile.firstName,
             authorLastName: profile.lastName,
-            authorId,
             email,
             createdAt: new Date(),
-        }).then(() => {
+        })
+        .then(() => {
             dispatch({
                 type: actionTypes.CREATE_PROJECT
             });
-        }).catch(err => {
+        })
+        .catch(err => {
             dispatch({
                 type:  actionTypes.CREATE_PROJECT_ERROR,
                 err

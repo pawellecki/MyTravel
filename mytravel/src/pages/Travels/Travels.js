@@ -14,12 +14,12 @@ class Travels extends Component {
         return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
-                {console.log('PROJ:',travels)}
                     {
                         travels ?
                         travels.map(({ id, title, content }) => {
                             return (
-                                <div className={styles.cardPlace} key={id}>
+                                <div className={styles.cardPlace} key={title}> 
+                                {/* //key?? */}
                                     <Link to={`/travels/${id}`}>
                                         <div className={styles.card}>
                                                   <div className={styles.photo} />
@@ -38,11 +38,8 @@ class Travels extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('test!!!:',state);
     const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
-    // const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
     return {
-        ...state,
         auth: state.firebase.auth.uid,
         travels: Object.values(travelsCollection)
     }
@@ -57,7 +54,6 @@ export default compose(
     firestoreConnect(props => [{ 
         collection: 'projects',
         doc: props.auth,
-        subcollections: [{ collection: 'travels' }],
-        ko: console.log('CONNECT PROPS:',props),
+        subcollections: [{ collection: 'travels' }]
     }])
 )(componentWithRouter)

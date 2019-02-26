@@ -6,7 +6,6 @@ import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 import idx from 'idx';
 
-
 import styles from './TravelForm.module.css'
 
 class TravelForm extends Component {
@@ -51,16 +50,6 @@ class TravelForm extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    console.log('test!!!:',state);
-    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
-    // const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
-    return {
-        ...state,
-        auth: state.firebase.auth.uid,
-        travels: Object.values(travelsCollection)
-    }
-} 
 const mapDispatchToProps = dispatch => {
     return {
         addTravel: project => dispatch(addTravel(project))
@@ -68,6 +57,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(TravelForm)
