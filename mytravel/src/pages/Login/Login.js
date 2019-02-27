@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 
-import { ReactComponent as World } from '../../assets/icons/world.svg'
-
 import styles from './LogIn.module.css'
+
+import { ReactComponent as World } from '../../assets/icons/world.svg'
 
 class LogIn extends Component {
     

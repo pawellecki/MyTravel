@@ -14,13 +14,6 @@ class LogInContainer extends Component {
         lastName: '',
         isLogIn: true
     }
-
-    // componentDidMount = () => {
-    //     storage.ref('global').child('login-background.jpg').getDownloadURL().then(url => {
-    //         console.log('test:',url)
-    //         this.setState({})
-    //     })
-    // }
     
     render() {
         const { isLogIn } = this.state
