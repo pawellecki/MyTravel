@@ -7,9 +7,8 @@ import styles from './LogIn.module.css'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 
-const LogIn = props => {
-        const { auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit } = props
-        const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background-3680.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
+const LogIn = ({auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit}) => {
+    const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background-3680.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
         
     return (
         <>
