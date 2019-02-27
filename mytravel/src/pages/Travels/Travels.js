@@ -8,11 +8,11 @@ import idx from 'idx';
 import styles from './Travels.module.css'
 
 class Travels extends Component {
-
     render() {
         const { travels } = this.props
         const isLoading = !travels && travels !== null
         const noTravels = (travels && travels.length === 0) || travels === null
+        
         return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
@@ -48,7 +48,6 @@ class Travels extends Component {
 const mapStateToProps = state => {
     const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels)
     return {
-        stateeee: {...state},
         authId: state.firebase.auth.uid,
         travels: travelsCollection && Object.values(travelsCollection)
     }
