@@ -40,7 +40,7 @@ class Travels extends Component {
 const mapStateToProps = state => {
     const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
     return {
-        auth: state.firebase.auth.uid,
+        authId: state.firebase.auth.uid,
         travels: Object.values(travelsCollection)
     }
 }
@@ -53,7 +53,7 @@ export default compose(
     ),
     firestoreConnect(props => [{ 
         collection: 'projects',
-        doc: props.auth,
+        doc: props.authId,
         subcollections: [{ collection: 'travels' }]
     }])
 )(componentWithRouter)
