@@ -15,11 +15,18 @@ class Travels extends Component {
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
                     {
-                        travels ?
+                        !travels &&
+                        <div> ładujemy yyyyy</div>
+                    }
+                    {
+                        travels && travels.length === 0 &&
+                        <div>Brak podróży!!!!! dodaj cos</div>
+                    }
+                    {
+                        travels && travels.length > 0 &&
                         travels.map(({ id, title, content }) => {
                             return (
-                                <div className={styles.cardPlace} key={title}> 
-                                {/* //key?? */}
+                                <div className={styles.cardPlace} key={id}> 
                                     <Link to={`/travels/${id}`}>
                                         <div className={styles.card}>
                                                   <div className={styles.photo} />
@@ -29,7 +36,6 @@ class Travels extends Component {
                                 </div>
                             )
                         })
-                        : <div>Loading</div>
                     }
                 </div>
             </div>
@@ -38,10 +44,11 @@ class Travels extends Component {
 }
 
 const mapStateToProps = state => {
-    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) || {}
+    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) 
     return {
+        stateeee: {...state},
         authId: state.firebase.auth.uid,
-        travels: Object.values(travelsCollection)
+        travels: travelsCollection && Object.values(travelsCollection)
     }
 }
 
