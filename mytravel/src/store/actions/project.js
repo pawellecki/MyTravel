@@ -1,22 +1,32 @@
 import * as actionTypes from '../../constants/actionTypes'
+import createRandomString from '../../helpers/string'
 
-export const createProject = (project, uid) => {
-    console.log('uid:',uid);
+export const addTravel = project => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore()
         const profile = getState().firebase.profile
         const authorId = getState().firebase.auth.uid
-        firestore.collection('projects').doc(uid).set({
+        const email = getState().firebase.auth.email
+        const randomId = createRandomString()
+
+        firestore
+        .collection('projects').doc(authorId)
+        .collection('travels').doc(randomId)
+        .set({
             ...project,
+            id: randomId,
+            authorId,
             authorName: profile.firstName,
             authorLastName: profile.lastName,
-            authorId,
+            email,
             createdAt: new Date(),
-        }).then(() => {
+        })
+        .then(() => {
             dispatch({
                 type: actionTypes.CREATE_PROJECT
             });
-        }).catch(err => {
+        })
+        .catch(err => {
             dispatch({
                 type:  actionTypes.CREATE_PROJECT_ERROR,
                 err

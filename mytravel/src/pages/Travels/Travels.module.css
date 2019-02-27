@@ -8,6 +8,11 @@
   max-width: 1160px;
   margin: 0 auto;
 }
+.cardsCover:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 
 .cardPlace {
   position: relative;

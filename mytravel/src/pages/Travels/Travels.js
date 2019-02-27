@@ -3,34 +3,42 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
+import idx from 'idx';
 
 import styles from './Travels.module.css'
 
 class Travels extends Component {
-
     render() {
-        const { projects } = this.props
-        return (
+        const { travels } = this.props
+        const isLoading = !travels && travels !== null
+        const noTravels = (travels && travels.length === 0) || travels === null
+        
+        return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
                     {
-                        projects ?
-                        projects.map(({ id, title, content }) => {
+                        isLoading &&
+                        <div> ładujemy yyyyy</div>
+                    }
+                    {
+                        noTravels &&
+                        <div>Brak podróży!!!!! dodaj cos</div>
+                    }
+                    {
+                        travels && travels.length > 0 &&
+                        travels.map(({ id, content }) => {
                             return (
-                                <div className={styles.cardPlace} key={id}>
+                                <div className={styles.cardPlace} key={id}> 
                                     <Link to={`/travels/${id}`}>
                                         <div className={styles.card}>
-                                                <h3>{title}</h3>
-                                                <div className={styles.photo} />
-                                                <p>{content}</p>
+                                            <div className={styles.photo} />
+                                            <p>{content}</p>
                                         </div>
                                     </Link>
                                 </div>
                             )
                         })
-                        : <div>Loading</div>
                     }
-                    <div style={{clear: 'both'}} />
                 </div>
             </div>
         )
@@ -38,10 +46,10 @@ class Travels extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('testsss:',state);
+    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels)
     return {
-        auth: state.firebase.auth,
-        projects: state.firestore.ordered.projects
+        authId: state.firebase.auth.uid,
+        travels: travelsCollection && Object.values(travelsCollection)
     }
 }
 
@@ -51,5 +59,9 @@ export default compose(
         mapStateToProps,
         null
     ),
-    firestoreConnect([{ collection: 'projects' }])
+    firestoreConnect(props => [{ 
+        collection: 'projects',
+        doc: props.authId,
+        subcollections: [{ collection: 'travels' }]
+    }])
 )(componentWithRouter)

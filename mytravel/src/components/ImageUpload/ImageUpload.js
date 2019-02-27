@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { storage } from '../../config/firebase'
 import Button from '../../components/Form/Button/Button'
-import Input from '../../components/Form/Input/Input'
 
 import styles from './ImageUpload.module.css'
 
@@ -12,8 +11,6 @@ class ImageUpload extends Component {
     }
 
     render() {
-        // const {  } = this.props
-
         return (
             <div className={styles.root}>
                 <input type="file" onChange={this.handleChange} />

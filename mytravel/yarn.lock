@@ -1475,6 +1475,10 @@ babel-plugin-dynamic-import-node@2.2.0:
   dependencies:
     object.assign "^4.1.0"
 
+babel-plugin-idx@^2.4.0:
+  version "2.4.0"
+  resolved "https://npm.dev.mindz.pl/babel-plugin-idx/-/babel-plugin-idx-2.4.0.tgz#5d144eb337fb22c4bf1ff75cb2e1c051a76a0323"
+
 babel-plugin-istanbul@^4.1.6:
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-4.1.6.tgz#36c59b2192efce81c5b378321b74175add1c9a45"
@@ -4167,6 +4171,10 @@ identity-obj-proxy@3.0.0:
   resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
   dependencies:
     harmony-reflect "^1.4.6"
+
+idx@^2.5.4:
+  version "2.5.4"
+  resolved "https://npm.dev.mindz.pl/idx/-/idx-2.5.4.tgz#4ce79359b085e1b75dda7521de894a518093bc42"
 
 ieee754@^1.1.4:
   version "1.1.12"

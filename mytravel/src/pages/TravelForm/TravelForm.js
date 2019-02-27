@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { createProject } from '../../store/actions/project'
+import { addTravel } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
+import idx from 'idx';
 
 import styles from './TravelForm.module.css'
 
@@ -21,9 +22,9 @@ class TravelForm extends Component {
     }
 
     handleSubmit = e => {
-        const { auth } = this.props
+        const { addTravel } = this.props
         e.preventDefault()
-        this.props.createProject(this.state, auth.uid)
+        addTravel(this.state)
     }
 
     render() {
@@ -49,19 +50,13 @@ class TravelForm extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        auth: state.firebase.auth
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        createProject: (project, uid) => dispatch(createProject(project, uid))
+        addTravel: project => dispatch(addTravel(project))
     }
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(TravelForm)
