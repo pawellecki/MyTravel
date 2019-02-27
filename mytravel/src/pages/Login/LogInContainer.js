@@ -39,7 +39,6 @@ class LogInContainer extends Component {
     }
     
     handleChooseTab = logIn => {
-        console.log('sdf', logIn)
         this.setState({
             isLogIn: logIn ? true : false
         })
