@@ -10,27 +10,29 @@ import styles from './Travels.module.css'
 class Travels extends Component {
 
     render() {
-        const { travels } = this.props  
+        const { travels } = this.props
+        const isLoading = !travels && travels !== null
+        const noTravels = (travels && travels.length === 0) || travels === null
         return (  
             <div className={styles.root}>
                 <div className={styles.cardsCover}>
                     {
-                        !travels &&
+                        isLoading &&
                         <div> ładujemy yyyyy</div>
                     }
                     {
-                        travels && travels.length === 0 &&
+                        noTravels &&
                         <div>Brak podróży!!!!! dodaj cos</div>
                     }
                     {
                         travels && travels.length > 0 &&
-                        travels.map(({ id, title, content }) => {
+                        travels.map(({ id, content }) => {
                             return (
                                 <div className={styles.cardPlace} key={id}> 
                                     <Link to={`/travels/${id}`}>
                                         <div className={styles.card}>
-                                                  <div className={styles.photo} />
-                                                <p>{content}</p>
+                                            <div className={styles.photo} />
+                                            <p>{content}</p>
                                         </div>
                                     </Link>
                                 </div>
@@ -44,7 +46,7 @@ class Travels extends Component {
 }
 
 const mapStateToProps = state => {
-    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels) 
+    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels)
     return {
         stateeee: {...state},
         authId: state.firebase.auth.uid,
