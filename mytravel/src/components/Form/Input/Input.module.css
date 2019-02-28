@@ -24,10 +24,10 @@
     -webkit-text-fill-color: #f90 !important;
 } */
 
-/* .root input {
+.root input {
     border: 1px solid black !important;
     background-color: transparent !important;
-} */
+}
 
 .root input:-webkit-autofill,
 .root input:-webkit-autofill:hover,
