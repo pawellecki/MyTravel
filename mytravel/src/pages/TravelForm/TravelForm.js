@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { addTravel } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import idx from 'idx';
 
 import styles from './TravelForm.module.css'
 

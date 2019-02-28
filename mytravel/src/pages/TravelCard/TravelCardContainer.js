@@ -2,37 +2,38 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import idx from 'idx';
 
 import TravelCard from './TravelCard'
 
 class TravelCardContainer extends Component {
     render() {
-        const { project, auth } = this.props
+        const { travel } = this.props
+        
         return (
-            <>
-                {
-                    project &&
-                    <TravelCard
-                        auth={auth}
-                        travelData={project}
-                    />
-                }
-            </>
+            <TravelCard
+                travelData={travel}
+            />
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const id = ownProps.match.params.id
-    const projects = state.firestore.data.projects
-    const project = projects ? projects[id] : null
+    const authId = state.firebase.auth.uid
+    const travelId = ownProps.match.params.id
+    const travel =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
+
     return {
-        project,
-        auth: state.firebase.auth
+        authId,
+        travel
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([{ collection: 'projects' }])
+    firestoreConnect(props => [{ 
+        collection: 'projects',
+        doc: props.authId,
+        subcollections: [{ collection: 'travels' }]
+    }])
 )(TravelCardContainer)

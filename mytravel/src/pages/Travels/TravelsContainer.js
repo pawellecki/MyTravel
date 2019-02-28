@@ -10,6 +10,7 @@ import Travels from './Travels'
 class TravelsContainer extends Component {
     render() {
         const { travels } = this.props
+        
         return (  
             <Travels  
                 travels={travels} 
@@ -19,9 +20,11 @@ class TravelsContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    const travelsCollection = idx(state, _ => _.firestore.data.projects[state.firebase.auth.uid].travels)
+    const authId = state.firebase.auth.uid
+    const travelsCollection = idx(state, _ => _.firestore.data.projects[authId].travels)
+
     return {
-        authId: state.firebase.auth.uid,
+        authId,
         travels: travelsCollection && Object.values(travelsCollection)
     }
 }
