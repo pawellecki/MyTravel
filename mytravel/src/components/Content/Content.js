@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Header from '../Header/HeaderContainer'
 
-import Travels from '../../pages/Travels/Travels'
+import Travels from '../../pages/Travels/TravelsContainer'
 import TravelCard from '../../pages/TravelCard/TravelCardContainer'
 import TravelForm from '../../pages/TravelForm/TravelForm'
 
