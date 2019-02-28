@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { storage } from '../../config/firebase'
-import Button from '../../components/Form/Button/Button'
+// import Button from '../../components/Form/Button/Button'
 
 import styles from './ImageUpload.module.css'
 
