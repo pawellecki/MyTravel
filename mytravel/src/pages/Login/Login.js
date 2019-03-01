@@ -6,10 +6,11 @@ import Input from '../../components/Form/Input/Input'
 import styles from './LogIn.module.css'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
+import customError from '../../helpers/error'
 
-const LogIn = ({auth, isLogIn, authError, handleChangeField, handleChooseTab, handleSubmit}) => {
+const LogIn = ({ auth, isLogIn, error, handleChangeField, handleChooseTab, handleSubmit }) => {
     const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background-3680.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
-        
+    
     return (
         <>
             <img src={backgroundUrl} className={styles.image} alt='background' />
@@ -64,8 +65,8 @@ const LogIn = ({auth, isLogIn, authError, handleChangeField, handleChooseTab, ha
                             type="submit"
                         />
                         {
-                            authError && 
-                            <div>{authError}</div>
+                            error && 
+                            <p className={styles.error}>{customError(error)}</p>
                         }
                     </form>
                     :

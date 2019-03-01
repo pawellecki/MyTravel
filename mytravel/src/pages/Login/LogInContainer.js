@@ -12,19 +12,20 @@ class LogInContainer extends Component {
         password: '',
         firstName: '',
         lastName: '',
-        isLogIn: true
+        isLogIn: true,
+        isError: this.props.error
     }
     
     render() {
         const { isLogIn } = this.state
-        const { auth, authError } = this.props
+        const { auth, error } = this.props
         
         if (auth.uid) return <Redirect to="/" />
 
         return (
             <LogIn 
                 auth={auth}
-                authError={authError}
+                error={error}
                 isLogIn={isLogIn}
                 handleChangeField={this.handleChangeField}
                 handleChooseTab={this.handleChooseTab}
@@ -40,6 +41,7 @@ class LogInContainer extends Component {
     }
     
     handleChooseTab = logIn => {
+        console.log('test:',)
         this.setState({
             isLogIn: logIn ? true : false
         })
@@ -55,8 +57,9 @@ class LogInContainer extends Component {
 
 const mapStatetoProps = state => {
     return {
+        kot: console.log("login state",state),
         auth: state.firebase.auth,
-        authError: state.auth.authError
+        error: state.auth.authError
     }
 }
 
