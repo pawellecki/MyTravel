@@ -3,16 +3,31 @@
     height: 30px;
     border-radius: 15px;
     background: #d95700;
+    font-size: 16px;
     /* color: #fff; */
     cursor: pointer;
     box-shadow: #808080 0 8px 24px -1px;
     opacity: 0.8;
-    transition: 0.2s;
+    transition: 0.2s, font-size 0s;
 }
 
 .root :hover {
     opacity: 1;
     transition: 0.2s;
+}
+
+.loading {
+    position: relative;
+    font-size: 0;
+}
+.loading div:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(/src/assets/icons/world.svg)
 }
 
 .tab {

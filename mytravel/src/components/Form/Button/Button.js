@@ -4,10 +4,11 @@ import cn from 'classnames'
 import styles from './Button.module.css'
 
 const Button = React.memo(
-    ({ isTab, isDisabled, isFaded, title, onClick, type }) =>
+    ({ isLoading, isTab, isDisabled, isFaded, title, onClick, type }) =>
         <button
             className={cn(
                 styles.root,
+                isLoading ? styles.loading : '',
                 isTab ? styles.tab : '',
                 isDisabled ? styles.disabled : '',
                 isFaded ? styles.faded : ''
@@ -16,6 +17,7 @@ const Button = React.memo(
             type={type}
         >
             {title}
+            <div></div>
         </button>
 )
 

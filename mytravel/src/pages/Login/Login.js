@@ -8,7 +8,7 @@ import styles from './LogIn.module.css'
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 import customError from '../../helpers/error'
 
-const LogIn = ({ auth, isLogIn, error, handleChangeField, handleChooseTab, handleSubmit }) => {
+const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleChooseTab, handleSubmit }) => {
     const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background-3680.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
     
     return (
@@ -63,6 +63,7 @@ const LogIn = ({ auth, isLogIn, error, handleChangeField, handleChooseTab, handl
                         <Button
                             title={isLogIn ? 'Log in!' : 'Sign up!'}
                             type="submit"
+                            isLoading={isLoading}
                         />
                         {
                             error && 

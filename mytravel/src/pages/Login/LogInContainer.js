@@ -13,11 +13,11 @@ class LogInContainer extends Component {
         firstName: '',
         lastName: '',
         isLogIn: true,
-        isError: this.props.error
+        isLoading: false
     }
     
     render() {
-        const { isLogIn } = this.state
+        const { isLogIn, isLoading } = this.state
         const { auth, error } = this.props
         
         if (auth.uid) return <Redirect to="/" />
@@ -27,6 +27,7 @@ class LogInContainer extends Component {
                 auth={auth}
                 error={error}
                 isLogIn={isLogIn}
+                isLoading={isLoading}
                 handleChangeField={this.handleChangeField}
                 handleChooseTab={this.handleChooseTab}
                 handleSubmit={this.handleSubmit}
@@ -52,6 +53,9 @@ class LogInContainer extends Component {
         const { isLogIn } = this.state
         e.preventDefault()
         isLogIn ? logIn(this.state) : signUp(this.state)
+        this.setState({
+            isLoading: true
+        })
     }
 }
 
