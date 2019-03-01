@@ -35,7 +35,7 @@ const LogIn = ({auth, isLogIn, authError, handleChangeField, handleChooseTab, ha
                             onChange={handleChangeField}
                             name="email"
                             label="Emaillll"
-                            isRequired={true}
+                            isRequired
                         />
                         <Input
                             onChange={handleChangeField}
