@@ -3,6 +3,8 @@ import React from 'react'
 import cn from 'classnames'
 import styles from './Button.module.css'
 
+import { ReactComponent as World } from '../../../assets/icons/world.svg'
+
 const Button = React.memo(
     ({ isLoading, isTab, isDisabled, isFaded, title, onClick, type }) =>
         <button
@@ -17,7 +19,10 @@ const Button = React.memo(
             type={type}
         >
             {title}
-            <div></div>
+            {
+                isLoading &&
+                <World />
+            }
         </button>
 )
 

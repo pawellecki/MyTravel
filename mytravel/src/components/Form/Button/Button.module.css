@@ -20,14 +20,10 @@
     position: relative;
     font-size: 0;
 }
-.loading div:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
+.loading svg {
     width: 20px;
+    max-width: 200px;
     height: 20px;
-    background: url(/src/assets/icons/world.svg)
 }
 
 .tab {
