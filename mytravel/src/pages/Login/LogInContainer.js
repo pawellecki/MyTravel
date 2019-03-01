@@ -18,6 +18,7 @@ class LogInContainer extends Component {
     render() {
         const { isLogIn } = this.state
         const { auth, authError } = this.props
+        
         if (auth.uid) return <Redirect to="/" />
 
         return (
