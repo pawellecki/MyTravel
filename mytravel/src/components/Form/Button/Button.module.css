@@ -3,7 +3,7 @@
     height: 30px;
     border-radius: 15px;
     background: #d95700;
-    color: #fff;
+    /* color: #fff; */
     cursor: pointer;
     box-shadow: #808080 0 8px 24px -1px;
     opacity: 0.8;
@@ -18,7 +18,7 @@
 .tab {
     width: 50%;
     border-radius: 4px;
-    background: #FF055C;
+    background: #ffff00;
     cursor: auto;
     box-shadow: none;
 }
@@ -27,6 +27,7 @@
     background: #ebebeb;
     opacity: .5;
     cursor: pointer;
+    filter: blur(1px)
 }
 
 .disabled {

@@ -1,5 +1,14 @@
 .root {
+    position: relative;
     width: 100%;
+}
+
+.root.isRequired:after {
+    content: '*';
+    position: absolute;
+    top: 10px;
+    right: 0;
+    font-size: 12px;
 }
 
 .root label {
@@ -13,8 +22,10 @@
     display: block;
     height: 40px;
     padding: 0 10px;
-    border: 1px solid #ffff00 !important;
-    background-color: transparent;
+    border: 2px solid #ffff00 !important;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, .5);
+    outline: none;
 }
 
 .root input:-webkit-autofill,
