@@ -15,7 +15,7 @@ const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleChoos
         <>
             <img src={backgroundUrl} className={styles.image} alt='background' />
             <div className={styles.root}>
-                <div>
+                <div className={styles.tabs}>
                     <Button
                         title='Log in!'
                         onClick={() => handleChooseTab(true)}
@@ -31,7 +31,7 @@ const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleChoos
                 </div>
                 {
                     auth && auth.isLoaded ?
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className={isLogIn ? styles.logIn : ''}>
                         <Input
                             onChange={handleChangeField}
                             name="email"
