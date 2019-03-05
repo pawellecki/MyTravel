@@ -8,11 +8,12 @@ import TravelCard from './TravelCard'
 
 class TravelCardContainer extends Component {
     render() {
-        const { travel } = this.props
+        const { travel, authId } = this.props
         
         return (
             <TravelCard
                 travelData={travel}
+                authId={authId}
             />
         )
     }

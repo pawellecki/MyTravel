@@ -15,6 +15,10 @@ class ImageUpload extends Component {
             <div className={styles.root}>
                 <input type="file" onChange={this.handleChange} />
                 <button onClick={this.handleUpload}>uploaddd</button>
+                {
+                    this.state.imageUrl !== '' &&
+                    <img src={this.state.imageUrl} alt='uploaded' height='300' width='400' />
+                }
             </div>
         )
     }
@@ -30,7 +34,8 @@ class ImageUpload extends Component {
 
     handleUpload = () => {
         const { image } = this.state
-        const uploadTask = storage.ref(`images/${image.name}`).put(image)
+        const { storagePath } = this.props
+        const uploadTask = storage.ref(`images/${storagePath}/${image.name}`).put(image)
         uploadTask.on('state_changed', 
         snapshot => {
 
@@ -39,8 +44,12 @@ class ImageUpload extends Component {
             console.log('test:errorrrr',error);
         }, 
         () => {
-            storage.ref('images').child(image.name).getDownloadURL().then(url => {
-                console.log('test:',url)
+            storage.ref(`images/${storagePath}`).child(image.name).getDownloadURL()
+            .then(url => {
+                console.log('url:',url)
+                this.setState({
+                    imageUrl: url
+                })
             })
         })
     }

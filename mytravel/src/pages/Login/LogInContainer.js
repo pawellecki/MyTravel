@@ -13,20 +13,20 @@ class LogInContainer extends Component {
         firstName: '',
         lastName: '',
         isLogIn: true,
-        isLoading: false
+        // isLoading: false
     }
-    componentDidUpdate = (prevProps, prevState) => {
-      if (this.state.isLoading === true && this.props.error !== null) {
-        this.setState({
-            isLoading: false
-        })
-      }
-      if (prevProps.error !== null && this.props.error === null) {
-        this.setState({
-            isLoading: true
-        })
-      }
-    }
+    // componentDidUpdate = (prevProps, prevState) => {
+    //   if (this.state.isLoading === true && this.props.error !== null) {
+    //     this.setState({
+    //         isLoading: false
+    //     })
+    //   }
+    //   if (prevProps.error !== null && this.props.error === null) {
+    //     this.setState({
+    //         isLoading: true
+    //     })
+    //   }
+    // }
     
     
     render() {
@@ -66,9 +66,9 @@ class LogInContainer extends Component {
         const { isLogIn } = this.state
         e.preventDefault()
         isLogIn ? logIn(this.state) : signUp(this.state)
-            this.setState({
-                isLoading: true
-            })
+            // this.setState({
+            //     isLoading: true
+            // })
     }
 }
 
