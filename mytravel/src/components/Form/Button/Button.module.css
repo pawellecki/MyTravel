@@ -2,25 +2,46 @@
     padding: 0 20px;
     height: 30px;
     border-radius: 15px;
-    background: #d95700;
-    color: #fff;
+    font-size: 16px;
     cursor: pointer;
     box-shadow: #808080 0 8px 24px -1px;
-    opacity: 0.8;
-    transition: 0.2s;
+    border: 2px solid #f22377;
+    background: #eee;
+    color: #f22377;
 }
 
-.root :hover {
+.root:hover {
     opacity: 1;
-    transition: 0.2s;
+    box-shadow: #808080 0 8px 12px -1px;
+    background: #f22377;
+    color: #eee;
+}
+
+.loading {
+    position: relative;
+    font-size: 0;
+}
+.loading svg {
+    width: 20px;
+    max-width: 200px;
+    height: 20px;
 }
 
 .tab {
     width: 50%;
-    border-radius: 4px;
-    background: #FF055C;
+    border: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #eee;
     cursor: auto;
     box-shadow: none;
+}
+.tab:hover {
+    box-shadow: none;
+    background: #eee;
+    color: #f22377;
 }
 
 .faded {
@@ -28,7 +49,10 @@
     opacity: .5;
     cursor: pointer;
 }
-
+.faded:hover {
+    background: #f22377;
+    color: #fff;
+}
 .disabled {
     pointer-events: none;
     cursor: auto;

@@ -22,7 +22,6 @@ const Travels = ({travels}) => {
                             noTravels && 
                             <div>Brak podróży!!!!! dodaj cos</div>
                         }
-                    {console.log('travels:',travels)}
                         {
                             isAnyTravel &&
                             travels.map(({ id, content }) => {

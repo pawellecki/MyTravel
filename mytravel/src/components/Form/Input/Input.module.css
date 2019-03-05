@@ -1,16 +1,36 @@
 .root {
+    position: relative;
     width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, .5)
+}
+
+.root.isRequired:after {
+    content: '*';
+    position: absolute;
+    top: 13px;
+    right: -7px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.root label {
+    display: block;
+    height: 15px;
+    margin-bottom: 5px;
 }
 
 .root input {
     width: 100%;
-    height: 100%;
-    border: none;
+    display: block;
+    height: 40px;
+    padding: 0 17px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, .5);
+    outline: none;
 }
 
-.root input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 100px white inset;
+.root input:-webkit-autofill,
+.root input:-webkit-autofill:hover,
+.root input:-webkit-autofill:focus,
+.root input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
 }

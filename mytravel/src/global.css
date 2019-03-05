@@ -78,6 +78,11 @@ a:link, a:visited, a:hover {
 p, h1, h2 ,h3 ,h4, h5, h6 {
 	color: #242422;
 }
+
+input {
+	border: none;
+}
+
 input:-webkit-autofill {
 	-webkit-text-fill-color: #242422;
 	outline: none;

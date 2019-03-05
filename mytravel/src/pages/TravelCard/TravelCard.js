@@ -1,7 +1,7 @@
 import React from 'react'
 import ImageUpload from '../../components/ImageUpload/ImageUpload'
 
-const TravelCard = ({travelData}) => {
+const TravelCard = ({travelData, authId}) => {
     return (
         <div>
             {
@@ -12,7 +12,7 @@ const TravelCard = ({travelData}) => {
                     <div>{travelData.id}</div>
                 </span>
             }
-            <ImageUpload />
+            <ImageUpload storagePath={authId} />
         </div>
     )
 }

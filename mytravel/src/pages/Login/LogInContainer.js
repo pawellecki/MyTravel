@@ -12,19 +12,35 @@ class LogInContainer extends Component {
         password: '',
         firstName: '',
         lastName: '',
-        isLogIn: true
+        isLogIn: true,
+        // isLoading: false
     }
+    // componentDidUpdate = (prevProps, prevState) => {
+    //   if (this.state.isLoading === true && this.props.error !== null) {
+    //     this.setState({
+    //         isLoading: false
+    //     })
+    //   }
+    //   if (prevProps.error !== null && this.props.error === null) {
+    //     this.setState({
+    //         isLoading: true
+    //     })
+    //   }
+    // }
+    
     
     render() {
-        const { isLogIn } = this.state
-        const { auth, authError } = this.props
+        const { isLogIn, isLoading } = this.state
+        const { auth, error } = this.props
+        
         if (auth.uid) return <Redirect to="/" />
 
         return (
             <LogIn 
                 auth={auth}
-                authError={authError}
+                error={error}
                 isLogIn={isLogIn}
+                isLoading={isLoading}
                 handleChangeField={this.handleChangeField}
                 handleChooseTab={this.handleChooseTab}
                 handleSubmit={this.handleSubmit}
@@ -39,6 +55,7 @@ class LogInContainer extends Component {
     }
     
     handleChooseTab = logIn => {
+        console.log('test:',)
         this.setState({
             isLogIn: logIn ? true : false
         })
@@ -49,13 +66,17 @@ class LogInContainer extends Component {
         const { isLogIn } = this.state
         e.preventDefault()
         isLogIn ? logIn(this.state) : signUp(this.state)
+            // this.setState({
+            //     isLoading: true
+            // })
     }
 }
 
 const mapStatetoProps = state => {
     return {
+        kot: console.log("login state",state),
         auth: state.firebase.auth,
-        authError: state.auth.authError
+        error: state.auth.authError
     }
 }
 

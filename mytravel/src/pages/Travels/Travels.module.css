@@ -33,7 +33,7 @@
   height: 300px;
   margin: 20px;
   overflow: hidden;
-  box-shadow: rgb(128, 128, 128) 0 8px 24px -1px;
+  box-shadow: #000 2px 5px 0 2px;
 }
 
 .card {
