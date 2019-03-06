@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import idx from 'idx';
 
+// import { setTravelMainImage } from '../../store/actions/auth' ????
+
 import TravelCard from './TravelCard'
 
 class TravelCardContainer extends Component {
@@ -14,13 +16,14 @@ class TravelCardContainer extends Component {
             <TravelCard
                 travelData={travel}
                 authId={authId}
-                handleImageAction={this.handleSetMainImage}
+                handleImageAction={this.handleSetTravelMainImage}
             />
         )
     }
     
-    handleSetMainImage = url => {
-        console.log('testuuuuuuuuuuuu:',url)
+    handleSetTravelMainImage = imageUrl => {
+        const { setTravelMainImage, authId, travelId } = this.props
+        setTravelMainImage({imageUrl, authId, travelId})
     }
 }
 
@@ -35,8 +38,14 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        setTravelMainImage: data => dispatch(setTravelMainImage(data))
+    }
+}
+
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect(props => [{ 
         collection: 'projects',
         doc: props.authId,
