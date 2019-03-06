@@ -14,8 +14,13 @@ class TravelCardContainer extends Component {
             <TravelCard
                 travelData={travel}
                 authId={authId}
+                handleImageAction={this.handleSetMainImage}
             />
         )
+    }
+    
+    handleSetMainImage = url => {
+        console.log('testuuuuuuuuuuuu:',url)
     }
 }
 

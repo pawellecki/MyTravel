@@ -10,10 +10,9 @@ import Travels from './Travels'
 class TravelsContainer extends Component {
     render() {
         const { travels } = this.props
-        
         return (  
             <Travels  
-                travels={travels} 
+                travels={travels}
             />
         )
     }

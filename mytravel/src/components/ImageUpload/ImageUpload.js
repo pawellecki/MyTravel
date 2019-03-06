@@ -10,7 +10,7 @@ const ImageUpload = ({ handleChange, handleUpload, imageUrl }) => (
         {
             imageUrl !== '' &&
             <img
-                src={this.state.imageUrl}
+                src={imageUrl}
                 alt="uploaded"
                 height="300"
                 width="400"

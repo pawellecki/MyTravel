@@ -11,7 +11,7 @@ class ImageUploadContainer extends Component {
 
     render() {
         const { imageUrl } = this.state
-        
+
         return (
             <ImageUpload 
                 handleChange={this.handleChange}
@@ -32,7 +32,8 @@ class ImageUploadContainer extends Component {
 
     handleUpload = () => {
         const { image } = this.state
-        const { storagePath } = this.props
+        console.log('test:',image)
+        const { storagePath, handleImageAction } = this.props
         const uploadTask = storage.ref(`images/${storagePath}/${image.name}`).put(image)
         uploadTask.on('state_changed', 
         snapshot => {
@@ -47,7 +48,7 @@ class ImageUploadContainer extends Component {
                 this.setState({
                     imageUrl: url
                 })
-                handle
+                handleImageAction && handleImageAction(url)
             })
         })
     }
