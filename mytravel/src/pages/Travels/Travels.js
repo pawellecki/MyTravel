@@ -24,12 +24,18 @@ const Travels = ({travels}) => {
                         }
                         {
                             isAnyTravel &&
-                            travels.map(({ id, content }) => {
+                            travels.map(({ id, mainImageUrl, content }) => {
                                 return (
                                     <div className={styles.cardPlace} key={id}>
                                         <Link to={`/travels/${id}`}>
                                             <div className={styles.card}>
-                                                <div className={styles.photo} />
+                                                <div className={styles.photo}>
+                                                    {
+                                                        mainImageUrl
+                                                        ? <img src={mainImageUrl} alt='travel' />
+                                                        : <p>zastepcze photo</p>
+                                                    }
+                                                </div>
                                                 <p>{content}</p>
                                             </div>
                                         </Link>
