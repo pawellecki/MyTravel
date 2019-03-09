@@ -14,6 +14,7 @@ const Travels = ({travels}) => {
             <img src={backgroundUrl} className={styles.image} alt='background' />
             <div className={styles.root}>
                     <div className={styles.cardsCover}>
+                    
                         {
                             isLoading && 
                             <div> ładujemy yyyyy</div>
@@ -32,9 +33,14 @@ const Travels = ({travels}) => {
                                                 <div className={styles.photo}>
                                                     {
                                                         mainImageUrl
-                                                        ? <img src={mainImageUrl} alt='travel' />
+                                                        ? <div style={{backgroundImage: `url(${mainImageUrl})`}} />
                                                         : <p>zastepcze photo</p>
                                                     }
+                                                    {/* {
+                                                        mainImageUrl
+                                                        ? <img id="myImage" src={mainImageUrl} alt='travel' />
+                                                        : <p>zastepcze photo</p>
+                                                    } */}
                                                 </div>
                                                 <p>{content}</p>
                                             </div>
