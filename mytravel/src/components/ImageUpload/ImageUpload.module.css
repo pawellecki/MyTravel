@@ -1,11 +1,24 @@
 .root {
+    position: relative;
+    background: yellow;
+    width: 400px;
+    height: 300px;
+}
+.root input{
+    width: 100%;
+    height: 100%;
 }
 
 .photo {
-    position: relative;
+    position: absolute;
     background: #e2e2e2;
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    pointer-events: none;
+    /* opacity: .5; */
+    /* width: 400px;
+    height: 300px; */
 }
 
 .photo img {

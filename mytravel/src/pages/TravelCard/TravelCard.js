@@ -17,6 +17,7 @@ const TravelCard = ({travelData, authId, handleImageAction}) => {
                 {
                     console.log('travelData:',travelData)
                 }
+                
                 <ImageUpload
                     storagePath={authId}
                     handleImageAction={handleImageAction}
