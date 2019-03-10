@@ -18,6 +18,7 @@ class ImageUploadContainer extends Component {
     }
 
     handleUpload = e => {
+        console.log('test:eeeeeee',e)
         const image = e.target.files[0]
         const { storagePath, handleImageAction } = this.props
         const uploadTask = storage.ref(`images/${storagePath}/${image.name}`).put(image)
