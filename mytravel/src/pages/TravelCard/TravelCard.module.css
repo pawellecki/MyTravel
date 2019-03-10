@@ -1,0 +1,12 @@
+.root {
+    padding: 40px;
+}
+
+.card {
+    background: gray;
+    max-width: 1200px;
+    min-height: calc(100vh - 100px);
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 import styles from './Travels.module.css'
 
 const Travels = ({travels}) => {
@@ -34,13 +35,8 @@ const Travels = ({travels}) => {
                                                     {
                                                         mainImageUrl
                                                         ? <div style={{backgroundImage: `url(${mainImageUrl})`}} />
-                                                        : <p>zastepcze photo</p>
+                                                        : <Camera />
                                                     }
-                                                    {/* {
-                                                        mainImageUrl
-                                                        ? <img id="myImage" src={mainImageUrl} alt='travel' />
-                                                        : <p>zastepcze photo</p>
-                                                    } */}
                                                 </div>
                                                 <p>{content}</p>
                                             </div>
