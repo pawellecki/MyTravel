@@ -17,4 +17,11 @@
 
 .brief {
     float: left;
+    margin-left: 40px;
+    background: green
+}
+
+.brief h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
 }

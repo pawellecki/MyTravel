@@ -10,14 +10,13 @@ const TravelCard = ({ travelData, authId, handleImageAction }) => {
                 <header>
                     <ImageUpload
                         storagePath={authId}
-                        actionName="add photo"
                         handleImageAction={handleImageAction}
                         imageUrl={travelData && travelData.mainImageUrl}
                     />
                     {
                         travelData &&
                         <div className={styles.brief}>
-                            <div>{travelData.title}</div>
+                            <h2>{travelData.title}</h2>
                             <div>{travelData.content}</div>
                         </div>
                     }
