@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 import styles from './Travels.module.css'
 
 const Travels = ({travels}) => {
@@ -14,6 +15,7 @@ const Travels = ({travels}) => {
             <img src={backgroundUrl} className={styles.image} alt='background' />
             <div className={styles.root}>
                     <div className={styles.cardsCover}>
+                    
                         {
                             isLoading && 
                             <div> ładujemy yyyyy</div>
@@ -24,12 +26,18 @@ const Travels = ({travels}) => {
                         }
                         {
                             isAnyTravel &&
-                            travels.map(({ id, content }) => {
+                            travels.map(({ id, mainImageUrl, content }) => {
                                 return (
                                     <div className={styles.cardPlace} key={id}>
                                         <Link to={`/travels/${id}`}>
                                             <div className={styles.card}>
-                                                <div className={styles.photo} />
+                                                <div className={styles.photo}>
+                                                    {
+                                                        mainImageUrl
+                                                        ? <div style={{backgroundImage: `url(${mainImageUrl})`}} />
+                                                        : <Camera />
+                                                    }
+                                                </div>
                                                 <p>{content}</p>
                                             </div>
                                         </Link>
