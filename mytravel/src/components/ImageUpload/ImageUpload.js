@@ -6,17 +6,22 @@ import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 
 import styles from './ImageUpload.module.css'
 
-const ImageUpload = ({imageUrl = '', handleChange, handleDelete }) => (
+const ImageUpload = ({imageUrl = '', actionName, handleChange, handleDelete }) => (
     <div className={styles.root}>
         {
             imageUrl === '' &&
-            <input type="file" ref={node => (this.node = node)} onChange={handleChange} />
+            <input type="file" onChange={handleChange} />
         }
         <div className={styles.photo}>
             {
                 imageUrl === ''
-                ? <Camera />
-                : <>
+                ? 
+                <> 
+                    <Camera />
+                    <p>{actionName}</p>
+                </>
+                : 
+                <>
                     <img
                         src={imageUrl}
                         alt="uploaded"

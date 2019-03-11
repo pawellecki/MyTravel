@@ -6,11 +6,12 @@ import ImageUpload from './ImageUpload'
 class ImageUploadContainer extends Component {
 
     render() {
-        const { imageUrl } = this.props
+        const { imageUrl, actionName } = this.props
 
         return (
             <ImageUpload 
                 imageUrl={imageUrl}
+                actionName={actionName}
                 handleChange={this.handleUpload}
                 handleDelete={this.handleDelete}
             />

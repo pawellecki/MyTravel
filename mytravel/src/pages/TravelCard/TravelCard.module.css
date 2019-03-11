@@ -10,3 +10,11 @@
     margin: 0 auto;
     padding: 20px;
 }
+
+.card header div:first-of-type {
+    float: left;
+}
+
+.brief {
+    float: left;
+}

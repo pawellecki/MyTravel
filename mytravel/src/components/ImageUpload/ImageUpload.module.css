@@ -1,12 +1,16 @@
 .root {
     position: relative;
-    background: yellow;
     width: 400px;
     height: 300px;
 }
-.root input{
+.root input {
+    position: relative;
     width: 100%;
     height: 100%;
+    z-index: 5;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
 }
 
 .photo {
@@ -15,22 +19,37 @@
     width: 100%;
     height: 100%;
     top: 0;
-    opacity: .3;
-    /* pointer-events: none; */
-    /* opacity: .5; */
-    /* width: 400px;
-    height: 300px; */
+}
+
+.photo > svg {
+    height: calc(100% - 40px);
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+    opacity: 0.5;
+}
+.photo p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 40px;
+    font-size: 24px;
 }
 
 .photo img {
-   max-width: 100%;
-   max-height: 100%;
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%)
 }
 
 .delete {
     position: absolute;
     top: 20px;
-    right: -10px;
+    right: 20px;
     width: 26px;
     height: 26px;
     text-align: center;
@@ -41,12 +60,4 @@
 .delete svg {
     width: 12px;
     height: 26px;
-}
-
-.photo > svg {
-height: 100%;
-  width: 40%;
-  display: block;
-  margin: 0 auto;
-  opacity: .5;
 }
