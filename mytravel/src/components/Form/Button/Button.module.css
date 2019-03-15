@@ -8,6 +8,8 @@
     border: 2px solid #f22377;
     background: #eee;
     color: #f22377;
+    transition: .3s;
+
 }
 
 .root:hover {
@@ -15,6 +17,7 @@
     box-shadow: #808080 0 8px 12px -1px;
     background: #f22377;
     color: #eee;
+    transition: .3s;
 }
 
 .loading {
@@ -25,23 +28,6 @@
     width: 20px;
     max-width: 200px;
     height: 20px;
-}
-
-.tab {
-    width: 50%;
-    border: none;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    background: #eee;
-    cursor: auto;
-    box-shadow: none;
-}
-.tab:hover {
-    box-shadow: none;
-    background: #eee;
-    color: #f22377;
 }
 
 .faded {

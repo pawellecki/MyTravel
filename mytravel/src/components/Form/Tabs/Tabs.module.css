@@ -1,0 +1,23 @@
+.root  {
+    cursor: pointer;
+    box-shadow: none;
+    color: #ccc;
+    cursor: auto;
+    display: inline-block;
+}
+
+.root:hover {
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.active {
+    color: #f22377;
+}
+
+.active:hover {
+    color: #f22377;
+    cursor: default;
+}

@@ -1,7 +1,9 @@
 import React from 'react'
 
+import Tabs from '../../components/Form/Tabs/TabsContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
+import tabsConfig from './config'
 
 import styles from './LogIn.module.css'
 
@@ -16,17 +18,10 @@ const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleChoos
             <img src={backgroundUrl} className={styles.image} alt='background' />
             <div className={styles.root}>
                 <div className={styles.tabs}>
-                    <Button
-                        title='Log in!'
-                        onClick={() => handleChooseTab(true)}
-                        isFaded={!isLogIn}
-                        isTab
-                    />
-                    <Button
-                        title='Sign up!'
-                        onClick={() => handleChooseTab(false)}
-                        isFaded={isLogIn}
-                        isTab
+                    <Tabs 
+                        config={tabsConfig}
+                        onClick={handleChooseTab}
+                        isActive={isLogIn}
                     />
                 </div>
                 {
