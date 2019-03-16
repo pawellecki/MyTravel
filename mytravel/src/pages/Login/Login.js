@@ -3,7 +3,7 @@ import React from 'react'
 import Tabs from '../../components/Form/Tabs/TabsContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-import tabsConfig from './config'
+import tabsConfig from './tabsConfig'
 
 import styles from './LogIn.module.css'
 
@@ -17,12 +17,10 @@ const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleToggl
         <>
             <img src={backgroundUrl} className={styles.image} alt='background' />
             <div className={styles.root}>
-                <div className={styles.tabs}>
-                    <Tabs 
-                        config={tabsConfig}
-                        handleChangeView={handleToggleSignUpInputs}
-                    />
-                </div>
+                <Tabs 
+                    config={tabsConfig}
+                    handleChangeView={handleToggleSignUpInputs}
+                />
                 {
                     auth && auth.isLoaded ?
                     <form onSubmit={handleSubmit} className={isLogIn ? styles.logIn : ''}>

@@ -14,6 +14,7 @@ const Tabs = React.memo(({ config, activeTab, handleChooseTab }) =>
                             tab.name === activeTab ? styles.active : ''
                         )}
                         onClick={() => handleChooseTab(tab.name)}
+                        key={tab.name}
                     >
                         {tab.label}
                     </div>
