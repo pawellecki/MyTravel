@@ -18,19 +18,29 @@
     margin-bottom: 5px;
 }
 
-.root input {
-    width: 100%;
-    display: block;
-    height: 40px;
-    padding: 0 17px;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, .5);
-    outline: none;
-}
 
 .root input:-webkit-autofill,
 .root input:-webkit-autofill:hover,
 .root input:-webkit-autofill:focus,
 .root input:-webkit-autofill:active {
     -webkit-transition-delay: 99999s;
+    transition: border .4s, background 99999s;
 }
+
+.root input {
+    width: 100%;
+    display: block;
+    height: 40px;
+    padding: 0 17px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .5);
+    outline: none;
+    transition: border .4s
+}
+
+.root input:hover, .root input:focus, .root input:active {
+    border: 2px solid #f22377;
+    transition: border .4s
+}
+

@@ -28,19 +28,6 @@
   transform: translateY(-50%);
 }
 
-.root .tabs:after {
-  content: '';
-  position: relative;
-  display: block;
-  top: -1px;
-  width: 100%;
-  height: 4px;
-  background: #f22377;;
-}
-.root .tabs > div {
-  /* display: inline-block; */
-}
-
 .root form {
   position: relative;
   height: calc(100% - 30px);

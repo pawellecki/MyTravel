@@ -19,21 +19,20 @@ class TabsContainer extends Component {
 
     render() {
         const { activeTab } = this.state
-        const { config, handleChangeView } = this.props
+        const { config } = this.props
 
         return (
             <Tabs
                 activeTab={activeTab}
                 config={config}
                 handleChooseTab={this.handleChooseTab}
-                handleChangeView={handleChangeView}
             />
         )
     }
 
     handleChooseTab = name => {
         const { handleChangeView } = this.props
-        
+
         this.setState({
             activeTab: name
         })

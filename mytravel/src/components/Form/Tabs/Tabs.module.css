@@ -1,23 +1,30 @@
-.root  {
-    cursor: pointer;
-    box-shadow: none;
+.root {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tab  {
+    width: 50%;
+    height: 30px;
+    text-align: center;
     color: #ccc;
     cursor: auto;
-    display: inline-block;
+    border-bottom: 4px solid #ccc;
+    transition: .4s;
 }
 
-.root:hover {
-    box-shadow: none;
+.tab:hover {
     color: #fff;
     cursor: pointer;
+    transition: .4s;
+    border-bottom: 4px solid #fff;
 }
 
-
-.active {
+.active, .active:hover {
     color: #f22377;
+    border-bottom: 4px solid #f22377;
 }
 
 .active:hover {
-    color: #f22377;
     cursor: default;
 }
