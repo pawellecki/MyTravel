@@ -42,7 +42,7 @@ class LogInContainer extends Component {
                 isLogIn={isLogIn}
                 isLoading={isLoading}
                 handleChangeField={this.handleChangeField}
-                handleChooseTab={this.handleChooseTab}
+                handleToggleSignUpInputs={this.handleToggleSignUpInputs}
                 handleSubmit={this.handleSubmit}
             />
         )
@@ -54,10 +54,9 @@ class LogInContainer extends Component {
         })
     }
     
-    handleChooseTab = logIn => {
-        console.log('test:',)
+    handleToggleSignUpInputs = tabName => {
         this.setState({
-            isLogIn: logIn ? true : false
+            isLogIn: tabName === 'login' ? true : false
         })
     }
 
@@ -66,9 +65,6 @@ class LogInContainer extends Component {
         const { isLogIn } = this.state
         e.preventDefault()
         isLogIn ? logIn(this.state) : signUp(this.state)
-            // this.setState({
-            //     isLoading: true
-            // })
     }
 }
 

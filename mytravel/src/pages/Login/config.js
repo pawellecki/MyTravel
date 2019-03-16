@@ -1,9 +1,12 @@
 const tabs = [
     {
-        name: 'Log in'
+        name: 'login',
+        label: 'Log in',
+        defaultActive: true
     },
     {
-        name: 'Sign up'
+        name: 'signup',
+        label: 'Sign up'
     },
 
 ]
