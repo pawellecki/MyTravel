@@ -1,9 +1,10 @@
 import React from 'react'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
+import Tabs from '../../components/Form/Tabs/TabsContainer'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = ({ travelData, authId, handleImageAction }) => {
+const TravelCard = ({ travelData, authId, tabsConfig, handleImageAction, handleShowSecttion }) => {
     return (
         <div className={styles.root}>
             <div className={styles.card}>
@@ -21,6 +22,12 @@ const TravelCard = ({ travelData, authId, handleImageAction }) => {
                         </div>
                     }
                 </header>
+                <section>
+                    <Tabs 
+                        config={tabsConfig}
+                        handleChangeView={handleShowSecttion}
+                    />
+                </section>
             </div>
         </div>
     )

@@ -1,34 +1,26 @@
 import React from 'react'
 
+import Tabs from '../../components/Form/Tabs/TabsContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
+import tabsConfig from './tabsConfig'
 
 import styles from './LogIn.module.css'
 
 import { ReactComponent as World } from '../../assets/icons/world.svg'
 import customError from '../../helpers/error'
 
-const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleChooseTab, handleSubmit }) => {
+const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleToggleSignUpInputs, handleSubmit }) => {
     const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Flogin-background-3680.jpg?alt=media&token=3dff8e09-a891-41b3-9feb-f88be84dcbb4"
     
     return (
         <>
             <img src={backgroundUrl} className={styles.image} alt='background' />
             <div className={styles.root}>
-                <div className={styles.tabs}>
-                    <Button
-                        title='Log in!'
-                        onClick={() => handleChooseTab(true)}
-                        isFaded={!isLogIn}
-                        isTab
-                    />
-                    <Button
-                        title='Sign up!'
-                        onClick={() => handleChooseTab(false)}
-                        isFaded={isLogIn}
-                        isTab
-                    />
-                </div>
+                <Tabs 
+                    config={tabsConfig}
+                    handleChangeView={handleToggleSignUpInputs}
+                />
                 {
                     auth && auth.isLoaded ?
                     <form onSubmit={handleSubmit} className={isLogIn ? styles.logIn : ''}>

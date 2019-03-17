@@ -9,6 +9,15 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.image:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  opacity: .8;
+  box-shadow: inset 0px 0px 81px -11px rgba(0,0,0,0.75);
+  background: linear-gradient(45deg, rgba(73,101,178,0.2) 0%,rgba(255,227,135,0.34) 36%,rgba(255,227,135,0.41) 54%,rgba(219,87,89,0.58) 100%);
+}
 
 .root {
   position: absolute;
@@ -17,19 +26,6 @@
   top: calc(50% - 20px);
   margin-left: calc(50% - 130px);
   transform: translateY(-50%);
-}
-
-.root .tabs:after {
-  content: '';
-  position: relative;
-  display: block;
-  top: -1px;
-  width: 100%;
-  height: 4px;
-  background: #eee;
-}
-.root .tabs button {
-  padding-top: 4px;
 }
 
 .root form {

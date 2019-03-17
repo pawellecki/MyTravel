@@ -8,6 +8,7 @@ import idx from 'idx';
 import Travels from './Travels'
 
 class TravelsContainer extends Component {
+
     render() {
         const { travels } = this.props
         return (  

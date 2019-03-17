@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 import styles from './Travels.module.css'
 
-const Travels = ({travels}) => {
+const Travels = ({ travels }) => {
     const isLoading = !travels && travels !== null
     const noTravels = (travels && travels.length === 0) || travels === null
     const isAnyTravel = travels && travels.length > 0

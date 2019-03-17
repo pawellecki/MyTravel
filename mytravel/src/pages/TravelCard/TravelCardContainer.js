@@ -7,8 +7,10 @@ import idx from 'idx';
 import { setTravelMainImage } from '../../store/actions/project'
 
 import TravelCard from './TravelCard'
+import tabsConfig from './tabsConfig'
 
 class TravelCardContainer extends Component {
+
     render() {
         const { travel, authId } = this.props
         
@@ -16,7 +18,9 @@ class TravelCardContainer extends Component {
             <TravelCard
                 travelData={travel}
                 authId={authId}
+                tabsConfig={tabsConfig}
                 handleImageAction={this.handleSetTravelMainImage}
+                handleShowSecttion={this.handleShowSecttion}
             />
         )
     }
@@ -24,6 +28,11 @@ class TravelCardContainer extends Component {
     handleSetTravelMainImage = imageUrl => {
         const { setTravelMainImage, authId, travelId } = this.props
         setTravelMainImage({ authId, travelId, imageUrl})
+    }
+
+    handleShowSecttion = name => {
+        console.log('name:',name)
+
     }
 }
 
