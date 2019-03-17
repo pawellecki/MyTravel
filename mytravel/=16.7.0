@@ -1,0 +1,49 @@
+mytravel@0.1.0 C:\Users\roret\Desktop\MyTravel\mytravel
++-- babel-preset-react-app@7.0.0
+| `-- @babel/core@7.1.6
+|   +-- debug@4.1.1 
+|   | `-- ms@2.1.1 
+|   +-- json5@2.1.0 
+|   `-- source-map@0.5.7 
++-- moment@2.24.0 
++-- react@16.8.4 
+| `-- scheduler@0.13.4 
++-- react-dates@20.1.0 
+| +-- airbnb-prop-types@2.12.0 
+| | +-- array.prototype.find@2.0.4 
+| | +-- function.prototype.name@1.1.0 
+| | +-- object-is@1.0.1 
+| | +-- object.entries@1.1.0 
+| | +-- prop-types-exact@1.2.0 
+| | | `-- reflect.ownkeys@0.2.0 
+| | `-- react-is@16.8.4 
+| +-- consolidated-events@2.0.2 
+| +-- is-touch-device@1.0.1 
+| +-- react-addons-shallow-compare@15.6.2 
+| | `-- fbjs@0.8.17 
+| |   +-- core-js@1.2.7 
+| |   +-- promise@7.3.1 
+| |   `-- ua-parser-js@0.7.19 
+| +-- react-moment-proptypes@1.6.0 
+| | `-- moment@2.24.0  deduped
+| +-- react-outside-click-handler@1.2.3 
+| | +-- airbnb-prop-types@2.12.0  deduped
+| | +-- consolidated-events@2.0.2  deduped
+| | +-- document.contains@1.0.1 
+| | `-- prop-types@15.7.2 
+| |   `-- react-is@16.8.4 
+| +-- react-portal@4.2.0 
+| +-- react-with-direction@1.3.0 
+| | +-- airbnb-prop-types@2.12.0  deduped
+| | +-- brcast@2.0.2 
+| | +-- deepmerge@1.5.2 
+| | `-- direction@1.0.2 
+| +-- react-with-styles@3.2.1 
+| | +-- deepmerge@1.5.2  deduped
+| | `-- react-with-direction@1.3.0  deduped
+| `-- react-with-styles-interface-css@4.0.3 
+|   +-- array.prototype.flat@1.2.1 
+|   `-- global-cache@1.2.1 
+`-- react-dom@16.8.4 
+  `-- scheduler@0.13.4  deduped
+
