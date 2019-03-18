@@ -9,20 +9,16 @@ export const addTravel = project => {
         const authId = getState().firebase.auth.uid
         const email = getState().firebase.auth.email
         const randomId = createRandomString()
-console.log('project:',project)
-project = {
-    ...project,
-    dateRange: {
-        startDate: "niiccc",
-        endDate: moment(new Date()).format('YYYYMMDD')
-    }
-}
-console.log('project:22',project)
+        
         firestore
         .collection('projects').doc(authId)
         .collection('travels').doc(randomId)
         .set({
             ...project,
+            dateRange: {
+                startDate: moment(project.dateRange.startDate).valueOf(),
+                endDate: moment(project.dateRange.endDate).valueOf()
+            },
             id: randomId,
             authId,
             authorName: profile.firstName,

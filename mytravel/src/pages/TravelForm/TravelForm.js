@@ -30,6 +30,7 @@ class TravelForm extends Component {
     handleSubmit = e => {
         const { addTravel } = this.props
         e.preventDefault()
+        console.log('SUBMIT:',this.state)
         addTravel(this.state)
     }
 
@@ -49,12 +50,13 @@ class TravelForm extends Component {
                         name="content"
                         label="The content"
                     />
+                    {console.log(this.state.dateRange.startDate)}
                     <DateRangePicker
                         startDate={startDate} // momentPropTypes.momentObj or null,
                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                         endDate={endDate} // momentPropTypes.momentObj or null,
                         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                        onDatesChange={ ({ startDate, endDate }) => this.setState({ dateRange: { startDate, endDate } }) } // PropTypes.func.isRequired,
+                        onDatesChange={ ({ startDate, endDate }) => this.setState({ dateRange: { startDate, endDate} }) } // PropTypes.func.isRequired,
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                     />
