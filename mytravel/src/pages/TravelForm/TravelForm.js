@@ -13,12 +13,16 @@ import styles from './TravelForm.module.css'
 class TravelForm extends Component {
 
     state = {
-        title: '',
-        content: '',
-        dateRange: {
-            startDate: null,
-            endDate: null
-        }
+        stages: [
+            {
+                id: 0,
+                title: '',
+                dateRange: {
+                    startDate: null,
+                    endDate: null
+                },
+            }
+        ]
     }
 
     handleChange = (e, fieldName) => {
@@ -40,31 +44,40 @@ class TravelForm extends Component {
             <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
                     <h5>Create a New Project</h5>
-                    <Input
-                        onChange={this.handleChange}
-                        name="title"
-                        label="The title"
-                    />
-                    <Input
-                        onChange={this.handleChange}
-                        name="content"
-                        label="The content"
-                    />
-                    {console.log(this.state.dateRange.startDate)}
-                    <DateRangePicker
-                        startDate={startDate} // momentPropTypes.momentObj or null,
-                        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                        endDate={endDate} // momentPropTypes.momentObj or null,
-                        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                        onDatesChange={ ({ startDate, endDate }) => this.setState({ dateRange: { startDate, endDate} }) } // PropTypes.func.isRequired,
-                        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                    />
+                    {
+                        this.state.stages.map(stage => {
+                            return (
+                                <>
+                                    <Input
+                                        onChange={this.handleChange}
+                                        name={'stage_' + stage.id}
+                                        label="The title"
+                                    />
+                                    <DateRangePicker
+                                        startDate={startDate} // momentPropTypes.momentObj or null,
+                                        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                                        endDate={endDate} // momentPropTypes.momentObj or null,
+                                        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                                        onDatesChange={ ({ startDate, endDate }) => this.setState({ dateRange: { startDate, endDate} }) } // PropTypes.func.isRequired,
+                                        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                                    />
+                                </>
+                            )
+                        })
+                    }
+                    
                     <Button title="Create project" type="submit" />
+                    <Button title="Add" onClick={this.addStage} />
+
                 </form>
                 <div>--------------------------------------------</div>
             </div>
         )
+    }
+
+    addStage = () => {
+
     }
 }
 
