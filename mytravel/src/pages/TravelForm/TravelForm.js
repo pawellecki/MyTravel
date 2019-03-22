@@ -17,10 +17,8 @@ class TravelForm extends Component {
             {
                 id: 0,
                 title: '',
-                dateRange: {
-                    startDate: null,
-                    endDate: null
-                },
+                startDate: null,
+                endDate: null
             }
         ]
     }
@@ -39,26 +37,33 @@ class TravelForm extends Component {
     }
 
     render() {
-        const { startDate, endDate } = this.state.dateRange
+        // const { startDate, endDate } = this.state.dateRange
         return (
             <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
                     <h5>Create a New Project</h5>
                     {
-                        this.state.stages.map(stage => {
+                        this.state.stages.map((stage, index) => {
+                            console.log('test:',index)
+                            console.log('dd:',this.state.stages[index])
                             return (
                                 <>
                                     <Input
                                         onChange={this.handleChange}
-                                        name={'stage_' + stage.id}
+                                        name={'stage_' + index}
                                         label="The title"
                                     />
                                     <DateRangePicker
-                                        startDate={startDate} // momentPropTypes.momentObj or null,
+                                        startDate={this.state.stages[index].startDate} // momentPropTypes.momentObj or null,
                                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                                        endDate={endDate} // momentPropTypes.momentObj or null,
+                                        endDate={this.state.stages[index].endDate} // momentPropTypes.momentObj or null,
                                         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                                        onDatesChange={ ({ startDate, endDate }) => this.setState({ dateRange: { startDate, endDate} }) } // PropTypes.func.isRequired,
+                                        onDatesChange={ ({ startDate, endDate }) => 
+                                            this.setState(
+                                                {
+                                                    stages: [...this.state.stages, this.state.stages[index] = "kk"]
+                                                }
+                                            )} // PropTypes.func.isRequired,
                                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                                     />
