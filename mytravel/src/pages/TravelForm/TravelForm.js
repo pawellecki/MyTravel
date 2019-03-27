@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
 import moment from 'moment'
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
 import { addTravel } from '../../store/actions/project'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
-
 import styles from './TravelForm.module.css'
 
 class TravelForm extends Component {
@@ -17,8 +16,7 @@ class TravelForm extends Component {
             {
                 id: 0,
                 title: '',
-                startDate: null,
-                endDate: null
+                date: [null ,new Date()]
             }
         ]
     }
@@ -29,6 +27,22 @@ class TravelForm extends Component {
         })
     }
 
+    handleSetDateRange = date => {
+        // const date = Object.assign(this.state.stages[index].date);
+        console.log('test date:',date)
+        // console.log('test eee:',e)
+        let stages = Object.assign(this.state.stages)
+        const startDate = date[0]
+        const endDate = date[1]
+        const targetIndex = date[2]
+        // let  = [...this.state.stages]
+        stages[targetIndex] = {
+            id: targetIndex,
+            date: [startDate, endDate]
+        }
+        this.setState({ stages })
+    }
+
     handleSubmit = e => {
         const { addTravel } = this.props
         e.preventDefault()
@@ -37,7 +51,6 @@ class TravelForm extends Component {
     }
 
     render() {
-        // const { startDate, endDate } = this.state.dateRange
         return (
             <div className={styles.root}>
                 <form onSubmit={this.handleSubmit}>
@@ -47,27 +60,18 @@ class TravelForm extends Component {
                             console.log('test:',index)
                             console.log('dd:',this.state.stages[index])
                             return (
-                                <>
+                                <span key={index}>
                                     <Input
                                         onChange={this.handleChange}
                                         name={'stage_' + index}
                                         label="The title"
                                     />
+                                    {console.log('test uyuyu:',this.state.stages[index].date)}
                                     <DateRangePicker
-                                        startDate={this.state.stages[index].startDate} // momentPropTypes.momentObj or null,
-                                        startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                                        endDate={this.state.stages[index].endDate} // momentPropTypes.momentObj or null,
-                                        endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                                        onDatesChange={ ({ startDate, endDate }) => 
-                                            this.setState(
-                                                {
-                                                    stages: [...this.state.stages, this.state.stages[index] = "kk"]
-                                                }
-                                            )} // PropTypes.func.isRequired,
-                                        focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                        onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                                        onChange={(date) =>this.handleSetDateRange(date = [...date, index])}
+                                        value={this.state.stages[index].date}
                                     />
-                                </>
+                                </span>
                             )
                         })
                     }

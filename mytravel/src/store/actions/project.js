@@ -1,6 +1,5 @@
 import * as actionTypes from '../../constants/actionTypes'
 import createRandomString from '../../helpers/string'
-import moment from 'moment'
 
 export const addTravel = project => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -15,10 +14,6 @@ export const addTravel = project => {
         .collection('travels').doc(randomId)
         .set({
             ...project,
-            dateRange: {
-                startDate: moment(project.dateRange.startDate).valueOf(),
-                endDate: moment(project.dateRange.endDate).valueOf()
-            },
             id: randomId,
             authId,
             authorName: profile.firstName,
