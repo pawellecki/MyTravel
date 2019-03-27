@@ -27,18 +27,11 @@ class TravelForm extends Component {
         })
     }
 
-    handleSetDateRange = date => {
-        // const date = Object.assign(this.state.stages[index].date);
-        console.log('test date:',date)
-        // console.log('test eee:',e)
-        let stages = Object.assign(this.state.stages)
-        const startDate = date[0]
-        const endDate = date[1]
-        const targetIndex = date[2]
-        // let  = [...this.state.stages]
-        stages[targetIndex] = {
-            id: targetIndex,
-            date: [startDate, endDate]
+    handleSetDateRange = (date, index) => {
+        const stages = Object.assign(this.state.stages)
+        stages[index] = {
+            id: index,
+            date
         }
         this.setState({ stages })
     }
@@ -68,7 +61,7 @@ class TravelForm extends Component {
                                     />
                                     {console.log('test uyuyu:',this.state.stages[index].date)}
                                     <DateRangePicker
-                                        onChange={(date) =>this.handleSetDateRange(date = [...date, index])}
+                                        onChange={date => this.handleSetDateRange(date, index)}
                                         value={this.state.stages[index].date}
                                     />
                                 </span>
