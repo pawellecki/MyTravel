@@ -14,23 +14,31 @@ class TravelForm extends Component {
     state = {
         stages: [
             {
-                id: 0,
                 title: '',
-                date: [null ,new Date()]
+                date: [null, null]
             }
         ]
     }
 
-    handleChange = (e, fieldName) => {
-        this.setState({
-            [fieldName]: e.target.value
-        })
+    handleChangeName = (e, fieldName) => {
+        const index = fieldName
+        console.log('e:',e.target.value)
+        console.log('fieldNamee:',fieldName)
+        const stages = Object.assign(this.state.stages)
+        stages[index] = {
+            ...stages[index],
+            title: e.target.value
+        }
+        this.setState({ stages })
+        // this.setState({
+        //     [fieldName]: e.target.value
+        // })
     }
 
     handleSetDateRange = (date, index) => {
         const stages = Object.assign(this.state.stages)
         stages[index] = {
-            id: index,
+            ...stages[index],
             date
         }
         this.setState({ stages })
@@ -40,7 +48,16 @@ class TravelForm extends Component {
         const { addTravel } = this.props
         e.preventDefault()
         console.log('SUBMIT:',this.state)
-        addTravel(this.state)
+        addTravel(this.state.stages)
+    }
+    
+    addStage = () => {
+        const stateStages = this.state.stages
+        const stages = Object.assign(stateStages)
+        stages[stateStages.length] = {
+            date: [null, null]
+        }
+        this.setState({ stages })
     }
 
     render() {
@@ -55,8 +72,8 @@ class TravelForm extends Component {
                             return (
                                 <span key={index}>
                                     <Input
-                                        onChange={this.handleChange}
-                                        name={'stage_' + index}
+                                        onChange={this.handleChangeName}
+                                        name={index}
                                         label="The title"
                                     />
                                     {console.log('test uyuyu:',this.state.stages[index].date)}
@@ -76,10 +93,6 @@ class TravelForm extends Component {
                 <div>--------------------------------------------</div>
             </div>
         )
-    }
-
-    addStage = () => {
-
     }
 }
 

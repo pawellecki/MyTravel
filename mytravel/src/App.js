@@ -12,8 +12,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import LogIn from './pages/LogIn/LogInContainer'
 import Content from './components/Content/Content'
 import NotFound from './pages/NotFound/NotFound'
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 
 const store = createStore(
     rootReducer,

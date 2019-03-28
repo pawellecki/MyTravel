@@ -8,12 +8,12 @@ export const addTravel = project => {
         const authId = getState().firebase.auth.uid
         const email = getState().firebase.auth.email
         const randomId = createRandomString()
-        
+        console.log('project:',project)
         firestore
         .collection('projects').doc(authId)
         .collection('travels').doc(randomId)
         .set({
-            ...project,
+            project,
             id: randomId,
             authId,
             authorName: profile.firstName,
