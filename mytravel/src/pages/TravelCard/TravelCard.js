@@ -4,7 +4,7 @@ import Tabs from '../../components/Tabs/TabsContainer'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = ({ travelData, authId, tabsConfig, handleImageAction, handleShowSecttion }) => {
+const TravelCard = ({ baseTravelData, authId, tabsConfig, handleImageAction, handleShowSecttion }) => {
     return (
         <div className={styles.root}>
             <div className={styles.card}>
@@ -12,13 +12,24 @@ const TravelCard = ({ travelData, authId, tabsConfig, handleImageAction, handleS
                     <ImageUpload
                         storagePath={authId}
                         handleImageAction={handleImageAction}
-                        imageUrl={travelData && travelData.mainImageUrl}
+                        imageUrl={baseTravelData && baseTravelData.mainImageUrl}
                     />
                     {
-                        travelData &&
+                        baseTravelData &&
                         <div className={styles.brief}>
-                            <h2>{travelData.title}</h2>
-                            <div>{travelData.content}</div>
+                            {/* <h2>{baseTravelData.title}</h2> nie ma glownego tytulu */}
+                            <div>
+                                {
+                                    baseTravelData.stages.map((stage, index) => {
+                                        if (index === baseTravelData.stages.length - 1) {
+                                            return stage.title
+                                        }
+                                        return (
+                                            stage.title + ' - '
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     }
                 </header>

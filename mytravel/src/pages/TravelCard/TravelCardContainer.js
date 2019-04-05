@@ -12,11 +12,11 @@ import tabsConfig from './tabsConfig'
 class TravelCardContainer extends Component {
 
     render() {
-        const { travel, authId } = this.props
+        const { baseTravelData, authId } = this.props
         
         return (
             <TravelCard
-                travelData={travel}
+                baseTravelData={baseTravelData}
                 authId={authId}
                 tabsConfig={tabsConfig}
                 handleImageAction={this.handleSetTravelMainImage}
@@ -39,12 +39,12 @@ class TravelCardContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
     const authId = state.firebase.auth.uid
     const travelId = ownProps.match.params.id
-    const travel =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
+    const baseTravelData =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
 
     return {
         authId,
         travelId,
-        travel
+        baseTravelData
     }
 }
 
