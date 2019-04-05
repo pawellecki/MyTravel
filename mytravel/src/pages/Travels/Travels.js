@@ -26,7 +26,7 @@ const Travels = ({ travels }) => {
                         }
                         {
                             isAnyTravel &&
-                            travels.map(({ id, mainImageUrl, title }) => {
+                            travels.map(({ id, mainImageUrl, stages }) => {
                                 return (
                                     <div className={styles.cardPlace} key={id}>
                                         <Link to={`/travels/${id}`}>
@@ -38,7 +38,18 @@ const Travels = ({ travels }) => {
                                                         : <Camera />
                                                     }
                                                 </div>
-                                                <p>{title}</p>
+                                                <p>
+                                                    {
+                                                        stages.map((stage, index) => {
+                                                            if (index === stages.length - 1) {
+                                                                return stage.title
+                                                            }
+                                                            return (
+                                                                stage.title + '-'
+                                                            )
+                                                        })
+                                                    }
+                                                </p>
                                             </div>
                                         </Link>
                                     </div>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+
 
 import moment from 'moment'
 
 import { addTravel } from '../../store/actions/project'
+import DateRangePicker from '../../components/Form/DateRangePicker'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 import styles from './TravelForm.module.css'
@@ -55,7 +56,7 @@ class TravelForm extends Component {
         const stateStages = this.state.stages
         const stages = Object.assign(stateStages)
         stages[stateStages.length] = {
-            date: [null, null]
+            date: null
         }
         this.setState({ stages })
     }
@@ -67,8 +68,6 @@ class TravelForm extends Component {
                     <h5>Create a New Project</h5>
                     {
                         this.state.stages.map((stage, index) => {
-                            console.log('test:',index)
-                            console.log('dd:',this.state.stages[index])
                             return (
                                 <span key={index}>
                                     <Input
@@ -76,7 +75,6 @@ class TravelForm extends Component {
                                         name={index}
                                         label="The title"
                                     />
-                                    {console.log('test uyuyu:',this.state.stages[index].date)}
                                     <DateRangePicker
                                         onChange={date => this.handleSetDateRange(date, index)}
                                         value={this.state.stages[index].date}
@@ -87,10 +85,8 @@ class TravelForm extends Component {
                     }
                     
                     <Button title="Create project" type="submit" />
-                    <Button title="Add" onClick={this.addStage} />
-
                 </form>
-                <div>--------------------------------------------</div>
+                <Button title="Add" onClick={this.addStage} />
             </div>
         )
     }

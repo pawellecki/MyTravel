@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Tabs from '../../components/Form/Tabs/TabsContainer'
+import Tabs from '../../components/Tabs/TabsContainer'
 import Button from '../../components/Form/Button/Button'
 import Input from '../../components/Form/Input/Input'
 import tabsConfig from './tabsConfig'

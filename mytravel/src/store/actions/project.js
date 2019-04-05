@@ -4,7 +4,6 @@ import createRandomString from '../../helpers/string'
 export const addTravel = project => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore()
-        const profile = getState().firebase.profile
         const authId = getState().firebase.auth.uid
         const email = getState().firebase.auth.email
         const randomId = createRandomString()
@@ -13,11 +12,9 @@ export const addTravel = project => {
         .collection('projects').doc(authId)
         .collection('travels').doc(randomId)
         .set({
-            project,
+            stages: project,
             id: randomId,
             authId,
-            authorName: profile.firstName,
-            authorLastName: profile.lastName,
             email,
             createdAt: new Date(),
         })

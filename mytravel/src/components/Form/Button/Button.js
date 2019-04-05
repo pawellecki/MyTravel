@@ -6,7 +6,7 @@ import styles from './Button.module.css'
 import { ReactComponent as World } from '../../../assets/icons/world.svg'
 
 const Button = React.memo(
-    ({ isLoading, isDisabled, isFaded, title, onClick, type }) =>
+    ({ isLoading, isDisabled, isFaded, title, onClick, type='button' }) =>
         <button
             className={cn(
                 styles.root,

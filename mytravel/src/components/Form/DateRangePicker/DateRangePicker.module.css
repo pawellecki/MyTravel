@@ -1,0 +1,11 @@
+.root > div {
+    background: yellow !important;
+}
+
+.root > div > div:first-of-type {
+    border: none;
+}
+
+.root input::placeholder {
+    height: 0;
+}
