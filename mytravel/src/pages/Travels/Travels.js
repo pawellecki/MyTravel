@@ -45,7 +45,7 @@ const Travels = ({ travels }) => {
                                                                 return stage.title
                                                             }
                                                             return (
-                                                                stage.title + '-'
+                                                                stage.title + ' - '
                                                             )
                                                         })
                                                     }
