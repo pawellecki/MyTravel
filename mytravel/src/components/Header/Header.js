@@ -35,7 +35,7 @@ class Header extends Component {
                 <Link to={'/new-travel'} className={styles.add}>
                     <Button title="Add new travel" />
                 </Link>
-                <Link to={'/all-travel'} className={styles.add}>
+                <Link to={'/'} className={styles.add}>
                     <Button title="See all travels" />
                 </Link>
             </div>

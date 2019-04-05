@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
-import Tabs from '../../components/Form/Tabs/TabsContainer'
+import Tabs from '../../components/Tabs/TabsContainer'
 
 import styles from './TravelCard.module.css'
 
