@@ -16,7 +16,7 @@ import tabsConfig from './tabsConfig'
 class TravelCardContainer extends Component {
 
     state = {
-        activeTab: 'stages',
+        activeTab: tabsConfig.filter(tab => tab.defaultActive)[0].name,
         components: 
             {
                 stages: <Stages {...this.props} />,
@@ -27,24 +27,23 @@ class TravelCardContainer extends Component {
     }
 
     render() {
-        const { baseTravelData, authId } = this.props
+        const { baseTravelData } = this.props
         const { activeTab, components } = this.state
 
         return (
             <TravelCard
-                activeTabComponent={components[activeTab]}
-                baseTravelData={baseTravelData}
-                authId={authId}
                 tabsConfig={tabsConfig}
-                handleImageAction={this.handleSetTravelMainImage}
+                baseTravelData={baseTravelData}
+                activeTabComponent={components[activeTab]}
                 handleShowSecttion={this.handleShowSecttion}
+                handleImageAction={this.handleSetTravelMainImage}
             />
         )
     }
     
     handleSetTravelMainImage = imageUrl => {
-        const { setTravelMainImage, authId, travelId } = this.props
-        setTravelMainImage({ authId, travelId, imageUrl})
+        const { setTravelMainImage, baseTravelData: { authId, id } } = this.props
+        setTravelMainImage({ authId, travelId: id, imageUrl})
     }
 
     handleShowSecttion = name => {
@@ -60,7 +59,6 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         authId,
-        travelId,
         baseTravelData
     }
 }

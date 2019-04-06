@@ -1,28 +1,28 @@
 import React from 'react'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
-import Stages from './Stages/Stages'
 import Tabs from '../../components/Tabs/TabsContainer'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = props => {
+const TravelCard = ({ tabsConfig, activeTabComponent, baseTravelData, handleShowSecttion, handleImageAction }) => {
     return (
         <div className={styles.root}>
             <div className={styles.card}>
                 <header>
                     <ImageUpload
-                        storagePath={props.authId}
-                        handleImageAction={props.handleImageAction}
-                        imageUrl={props.baseTravelData && props.baseTravelData.mainImageUrl}
+                        storagePath={baseTravelData && baseTravelData.authId}
+                        handleImageAction={handleImageAction}
+                        imageUrl={baseTravelData && baseTravelData.mainImageUrl}
                     />
                     {
-                        props.baseTravelData &&
+                        baseTravelData &&
                         <div className={styles.brief}>
                             {/* <h2>{baseTravelData.title}</h2> nie ma glownego tytulu */}
                             <div>
                                 {
-                                    props.baseTravelData.stages.map((stage, index) => {
-                                        if (index === props.baseTravelData.stages.length - 1) {
+                                    baseTravelData &&
+                                    baseTravelData.stages.map((stage, index) => {
+                                        if (index === baseTravelData.stages.length - 1) {
                                             return stage.title
                                         }
                                         return (
@@ -36,13 +36,12 @@ const TravelCard = props => {
                 </header>
                 <section>
                     <Tabs 
-                        config={props.tabsConfig}
-                        handleChangeView={props.handleShowSecttion}
+                        config={tabsConfig}
+                        handleChangeView={handleShowSecttion}
                     />
                 </section>
                 <section>
-                    {console.log('test:',props)}
-                    {props.activeTabComponent}
+                    {activeTabComponent}
                 </section>
             </div>
         </div>
