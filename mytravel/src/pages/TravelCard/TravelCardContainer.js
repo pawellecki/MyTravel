@@ -5,17 +5,34 @@ import { firestoreConnect } from 'react-redux-firebase'
 import idx from 'idx';
 
 import { setTravelMainImage } from '../../store/actions/project'
+import Stages from './Stages/Stages'
+import Places from './Places/Places'
+import EatDrink from './EatDrink/EatDrink'
+import Costs from './Costs/Costs'
 
 import TravelCard from './TravelCard'
 import tabsConfig from './tabsConfig'
 
 class TravelCardContainer extends Component {
 
+    state = {
+        activeTab: 'stages',
+        components: 
+            {
+                stages: <Stages {...this.props} />,
+                places: <Places {...this.props} />,
+                eat_drink: <EatDrink {...this.props} />,
+                costs: <Costs {...this.props} />
+            }
+    }
+
     render() {
         const { baseTravelData, authId } = this.props
-        
+        const { activeTab, components } = this.state
+
         return (
             <TravelCard
+                activeTabComponent={components[activeTab]}
                 baseTravelData={baseTravelData}
                 authId={authId}
                 tabsConfig={tabsConfig}
@@ -31,7 +48,7 @@ class TravelCardContainer extends Component {
     }
 
     handleShowSecttion = name => {
-        console.log('name:',name)
+        this.setState({ activeTab: name })
 
     }
 }

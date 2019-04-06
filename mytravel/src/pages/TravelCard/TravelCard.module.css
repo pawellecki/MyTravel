@@ -14,6 +14,11 @@
 .card header div:first-of-type {
     float: left;
 }
+.card header:after{
+    content: '';
+    display: table;
+    clear: both;
+}
 
 .brief {
     float: left;
@@ -24,4 +29,8 @@
 .brief h2 {
     font-size: 32px;
     margin-bottom: 20px;
+}
+
+.card section {
+    width: 100%;
 }
