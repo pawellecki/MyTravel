@@ -1,6 +1,7 @@
 import React from 'react'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
 import Tabs from '../../components/Tabs/TabsContainer'
+import Names from '../../components/Names/Names'
 
 import styles from './TravelCard.module.css'
 
@@ -18,7 +19,8 @@ const TravelCard = ({ tabsConfig, activeTabComponent, baseTravelData, handleShow
                         baseTravelData &&
                         <div className={styles.brief}>
                             {/* <h2>{baseTravelData.title}</h2> nie ma glownego tytulu */}
-                            <div>
+                            <Names list={baseTravelData && baseTravelData.stages} />
+                            {/* <div>
                                 {
                                     baseTravelData &&
                                     baseTravelData.stages.map((stage, index) => {
@@ -30,7 +32,7 @@ const TravelCard = ({ tabsConfig, activeTabComponent, baseTravelData, handleShow
                                         )
                                     })
                                 }
-                            </div>
+                            </div> */}
                         </div>
                     }
                 </header>

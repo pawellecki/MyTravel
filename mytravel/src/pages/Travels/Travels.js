@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Names from '../../components/Names/Names'
+
 import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 import styles from './Travels.module.css'
 
@@ -38,18 +40,7 @@ const Travels = ({ travels }) => {
                                                         : <Camera />
                                                     }
                                                 </div>
-                                                <p>
-                                                    {
-                                                        stages.map((stage, index) => {
-                                                            if (index === stages.length - 1) {
-                                                                return stage.title
-                                                            }
-                                                            return (
-                                                                stage.title + ' - '
-                                                            )
-                                                        })
-                                                    }
-                                                </p>
+                                                <Names list={stages} />
                                             </div>
                                         </Link>
                                     </div>
