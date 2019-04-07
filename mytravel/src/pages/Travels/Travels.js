@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Names from '../../components/Names/Names'
+import NamesChain from '../../components/NamesChain/NamesChain'
 
 import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 import styles from './Travels.module.css'
@@ -40,7 +40,7 @@ const Travels = ({ travels }) => {
                                                         : <Camera />
                                                     }
                                                 </div>
-                                                <Names list={stages} />
+                                                <NamesChain list={stages} />
                                             </div>
                                         </Link>
                                     </div>

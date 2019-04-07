@@ -1,14 +1,14 @@
 import React from 'react'
 
-import styles from './Names.module.css'
+import styles from './NamesChain.module.css'
 
-const Names = list => 
+const NamesChain = ({ list }) => 
     
     <p className={styles.root}>
         {
             list && 
             list.map((el, index) => {
-                if (index === el.length - 1) {
+                if (index === list.length - 1) {
                     return el.title
                 }
                 return (
@@ -18,4 +18,4 @@ const Names = list =>
         }
     </p>
 
-export default Names
+export default NamesChain

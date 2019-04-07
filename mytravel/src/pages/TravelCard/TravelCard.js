@@ -1,11 +1,11 @@
 import React from 'react'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
 import Tabs from '../../components/Tabs/TabsContainer'
-import Names from '../../components/Names/Names'
+import NamesChain from '../../components/NamesChain/NamesChain'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = ({ tabsConfig, activeTabComponent, baseTravelData, handleShowSecttion, handleImageAction }) => {
+const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData, handleShowSecttion, handleImageAction }) => {
     return (
         <div className={styles.root}>
             <div className={styles.card}>
@@ -19,20 +19,8 @@ const TravelCard = ({ tabsConfig, activeTabComponent, baseTravelData, handleShow
                         baseTravelData &&
                         <div className={styles.brief}>
                             {/* <h2>{baseTravelData.title}</h2> nie ma glownego tytulu */}
-                            <Names list={baseTravelData && baseTravelData.stages} />
-                            {/* <div>
-                                {
-                                    baseTravelData &&
-                                    baseTravelData.stages.map((stage, index) => {
-                                        if (index === baseTravelData.stages.length - 1) {
-                                            return stage.title
-                                        }
-                                        return (
-                                            stage.title + ' - '
-                                        )
-                                    })
-                                }
-                            </div> */}
+
+                            <NamesChain list={baseTravelData.stages} />
                         </div>
                     }
                 </header>
@@ -43,7 +31,7 @@ const TravelCard = ({ tabsConfig, activeTabComponent, baseTravelData, handleShow
                     />
                 </section>
                 <section>
-                    {activeTabComponent}
+                    <ActiveTabComponent {...baseTravelData} />
                 </section>
             </div>
         </div>

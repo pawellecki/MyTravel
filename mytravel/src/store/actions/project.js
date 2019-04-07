@@ -7,7 +7,6 @@ export const addTravel = project => {
         const authId = getState().firebase.auth.uid
         const email = getState().firebase.auth.email
         const randomId = createRandomString()
-        console.log('project:',project)
         firestore
         .collection('projects').doc(authId)
         .collection('travels').doc(randomId)
@@ -34,9 +33,6 @@ export const addTravel = project => {
 
 export const setTravelMainImage = ({ authId, travelId, imageUrl }) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
-        console.log('imageUrl:',imageUrl)   
-        console.log('authId:',authId)   
-        console.log('travelId:',travelId)   
 
         const firestore = getFirestore()
         firestore
