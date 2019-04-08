@@ -17,8 +17,6 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
                     />
                     {
                         <div className={styles.brief}>
-                            {/* <h2>{baseTravelData.title}</h2> nie ma glownego tytulu */}
-
                             <NamesChain list={stages} />
                         </div>
                     }
