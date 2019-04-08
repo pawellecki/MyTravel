@@ -14,35 +14,20 @@ import TravelCard from './TravelCard'
 import tabsConfig from './tabsConfig'
 
 class TravelCardContainer extends Component {
-
-    componentDidUpdate(prevProps, prevState) {
-      if (prevProps.baseTravelData !== this.props.baseTravelData) {
-
-      }
-    }
     
-
     state = {
         activeTab: tabsConfig.filter(tab => tab.defaultActive)[0].name,
-        // components: 
-        //     {
-        //         stages: <Stages {...this.props} />,
-        //         places: <Places {...this.props} />,
-        //         eat_drink: <EatDrink {...this.props} />,
-        //         costs: <Costs {...this.props} />,
-        //         kot: console.log('stsst:',this.props.baseTravelData)
-        //     }
     }
 
     render() {
         const { baseTravelData } = this.props
-        const { activeTab, components } = this.state
-console.log('ccc:',baseTravelData)
+        const ActiveTabComponent = tabsConfig.filter(tab => tab.name === this.state.activeTab)[0].component
+
         return (
             <TravelCard
                 tabsConfig={tabsConfig}
-                baseTravelData={baseTravelData}
-                ActiveTabComponent={tabsConfig.filter(tab => tab.name === this.state.activeTab)[0].component }
+                baseTravelData={baseTravelData || {}}
+                ActiveTabComponent={ActiveTabComponent}
                 handleShowSecttion={this.handleShowSecttion}
                 handleImageAction={this.handleSetTravelMainImage}
             />

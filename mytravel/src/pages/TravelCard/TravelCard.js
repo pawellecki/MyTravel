@@ -5,22 +5,21 @@ import NamesChain from '../../components/NamesChain/NamesChain'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData, handleShowSecttion, handleImageAction }) => {
+const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, mainImageUrl, stages }, handleShowSecttion, handleImageAction }) => {
     return (
         <div className={styles.root}>
             <div className={styles.card}>
                 <header>
                     <ImageUpload
-                        storagePath={baseTravelData && baseTravelData.authId}
+                        storagePath={authId}
                         handleImageAction={handleImageAction}
-                        imageUrl={baseTravelData && baseTravelData.mainImageUrl}
+                        imageUrl={mainImageUrl}
                     />
                     {
-                        baseTravelData &&
                         <div className={styles.brief}>
                             {/* <h2>{baseTravelData.title}</h2> nie ma glownego tytulu */}
 
-                            <NamesChain list={baseTravelData.stages} />
+                            <NamesChain list={stages} />
                         </div>
                     }
                 </header>
@@ -31,7 +30,7 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData, handleShow
                     />
                 </section>
                 <section>
-                    <ActiveTabComponent {...baseTravelData} />
+                    <ActiveTabComponent />
                 </section>
             </div>
         </div>
