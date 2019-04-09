@@ -15,11 +15,18 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
                         handleImageAction={handleImageAction}
                         imageUrl={mainImageUrl}
                     />
-                    {
-                        <div className={styles.brief}>
-                            <NamesChain list={stages} />
-                        </div>
-                    }
+                    <div className={styles.brief}>
+                        <NamesChain list={stages} />
+                        {
+                            stages.reduce((output, element) => {
+                                // if (filters[element.id]) {
+                                //     output.push(element.id)
+                                // }
+                                output = element.start + element.end
+                                return output
+                            }, [])
+                        }
+                    </div>
                 </header>
                 <section>
                     <Tabs 
