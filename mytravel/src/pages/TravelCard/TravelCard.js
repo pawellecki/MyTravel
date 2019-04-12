@@ -1,8 +1,11 @@
 import React from 'react'
+
+import { getExtremes } from '../../helpers/int'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
 import Tabs from '../../components/Tabs/TabsContainer'
 import NamesChain from '../../components/NamesChain/NamesChain'
 
+import idx from 'idx'
 import styles from './TravelCard.module.css'
 
 const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, mainImageUrl, stages }, handleShowSecttion, handleImageAction }) => {
@@ -18,14 +21,10 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
                     <div className={styles.brief}>
                         <NamesChain list={stages} />
                         {
-                            stages.reduce((output, element) => {
-                                // if (filters[element.id]) {
-                                //     output.push(element.id)
-                                // }
-                                output = element.start + element.end
-                                return output
-                            }, [])
+                            stages &&
+                            renderTravelTimeRange(stages)
                         }
+                        
                     </div>
                 </header>
                 <section>
@@ -41,5 +40,30 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
         </div>
     )
 }
+
+const renderTravelTimeRange = stages => {
+    // const arrayOfTimeRanges = stages.reduce((output, range) => {
+    //     console.log('test:',range)
+    //     let startDate = range.date[0].seconds
+    //     let endDate = range.date[1].seconds
+    //     output = [...output, startDate, endDate]
+    //     return output
+    // }, [])
+    let timeRanges = []
+    console.log('yy:',stages)
+    // stages.map(stage => {
+    //     return [...timeRanges, ...stage.date]
+    // })
+    stages.map(stage => {
+        let startDate = idx(stage, _ => _.date[0].seconds)
+        let endDate = idx(stage, _ => _.date[1].seconds)
+    //     let endDate = range.date[1].seconds
+        return timeRanges = [...timeRanges, startDate, endDate]
+    })
+        
+    
+
+    return getExtremes(timeRanges)
+} 
 
 export default TravelCard
