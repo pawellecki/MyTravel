@@ -1,12 +1,14 @@
 import React from 'react'
 
-import { getExtremes } from '../../helpers/int'
+import { getExtreme } from '../../helpers/int'
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
 import Tabs from '../../components/Tabs/TabsContainer'
 import NamesChain from '../../components/NamesChain/NamesChain'
 
 import idx from 'idx'
 import styles from './TravelCard.module.css'
+
+import moment from 'moment'
 
 const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, mainImageUrl, stages }, handleShowSecttion, handleImageAction }) => {
     return (
@@ -42,28 +44,18 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
 }
 
 const renderTravelTimeRange = stages => {
-    // const arrayOfTimeRanges = stages.reduce((output, range) => {
-    //     console.log('test:',range)
-    //     let startDate = range.date[0].seconds
-    //     let endDate = range.date[1].seconds
-    //     output = [...output, startDate, endDate]
-    //     return output
-    // }, [])
     let timeRanges = []
-    console.log('yy:',stages)
-    // stages.map(stage => {
-    //     return [...timeRanges, ...stage.date]
-    // })
+console.log('stages:',stages)
     stages.map(stage => {
         let startDate = idx(stage, _ => _.date[0].seconds)
         let endDate = idx(stage, _ => _.date[1].seconds)
-    //     let endDate = range.date[1].seconds
         return timeRanges = [...timeRanges, startDate, endDate]
     })
-        
-    
+    const travelBeginning = getExtreme(timeRanges, 'start')
+    const travelEnding = getExtreme(timeRanges)
 
-    return getExtremes(timeRanges)
+        
+    return moment.unix(travelBeginning).format('MM/DD/YYYY') + ' - ' + moment.unix(travelEnding).format('MM/DD/YYYY')
 } 
 
 export default TravelCard
