@@ -7,7 +7,7 @@ import { ReactComponent as Camera } from '../../assets/icons/camera.svg'
 import styles from './Travels.module.css'
 
 const Travels = ({ travels }) => {
-    const isLoading = !travels && travels !== null
+    const isLoading = travels === undefined
     const noTravels = (travels && travels.length === 0) || travels === null
     const isAnyTravel = travels && travels.length > 0
     const backgroundUrl = "https://firebasestorage.googleapis.com/v0/b/mytravel-96d22.appspot.com/o/global%2Fdesk-top-view-min.jpg?alt=media&token=2fe6602e-1dd2-46a4-9fc6-96ba72944625"

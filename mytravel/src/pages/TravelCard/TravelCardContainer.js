@@ -29,12 +29,12 @@ class TravelCardContainer extends Component {
                 baseTravelData={baseTravelData || {}}
                 ActiveTabComponent={ActiveTabComponent}
                 handleShowSecttion={this.handleShowSecttion}
-                handleImageAction={this.handleSetTravelMainImage}
+                handleSetMainImage={this.handleSetMainImage}
             />
         )
     }
     
-    handleSetTravelMainImage = imageUrl => {
+    handleSetMainImage = imageUrl => {
         const { setTravelMainImage, baseTravelData: { authId, id } } = this.props
         setTravelMainImage({ authId, travelId: id, imageUrl})
     }
@@ -67,6 +67,6 @@ export default compose(
     firestoreConnect(props => [{ 
         collection: 'projects',
         doc: props.authId,
-        subcollections: [{ collection: 'travels' }]
+        subcollections: [{ collection: 'travels' }],
     }])
 )(TravelCardContainer)

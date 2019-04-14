@@ -3,7 +3,6 @@ import React from 'react'
 import styles from './NamesChain.module.css'
 
 const NamesChain = ({ list }) => 
-    
     <p className={styles.root}>
         {
             list && 
