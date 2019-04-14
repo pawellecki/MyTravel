@@ -61,3 +61,25 @@
     width: 12px;
     height: 26px;
 }
+
+@media all and (max-width: 1199px) {
+    .root {
+        width: 320px;
+        height: 240px;
+    }
+}
+
+@media all and (max-width: 991px) {
+    .root {
+        width: 400px;
+        height: 300px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .root {
+        left: -40px;
+        width: 100vw;
+        height: calc(100vw * 3 / 4);
+    }
+}

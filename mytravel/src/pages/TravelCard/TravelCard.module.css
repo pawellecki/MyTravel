@@ -7,39 +7,57 @@
     padding: 40px;
 }
 
-.root header {
-    float: left;
-    width: 40%;
-}
-
-.root main {
-    float: left;
-    width: 60%;
-}
-
 .root:after{
     content: '';
     display: table;
     clear: both;
 }
 
-.root header div:first-of-type {
-    /* float: left; */
+.root header {
+    float: left;
+    /* width: 400px; */
+    background: blue;
+}
+
+.root main {
+    float: left;
+    width: calc(100% - 400px);
+    padding-left: 40px;
+    background: yellow;
 }
 
 .brief {
-    /* float: left; */
-    margin-left: 40px;
-    background: green
+    /* float: right; */
 }
 
-.brief h2 {
+
+.root h2 {
     font-size: 32px;
     margin-bottom: 20px;
 }
 
+@media all and (max-width: 1199px) {
+    .root main {
+        width: calc(100% - 320px);
+    }
+}
+
 @media all and (max-width: 991px) {
+    .root header {
+        float: none;
+    }
+    .root header:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
     .root header div:first-of-type {
-        /* float: left; */
+        float: left;
+    }
+    .brief {
+        float: left;
+    }
+    .root main {
+        width: 100%;
     }
 }

@@ -16,8 +16,10 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
                     handleImageAction={handleSetMainImage}
                     imageUrl={mainImageUrl}
                 />
-                <NamesChain list={stages} />
-                <DateRange stages={stages} />
+                <div className={styles.brief}>
+                    <NamesChain list={stages} />
+                    <DateRange stages={stages} />
+                </div>
             </header>
             <main>
                 <Tabs 
