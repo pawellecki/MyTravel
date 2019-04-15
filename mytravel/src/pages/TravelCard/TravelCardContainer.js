@@ -5,33 +5,42 @@ import { firestoreConnect } from 'react-redux-firebase'
 import idx from 'idx';
 
 import { setTravelMainImage } from '../../store/actions/project'
+// import Stages from './Stages/Stages'
+// import Places from './Places/Places'
+// import EatDrink from './EatDrink/EatDrink'
+// import Costs from './Costs/Costs'
 
 import TravelCard from './TravelCard'
 import tabsConfig from './tabsConfig'
 
 class TravelCardContainer extends Component {
+    
+    state = {
+        activeTab: tabsConfig.filter(tab => tab.defaultActive)[0].name,
+    }
 
     render() {
-        const { travel, authId } = this.props
-        
+        const { baseTravelData } = this.props
+        const ActiveTabComponent = tabsConfig.filter(tab => tab.name === this.state.activeTab)[0].component
+
         return (
             <TravelCard
-                travelData={travel}
-                authId={authId}
                 tabsConfig={tabsConfig}
-                handleImageAction={this.handleSetTravelMainImage}
+                baseTravelData={baseTravelData || {}}
+                ActiveTabComponent={ActiveTabComponent}
                 handleShowSecttion={this.handleShowSecttion}
+                handleSetMainImage={this.handleSetMainImage}
             />
         )
     }
     
-    handleSetTravelMainImage = imageUrl => {
-        const { setTravelMainImage, authId, travelId } = this.props
-        setTravelMainImage({ authId, travelId, imageUrl})
+    handleSetMainImage = imageUrl => {
+        const { setTravelMainImage, baseTravelData: { authId, id } } = this.props
+        setTravelMainImage({ authId, travelId: id, imageUrl})
     }
 
     handleShowSecttion = name => {
-        console.log('name:',name)
+        this.setState({ activeTab: name })
 
     }
 }
@@ -39,12 +48,11 @@ class TravelCardContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
     const authId = state.firebase.auth.uid
     const travelId = ownProps.match.params.id
-    const travel =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
+    const baseTravelData =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
 
     return {
         authId,
-        travelId,
-        travel
+        baseTravelData
     }
 }
 
@@ -59,6 +67,6 @@ export default compose(
     firestoreConnect(props => [{ 
         collection: 'projects',
         doc: props.authId,
-        subcollections: [{ collection: 'travels' }]
+        subcollections: [{ collection: 'travels' }],
     }])
 )(TravelCardContainer)

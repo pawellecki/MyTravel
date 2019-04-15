@@ -1,20 +1,29 @@
+import Stages from './Stages/StagesContainer'
+import Places from './Places/PlacesContainer'
+import EatDrink from './EatDrink/EatDrinkContainer'
+import Costs from './Costs/CostsContainer'
+
 const tabs = [
     {
         name: 'stages',
         label: 'Stages',
+        component: Stages,
         defaultActive: true
     },
     {
         name: 'places',
-        label: 'Places'
+        label: 'Places',
+        component: Places
     },
     {
         name: 'eat_drink',
-        label: 'Eat & drink'
+        label: 'Eat & drink',
+        component: EatDrink
     },
     {
         name: 'costs',
-        label: 'Costs'
+        label: 'Costs',
+        component: Costs
     }
 ]
 

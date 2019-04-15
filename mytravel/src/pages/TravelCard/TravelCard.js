@@ -1,34 +1,33 @@
 import React from 'react'
+
 import ImageUpload from '../../components/ImageUpload/ImageUploadContainer'
 import Tabs from '../../components/Tabs/TabsContainer'
+import NamesChain from '../../components/NamesChain/NamesChain'
+import DateRange from '../../components/DateRange/DateRange'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = ({ travelData, authId, tabsConfig, handleImageAction, handleShowSecttion }) => {
+const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, mainImageUrl, stages }, handleShowSecttion, handleSetMainImage }) => {
     return (
         <div className={styles.root}>
-            <div className={styles.card}>
-                <header>
-                    <ImageUpload
-                        storagePath={authId}
-                        handleImageAction={handleImageAction}
-                        imageUrl={travelData && travelData.mainImageUrl}
-                    />
-                    {
-                        travelData &&
-                        <div className={styles.brief}>
-                            <h2>{travelData.title}</h2>
-                            <div>{travelData.content}</div>
-                        </div>
-                    }
-                </header>
-                <section>
-                    <Tabs 
-                        config={tabsConfig}
-                        handleChangeView={handleShowSecttion}
-                    />
-                </section>
-            </div>
+            <header>
+                <ImageUpload
+                    storagePath={authId}
+                    handleImageAction={handleSetMainImage}
+                    imageUrl={mainImageUrl}
+                />
+                <div className={styles.brief}>
+                    <NamesChain list={stages} />
+                    <DateRange stages={stages} />
+                </div>
+            </header>
+            <main>
+                <Tabs 
+                    config={tabsConfig}
+                    handleChangeView={handleShowSecttion}
+                />
+                <ActiveTabComponent />
+            </main>
         </div>
     )
 }

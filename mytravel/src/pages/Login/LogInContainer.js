@@ -70,7 +70,6 @@ class LogInContainer extends Component {
 
 const mapStatetoProps = state => {
     return {
-        kot: console.log("login state",state),
         auth: state.firebase.auth,
         error: state.auth.authError
     }
