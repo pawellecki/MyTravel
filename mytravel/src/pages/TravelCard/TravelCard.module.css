@@ -15,8 +15,11 @@
 
 .root header {
     float: left;
-    /* width: 400px; */
     background: blue;
+}
+
+.brief {
+    padding: 20px;
 }
 
 .root main {
@@ -24,16 +27,6 @@
     width: calc(100% - 400px);
     padding-left: 40px;
     background: yellow;
-}
-
-.brief {
-    /* float: right; */
-}
-
-
-.root h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
 }
 
 @media all and (max-width: 1199px) {
@@ -59,5 +52,6 @@
     }
     .root main {
         width: 100%;
+        padding-left: 0;
     }
 }
