@@ -7,10 +7,11 @@ import DateRange from '../../components/DateRange/DateRange'
 
 import styles from './TravelCard.module.css'
 
-const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, mainImageUrl, stages }, handleShowSecttion, handleSetMainImage }) => {
+const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, mainImageUrl, stages, id }, handleShowSecttion, handleSetMainImage }) => {
     return (
         <div className={styles.root}>
             <header>
+                {console.log('baseTravelData:',id)}
                 <ImageUpload
                     storagePath={authId}
                     handleImageAction={handleSetMainImage}
@@ -26,7 +27,7 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
                     config={tabsConfig}
                     handleChangeView={handleShowSecttion}
                 />
-                <ActiveTabComponent />
+                <ActiveTabComponent travelId={id} />
             </main>
         </div>
     )
