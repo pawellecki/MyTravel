@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
     
     const authId = state.firebase.auth.uid
     const travelId = ownProps.travelId
-    const baseTravelData =  idx(state, _ => _.firestore.ordered.projects[0])
+    const stages =  idx(state, _ => _.firestore.ordered.projects[0].stages)
     console.log('state:',state)
     console.log('ownProps:',ownProps)
     console.log('travelId:',travelId)
@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         authId,
         travelId,
-        baseTravelData
+        stages
     }
 }
 
