@@ -22,8 +22,8 @@ class StagesContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
     
     const authId = state.firebase.auth.uid
-    const travelId = idx(ownProps, _ => _.match.params.id)
-    const baseTravelData =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
+    const travelId = ownProps.travelId
+    const baseTravelData =  idx(state, _ => _.firestore.ordered.projects[0])
     console.log('state:',state)
     console.log('ownProps:',ownProps)
     console.log('travelId:',travelId)
@@ -48,4 +48,4 @@ export default compose(
         kot: console.log('cccccccc:',props),
         subcollections: [{ collection: 'travels', doc: props.travelId }]
     }]),
-)(withRouter(StagesContainer))
+)(StagesContainer)
