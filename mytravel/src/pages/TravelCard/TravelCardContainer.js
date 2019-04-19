@@ -67,6 +67,6 @@ export default compose(
     firestoreConnect(props => [{ 
         collection: 'projects',
         doc: props.authId,
-        subcollections: [{ collection: 'travels' }],
+        subcollections: [{ collection: 'travels' }]
     }])
 )(TravelCardContainer)

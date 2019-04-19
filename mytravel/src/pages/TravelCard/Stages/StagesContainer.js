@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { withRouter } from "react-router";
 
 import idx from 'idx';
 
@@ -10,11 +9,11 @@ import Stages from './Stages'
 
 
 class StagesContainer extends Component {
-
     render() {
-        console.log('testrrrrrr:',this.props)
+        const { baseTravelData } = this.props
+        
         return (
-            <Stages />
+            <Stages baseTravelData={baseTravelData} />
             )
         }
     }
@@ -23,15 +22,18 @@ const mapStateToProps = (state, ownProps) => {
     
     const authId = state.firebase.auth.uid
     const travelId = ownProps.travelId
-    const stages =  idx(state, _ => _.firestore.ordered.projects[0].stages)
+    // const stages =  idx(state, _ => _.firestore.ordered.projects[0].stages)
+    const baseTravelData =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
+
     console.log('state:',state)
     console.log('ownProps:',ownProps)
     console.log('travelId:',travelId)
 
     return {
         authId,
-        travelId,
-        stages
+        // travelId,
+        // stages
+        baseTravelData
     }
 }
 
@@ -45,7 +47,7 @@ export default compose(
     firestoreConnect(props => [{ 
         collection: 'projects',
         doc: props.authId,
-        kot: console.log('cccccccc:',props),
-        subcollections: [{ collection: 'travels', doc: props.travelId }]
+        subcollections: [{ collection: 'travels' }]
+        // subcollections: [{ collection: 'travels', doc: props.travelId }]
     }]),
 )(StagesContainer)

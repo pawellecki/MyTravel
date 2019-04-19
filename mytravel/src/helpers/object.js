@@ -15,4 +15,4 @@ export const renderTravelTimeRange = ({stages}) => {
     const travelEnding = getExtreme(timeRanges)
 
     return moment.unix(travelBeginning).format('MM/DD/YYYY') + ' - ' + moment.unix(travelEnding).format('MM/DD/YYYY')
-} 
+}
