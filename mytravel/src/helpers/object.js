@@ -5,6 +5,7 @@ import { getExtreme } from './int'
 
 export const renderTravelTimeRange = ({stages}) => {
     let timeRanges = []
+    console.log('stages:',stages)
     stages &&
     stages.map(stage => {
         let startDate = idx(stage, _ => _.date[0].seconds)

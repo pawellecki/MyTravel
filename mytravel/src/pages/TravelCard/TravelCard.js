@@ -11,7 +11,6 @@ const TravelCard = ({ tabsConfig, ActiveTabComponent, baseTravelData: { authId, 
     return (
         <div className={styles.root}>
             <header>
-                {console.log('baseTravelData:',id)}
                 <ImageUpload
                     storagePath={authId}
                     handleImageAction={handleSetMainImage}

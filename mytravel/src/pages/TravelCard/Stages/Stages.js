@@ -8,13 +8,11 @@ const Stages = ({ baseTravelData }) =>
         <div className={styles.root}>
             {
                 baseTravelData &&
-                baseTravelData.stages.map(stage => {
+                baseTravelData.stages.map((stage, index) => {
                     return (
                         <section key={stage.title}>
                             <h2>{stage.title}</h2>
-                            <h2>{renderTravelTimeRange(baseTravelData.stages)} yy
-                                {/* {moment.unix(stage.date[0].seconds).format('MM/DD/YYYY') } - {moment.unix(stage.date[1].seconds).format('MM/DD/YYYY')} */}
-                            </h2>
+                            <h2>{renderTravelTimeRange({stages: [stage]})}</h2>
                         </section>
                     )
                 })
