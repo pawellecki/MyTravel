@@ -1,0 +1,18 @@
+.root {
+    display: block;
+    width: 100%;
+    background: grey;
+    text-decoration: none;
+}
+
+.root li {
+    
+}
+
+.root li svg {
+    
+}
+
+.root li p {
+    font-size: 14px;
+}

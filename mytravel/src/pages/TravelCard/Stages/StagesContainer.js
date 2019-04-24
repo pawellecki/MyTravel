@@ -9,14 +9,29 @@ import Stages from './Stages'
 
 
 class StagesContainer extends Component {
+
+    state = {
+        transport: ""
+    }
+
     render() {
         const { baseTravelData } = this.props
         
         return (
-            <Stages baseTravelData={baseTravelData} />
-            )
-        }
+            <Stages 
+                baseTravelData={baseTravelData}
+                handleChooseOption={this.handleChooseOption}
+            />
+        )
     }
+
+    handleChooseOption = option => {
+        console.log('test:',option)
+        this.setState({
+            transport: option
+        })
+    }
+}
     
 const mapStateToProps = (state, ownProps) => {
     
