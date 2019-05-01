@@ -20,8 +20,8 @@ export const renderTravelTimeRange = (stages: []) => {
 export const countDays = dateRange => {
     const startDate = dateRange.date[0].seconds
     const endDate = dateRange.date[1].seconds
-    const secondsInDay = 86400
+    const secondsInOneDay = 86400
     return (
-        Math.ceil((endDate - startDate) / secondsInDay)
+        Math.ceil((endDate - startDate) / secondsInOneDay)
     )
 }

@@ -1,3 +1,29 @@
 .root {
     background: pink;
 }
+
+.root h2 {
+    display: inline-block;
+}
+
+.columnHeader h3,
+.column > p, .column > div {
+    display: inline-block;
+}
+
+.columnHeader h3:first-child,
+.column p:first-child {
+    width: 10%;
+}
+.columnHeader h3:nth-child(2),
+.column p:nth-child(2) {
+    width: 50%;
+}
+.columnHeader h3:nth-child(3),
+.column > div {
+    width: 20%;
+}
+.columnHeader h3:nth-child(4),
+.column p:nth-child(4) {
+    width: 20%;
+}

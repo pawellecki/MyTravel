@@ -50,20 +50,35 @@ const Stages = ({ baseTravelData, handleChooseOption }) => {
             {
                 baseTravelData &&
                 baseTravelData.stages.map(stage => {
-                    // const startDate = stage.date[0].seconds
-                    // const enddate = stage.date[1].seconds
                     return (
                         <section key={stage.title}>
                             <h2>{stage.title}</h2>
                             <h2>{renderTravelTimeRange([stage])}</h2>
-                            {countDays(stage)}
-                            {/* {console.log('stage:', stage.date)} */}
-                            {console.log('stage:', stage.date[0].seconds)}
-                            <div>a tu notatk iitd</div>
-                            <Dropdown 
-                                options={options}
-                                handleChooseOption={handleChooseOption}
-                            />
+                            <div className={styles.columnHeader}>
+                                <h3>day</h3>
+                                <h3>target</h3>
+                                <h3>transport</h3>
+                                <h3>price</h3>
+                            </div>
+                            
+                            {
+                                Array.from({ length: countDays(stage) }).map((day, index) => {
+                                    return (
+                                        <div className={styles.column} key={index}>
+                                            <p>{index + 1}</p>
+                                            <p>target inp</p>
+                                            <Dropdown 
+                                                options={options}
+                                                handleChooseOption={handleChooseOption}
+                                            />
+                                            <p>price inp</p>
+                                        </div>
+
+                                        
+                                    )
+                                })
+                            }
+                            
                         </section>
                     )
                 })
