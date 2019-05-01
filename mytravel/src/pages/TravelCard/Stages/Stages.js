@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './Stages.module.css'
-import { renderTravelTimeRange } from '../../../helpers/object'
+import { renderTravelTimeRange, countDays } from '../../../helpers/date'
 
 import Dropdown from "../../../components/Form/Dropdown/DropdownContainer"
 
@@ -50,10 +50,15 @@ const Stages = ({ baseTravelData, handleChooseOption }) => {
             {
                 baseTravelData &&
                 baseTravelData.stages.map(stage => {
+                    // const startDate = stage.date[0].seconds
+                    // const enddate = stage.date[1].seconds
                     return (
                         <section key={stage.title}>
                             <h2>{stage.title}</h2>
                             <h2>{renderTravelTimeRange([stage])}</h2>
+                            {countDays(stage)}
+                            {/* {console.log('stage:', stage.date)} */}
+                            {console.log('stage:', stage.date[0].seconds)}
                             <div>a tu notatk iitd</div>
                             <Dropdown 
                                 options={options}

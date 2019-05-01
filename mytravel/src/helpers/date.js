@@ -16,3 +16,12 @@ export const renderTravelTimeRange = (stages: []) => {
 
     return moment.unix(travelBeginning).format('MM/DD/YYYY') + ' - ' + moment.unix(travelEnding).format('MM/DD/YYYY')
 }
+
+export const countDays = dateRange => {
+    const startDate = dateRange.date[0].seconds
+    const endDate = dateRange.date[1].seconds
+    const secondsInDay = 86400
+    return (
+        Math.ceil((endDate - startDate) / secondsInDay)
+    )
+}

@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './Dropdown.module.css'
 
-const Dropdown = React.memo(({ options, chosen, handleSetChosen, handleToggleOpen, isOpen }) => (
+const Dropdown = React.memo(({ options, chosen, isOpen, handleSetChosen, handleToggleOpen }) => (
     <div className={`${styles.root} ${'ignore'}`} onClick={handleToggleOpen}>
         <p >{chosen}</p>
         {

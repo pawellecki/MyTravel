@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderTravelTimeRange } from '../../helpers/object'
+import { renderTravelTimeRange } from '../../helpers/date'
 
 import styles from './DateRange.module.css'
 

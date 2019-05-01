@@ -26,7 +26,6 @@ class StagesContainer extends Component {
     }
 
     handleChooseOption = option => {
-        console.log('test:',option)
         this.setState({
             transport: option
         })
@@ -40,9 +39,9 @@ const mapStateToProps = (state, ownProps) => {
     // const stages =  idx(state, _ => _.firestore.ordered.projects[0].stages)
     const baseTravelData =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
 
-    console.log('state:',state)
-    console.log('ownProps:',ownProps)
-    console.log('travelId:',travelId)
+    // console.log('state:',state)
+    // console.log('ownProps:',ownProps)
+    // console.log('travelId:',travelId)
 
     return {
         authId,
