@@ -46,10 +46,6 @@
     transform: rotate(135deg)
 }
 
-.button p {
-    pointer-events: none;
-}
-
 .settings {
     position: absolute;
     width: 100px;

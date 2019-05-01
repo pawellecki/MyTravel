@@ -6,15 +6,7 @@ const withOutsideClick = WrappedComponent => {
         state = {
             isOpen: false
         }
-
-        componentDidMount() {
-            document.addEventListener('click', this.handleClick, false)
-        }
-
-        componentWillUnmount() {
-            document.removeEventListener('click', this.handleClick, false)
-        }
-
+        
         render() {
             const { isOpen } = this.state
             return (
@@ -30,16 +22,18 @@ const withOutsideClick = WrappedComponent => {
             this.setState({
                 isOpen: !this.state.isOpen
             })
+            document.addEventListener('click', this.handleClick, false)
         }
 
         handleClick = e => {
-            const targetIsNotIgnored = !e.target.classList.contains('ignore')
+            const targetIsNotIgnored = !e.target.classList.contains('ignore') || !e.target.parentNode.classList.contains('ignore')
 
             if (targetIsNotIgnored) {
                 this.setState({
                     isOpen: false
                 })
             }
+            document.removeEventListener('click', this.handleClick, false)
         }
     }
 
