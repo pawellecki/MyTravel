@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { countDays } from '../../helpers/date'
 
 import moment from 'moment'
 
@@ -16,49 +17,10 @@ class TravelForm extends Component {
         stages: [
             {
                 title: '',
-                date: [null, null]
+                date: [null, null],
+                days: []
             }
         ]
-    }
-
-    handleChangeName = (e, fieldName) => {
-        const index = fieldName
-        console.log('e:',e.target.value)
-        console.log('fieldNamee:',fieldName)
-        const stages = Object.assign(this.state.stages)
-        stages[index] = {
-            ...stages[index],
-            title: e.target.value
-        }
-        this.setState({ stages })
-        // this.setState({
-        //     [fieldName]: e.target.value
-        // })
-    }
-
-    handleSetDateRange = (date, index) => {
-        const stages = Object.assign(this.state.stages)
-        stages[index] = {
-            ...stages[index],
-            date
-        }
-        this.setState({ stages })
-    }
-
-    handleSubmit = e => {
-        const { addTravel } = this.props
-        e.preventDefault()
-        console.log('SUBMIT:',this.state)
-        addTravel(this.state.stages)
-    }
-    
-    addStage = () => {
-        const stateStages = this.state.stages
-        const stages = Object.assign(stateStages)
-        stages[stateStages.length] = {
-            date: null
-        }
-        this.setState({ stages })
     }
 
     render() {
@@ -71,7 +33,7 @@ class TravelForm extends Component {
                             return (
                                 <span key={index}>
                                     <Input
-                                        onChange={this.handleChangeName}
+                                        onChange={this.handleSetName}
                                         name={index}
                                         label="The title"
                                     />
@@ -86,10 +48,62 @@ class TravelForm extends Component {
                     
                     <Button title="Create project" type="submit" />
                 </form>
-                <Button title="Add" onClick={this.addStage} />
+                <Button title="Add" onClick={this.handleAddStage} />
             </div>
         )
     }
+    
+    handleSubmit = e => {
+        const { addTravel } = this.props
+        e.preventDefault()
+        let days = []
+        // JAKI FORMAT CZASU? SEKUNDY? C OTRAFIA DO HELPERA?
+        this.state.stages.map(stage => {
+            const kot = Array.from({ length: countDays(stage) }).map(day => {
+                return "yyy"
+            })
+            console.log('stage:',stage)
+            console.log('countDays(stage):',countDays(stage))
+            return (
+                days = Array.from({ length: countDays(stage) }).map(day => {
+                    return "yyy"
+                })
+                
+            )
+        })
+        // console.log('stages:',stages)
+        console.log('days:',days)
+        // addTravel(stages)
+    }
+
+    handleAddStage = () => {
+        const stateStages = this.state.stages
+        const stages = Object.assign(stateStages)
+        stages[stateStages.length] = {
+            date: null
+        }
+        this.setState({ stages })
+    }
+
+    handleSetName = (e, fieldName) => {
+        const index = fieldName
+        const stages = Object.assign(this.state.stages)
+        stages[index] = {
+            ...stages[index],
+            title: e.target.value
+        }
+        this.setState({ stages })
+    }
+
+    handleSetDateRange = (date, index) => {
+        const stages = Object.assign(this.state.stages)
+        stages[index] = {
+            ...stages[index],
+            date
+        }
+        this.setState({ stages })
+    }
+    
 }
 
 const mapDispatchToProps = dispatch => {

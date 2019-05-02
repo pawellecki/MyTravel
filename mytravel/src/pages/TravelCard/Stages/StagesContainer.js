@@ -3,6 +3,8 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 
+import { countDays } from '../../helpers/date'
+
 import idx from 'idx';
 
 import Stages from './Stages'
@@ -11,15 +13,31 @@ import Stages from './Stages'
 class StagesContainer extends Component {
 
     state = {
-        transport: ""
+        stages: []
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.baseTravelData !== this.props.baseTravelData) {
+            console.log('udpateee:',)
+            const kot = Array.from({ length: countDays(stage) }).map(day => {
+                return "yyy"
+            })
+            // const stagesWithDays
+            this.setState({
+                stages: [...this.props.baseTravelData.stages]
+            })
+        }
+    }
+    
     render() {
-        const { baseTravelData } = this.props
         
+        const { baseTravelData } = this.props
+        console.log('stages:',baseTravelData)
+
+        const { stages } = this.state
         return (
             <Stages 
-                baseTravelData={baseTravelData}
+                stages={stages}
                 handleChooseOption={this.handleChooseOption}
             />
         )
