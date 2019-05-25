@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { countDays } from '../../helpers/date'
+import { countStageDays } from '../../helpers/date'
 
 import moment from 'moment'
 
@@ -59,13 +59,13 @@ class TravelForm extends Component {
         let days = []
         // JAKI FORMAT CZASU? SEKUNDY? C OTRAFIA DO HELPERA?
         this.state.stages.map(stage => {
-            const kot = Array.from({ length: countDays(stage) }).map(day => {
+            const kot = Array.from({ length: countStageDays(stage) }).map(day => {
                 return "yyy"
             })
             console.log('stage:',stage)
-            console.log('countDays(stage):',countDays(stage))
+            console.log('countStageDays(stage):',countStageDays(stage))
             return (
-                days = Array.from({ length: countDays(stage) }).map(day => {
+                days = Array.from({ length: countStageDays(stage) }).map(day => {
                     return "yyy"
                 })
                 
@@ -96,6 +96,8 @@ class TravelForm extends Component {
     }
 
     handleSetDateRange = (date, index) => {
+        console.log('date:',date)
+        console.log('index:',index)
         const stages = Object.assign(this.state.stages)
         stages[index] = {
             ...stages[index],

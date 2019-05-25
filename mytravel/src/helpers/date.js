@@ -3,7 +3,7 @@ import idx from 'idx'
 
 import { getExtreme } from './int'
 
-export const renderTravelTimeRange = (stages: []) => {
+export const renderTravelTimeRange = stages => {
     let timeRanges = []
     stages &&
     stages.map(stage => {
@@ -17,11 +17,20 @@ export const renderTravelTimeRange = (stages: []) => {
     return moment.unix(travelBeginning).format('MM/DD/YYYY') + ' - ' + moment.unix(travelEnding).format('MM/DD/YYYY')
 }
 
-export const countDays = dateRange => {
-    const startDate = dateRange.date[0].seconds
-    const endDate = dateRange.date[1].seconds
+const displayNumberOfDays = (startDate, endDate) => {
     const secondsInOneDay = 86400
-    return (
-        Math.ceil((endDate - startDate) / secondsInOneDay)
-    )
+    return Math.ceil((endDate - startDate) / secondsInOneDay)
+}
+
+export const countStageDays = stage => {
+    let startDate = idx(stage, _ => _.date[0].seconds)
+    let endDate = idx(stage, _ => _.date[1].seconds)
+    return displayNumberOfDays(startDate, endDate)
+}
+
+export const countTravelDays = (stages = []) => {
+    const lastIndex = stages.length - 1
+    let startDate = idx(stages[0], _ => _.date[0].seconds)
+    let endDate = idx(stages[lastIndex], _ => _.date[1].seconds)
+    return displayNumberOfDays(startDate, endDate)
 }

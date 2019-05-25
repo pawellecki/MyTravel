@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './Stages.module.css'
-import { renderTravelTimeRange, countDays } from '../../../helpers/date'
+import { renderTravelTimeRange, countTravelDays, countStageDays } from '../../../helpers/date'
 
 import Dropdown from "../../../components/Form/Dropdown/DropdownContainer"
 import Input from "../../../components/Form/Input/Input"
@@ -55,17 +55,29 @@ const Stages = ({ stages = [], handleChooseOption }) => {
                 <h3>transport</h3>
                 <h3>price</h3>
             </div>
+           { console.log('stages:',stages)}
             {
-                stages.map((stage, index) => {
+                stages &&
+                stages.map((stage, stageIndex) => {
+                    // console.log('zssssssssstageNumber',stageNumber)
                     return (
-                        <section key={stage.title}>
+                        <section key={stageIndex}>
                             <h2>{stage.title}</h2>
                             <h2>{renderTravelTimeRange([stage])}</h2>
                             {
-                                Array.from({ length: countDays(stage) }).map((day, index) => {
+                                Array.from({ length: countStageDays(stage) }).map((day, dayIndex) => {
+                                    const daysLengthArray = stages.map(stage => countStageDays(stage)).reverse()
+                                    const dayNumber = dayIndex + 1
+                                    const stageNumber = stageIndex + 1
+                                    // console.log('dayNumber',dayNumber)
+                                    // console.log('sssssssssssssstageNumber',stageNumber)
+                                    // stageNumber = stageNumber + stageIndex
+                                    console.log('daysLengthArray',daysLengthArray)
                                     return (
-                                        <div className={styles.column} key={index}>
-                                            <p>{index + 1}</p>
+                                        <div className={styles.column} key={dayIndex}>
+                                            
+                                            {/* <p>{stageIndex + 1} all:{countTravelDays(stages)}</p> */}
+                                            <p>{dayIndex} || {stages[] - countTravelDays(stages)}</p>
                                             <Input />
                                             <Dropdown 
                                                 options={options}
