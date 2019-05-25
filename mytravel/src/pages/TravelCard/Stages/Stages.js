@@ -47,6 +47,8 @@ const Stages = ({ stages = [], handleChooseOption }) => {
         }
     ]
 
+    let dayOfTravel = 0
+
     return (
         <div className={styles.root}>
             <div className={styles.columnHeader}>
@@ -59,25 +61,17 @@ const Stages = ({ stages = [], handleChooseOption }) => {
             {
                 stages &&
                 stages.map((stage, stageIndex) => {
-                    // console.log('zssssssssstageNumber',stageNumber)
                     return (
                         <section key={stageIndex}>
                             <h2>{stage.title}</h2>
                             <h2>{renderTravelTimeRange([stage])}</h2>
                             {
                                 Array.from({ length: countStageDays(stage) }).map((day, dayIndex) => {
-                                    const daysLengthArray = stages.map(stage => countStageDays(stage)).reverse()
-                                    const dayNumber = dayIndex + 1
-                                    const stageNumber = stageIndex + 1
-                                    // console.log('dayNumber',dayNumber)
-                                    // console.log('sssssssssssssstageNumber',stageNumber)
-                                    // stageNumber = stageNumber + stageIndex
-                                    console.log('daysLengthArray',daysLengthArray)
+                                    dayOfTravel = dayOfTravel + 1
+
                                     return (
                                         <div className={styles.column} key={dayIndex}>
-                                            
-                                            {/* <p>{stageIndex + 1} all:{countTravelDays(stages)}</p> */}
-                                            <p>{dayIndex} || {stages[] - countTravelDays(stages)}</p>
+                                            <p>{dayIndex + 1} ({dayOfTravel - stageIndex})</p>
                                             <Input />
                                             <Dropdown 
                                                 options={options}
@@ -85,8 +79,6 @@ const Stages = ({ stages = [], handleChooseOption }) => {
                                             />
                                             <Input />
                                         </div>
-
-                                        
                                     )
                                 })
                             }
