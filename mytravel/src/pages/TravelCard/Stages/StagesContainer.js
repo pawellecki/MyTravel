@@ -12,33 +12,29 @@ import Stages from './Stages'
 
 class StagesContainer extends Component {
 
-    // state = {
-    //     stages: []
-    // }
+    state = {
+        stages: []
+    }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.baseTravelData !== this.props.baseTravelData) {
-    //         console.log('udpateee:',)
-    //         const kot = Array.from({ length: countStageDays(stage) }).map(day => {
-    //             return "yyy"
-    //         })
-    //         // const stagesWithDays
-    //         this.setState({
-    //             stages: [...this.props.baseTravelData.stages]
-    //         })
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        const { baseTravelData } = this.props
+        if (prevState.stages.length === 0 && baseTravelData.stages && baseTravelData.stages.length > 0) {
+            this.setState({
+                stages: [...baseTravelData.stages]
+            })
+        }
+    }
+    
+    
     
     render() {
-        
         const { baseTravelData } = this.props
-        console.log('stages:',baseTravelData)
 
-        // const { stages } = this.state
         return (
             <Stages 
                 stages={baseTravelData && baseTravelData.stages}
                 handleChooseOption={this.handleChooseOption}
+                handleSetDaysInStage={this.handleSetDaysInStage}
             />
         )
     }
@@ -48,23 +44,21 @@ class StagesContainer extends Component {
             transport: option
         })
     }
+
+    handleSetDaysInStage = (daysInStage, stageIndex) => {
+        console.log('daysInStage:',daysInStage)
+        console.log('stageIndex:',stageIndex)
+
+    }
 }
     
 const mapStateToProps = (state, ownProps) => {
-    
     const authId = state.firebase.auth.uid
     const travelId = ownProps.travelId
-    // const stages =  idx(state, _ => _.firestore.ordered.projects[0].stages)
     const baseTravelData =  idx(state, _ => _.firestore.data.projects[authId].travels[travelId])
-
-    // console.log('state:',state)
-    // console.log('ownProps:',ownProps)
-    // console.log('travelId:',travelId)
 
     return {
         authId,
-        // travelId,
-        // stages
         baseTravelData
     }
 }
