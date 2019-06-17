@@ -35,6 +35,8 @@ class StagesContainer extends Component {
                 stages={baseTravelData && baseTravelData.stages}
                 handleChooseOption={this.handleChooseOption}
                 handleSetDaysInStage={this.handleSetDaysInStage}
+                handleSetInputValue={this.handleSetInputValue}
+                handleSetDefaultStageState={this.handleSetDefaultStageState}
             />
         )
     }
@@ -49,6 +51,21 @@ class StagesContainer extends Component {
         console.log('daysInStage:',daysInStage)
         console.log('stageIndex:',stageIndex)
 
+    }
+
+    handleSetInputValue = (stageIndex, name, event) => {
+        console.log('value:',event.target.value)
+        console.log('name:',name)
+        console.log('day:',stageIndex)
+    }
+
+    handleSetDefaultStageState = (stageIndex, stageDaysLength) => {
+        const { stages } = this.state
+        const currentStages = {...stages}
+        const updatedStage = currentStages[stageIndex]
+        this.setState({
+            stages: [...currentStages, updatedStage]
+        })
     }
 }
     
