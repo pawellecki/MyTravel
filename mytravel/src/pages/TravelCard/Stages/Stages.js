@@ -15,7 +15,7 @@ import { ReactComponent as Plane } from '../../../assets/icons/plane.svg'
 import { ReactComponent as Bicycle } from '../../../assets/icons/bicycle.svg'
 import { ReactComponent as Ufo } from '../../../assets/icons/ufo.svg'
 
-const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handleSetInputValue, handleSetDefaultStageState }) => {
+const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handleSetInputValue, handleSetStageDefaultState }) => {
     const options = [
         {
             name: "car",
@@ -71,6 +71,7 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
                             {
                                 Array.from({ length: countStageDays(stage) }).map((day, dayIndex) => {
                                     dayOfTravel = dayOfTravel + 1
+                                    const isLastStageDay = dayIndex + 1 === countStageDays(stage)
 
 
                                     return (
@@ -92,8 +93,8 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
                                             {console.log('test:',dayIndex + 1)}
                                             {console.log('test:',dayIndex)} */}
                                             {
-                                                dayIndex + 1 === countStageDays(stage) &&
-                                                handleSetDefaultStageState(stageIndex, countStageDays(stage))
+                                                isLastStageDay &&
+                                                handleSetStageDefaultState(stageIndex, countStageDays(stage))
                                             }
 
                                         </div>

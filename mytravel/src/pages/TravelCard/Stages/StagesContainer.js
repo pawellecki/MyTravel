@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { countStageDays } from '../../../helpers/date'
 
-// import { countStageDays } from '../../../helpers/date'
 
 import idx from 'idx';
 
@@ -18,10 +18,26 @@ class StagesContainer extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         const { baseTravelData } = this.props
-        if (prevState.stages.length === 0 && baseTravelData.stages && baseTravelData.stages.length > 0) {
-            this.setState({
-                stages: [...baseTravelData.stages]
+        const loadesStages = baseTravelData.stages
+        const firstTimeLoadedStages = prevState.stages.length === 0 && loadesStages && loadesStages.length > 0
+        if (firstTimeLoadedStages) {
+            let defaultStages = []
+            
+            console.log('defaultStages:0',defaultStages)
+            loadesStages.forEach((stage, index) => {
+                console.log('stage', stage)
+                defaultStages.push({})
+                console.log('index:',index)
+                console.log('defaultStages1:',defaultStages)
+                // Array.from({ length: countStageDays(stage) }).forEach((day, dayIndex) => {
+                //     defaultStages[index].push({})
+                // })
+                
             })
+            console.log('defaultStages2:',defaultStages)
+            // this.setState({
+            //     stages: [...baseTravelData.stages]
+            // })
         }
     }
     
@@ -36,7 +52,7 @@ class StagesContainer extends Component {
                 handleChooseOption={this.handleChooseOption}
                 handleSetDaysInStage={this.handleSetDaysInStage}
                 handleSetInputValue={this.handleSetInputValue}
-                handleSetDefaultStageState={this.handleSetDefaultStageState}
+                handleSetStageDefaultState={this.handleSetStageDefaultState}
             />
         )
     }
@@ -59,13 +75,13 @@ class StagesContainer extends Component {
         console.log('day:',stageIndex)
     }
 
-    handleSetDefaultStageState = (stageIndex, stageDaysLength) => {
+    handleSetStageDefaultState = (stageIndex, stageDaysLength) => {
         const { stages } = this.state
         const currentStages = {...stages}
-        const updatedStage = currentStages[stageIndex]
-        this.setState({
-            stages: [...currentStages, updatedStage]
-        })
+        // const updatedStage = currentStages[stageIndex]
+        // this.setState({
+        //     stages: [...currentStages, updatedStage]
+        // })
     }
 }
     
