@@ -29,15 +29,13 @@ class StagesContainer extends Component {
                 defaultStages.push({})
                 console.log('index:',index)
                 console.log('defaultStages1:',defaultStages)
-                // Array.from({ length: countStageDays(stage) }).forEach((day, dayIndex) => {
-                //     defaultStages[index].push({})
-                // })
+
+                Array.from({ length: countStageDays(stage) }).forEach((day, dayIndex) => {
+                    console.log('test:',index, dayIndex)
+                    defaultStages[index][dayIndex] = {target: '', transport: null, price: ''}
+                })
                 
             })
-            console.log('defaultStages2:',defaultStages)
-            // this.setState({
-            //     stages: [...baseTravelData.stages]
-            // })
         }
     }
     
