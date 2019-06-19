@@ -52,28 +52,22 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
     return (
         <div className={styles.root}>
             <div className={styles.columnHeader}>
-                <h3>day</h3>
-                <h3>target</h3>
-                <h3>transport</h3>
-                <h3>price</h3>
+                <h3>Day</h3>
+                <h3>Target</h3>
+                <h3>Transport</h3>
+                <h3>Price</h3>
             </div>
-           { console.log('---stages:',stages)}
+           { console.log('---stages:',stages && stages[0])}
             {
                 stages &&
-                stages.map((stage, stageIndex) => {
-                    handleSetDaysInStage(countStageDays(stage), stageIndex)
+                stages.map(({ title, dateRange, days }, stageIndex) => {
                     return (
                         <section key={stageIndex}>
-                            <h2>{stage.title}</h2>
-                            <h2>{renderTravelTimeRange([stage])}</h2>
-                            {/* {console.log('countStageDays(stage):',countStageDays(stage))} */}
-
+                            <h2>{title}</h2> <h2>{dateRange}</h2>
                             {
-                                Array.from({ length: countStageDays(stage) }).map((day, dayIndex) => {
+                                days &&
+                                days.map((day, dayIndex) => {
                                     dayOfTravel = dayOfTravel + 1
-                                    const isLastStageDay = dayIndex + 1 === countStageDays(stage)
-
-
                                     return (
                                         <div className={styles.column} key={dayIndex}>
                                             <p>{dayIndex + 1} ({dayOfTravel - stageIndex})</p>
@@ -89,19 +83,10 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
                                                 name={"price_" + (dayOfTravel - 1)}
                                                 onChange={(event, name) => handleSetInputValue(stageIndex, name, event)}
                                             />
-                                            {/* {console.log('test:',dayIndex + 1 === dayIndex)}
-                                            {console.log('test:',dayIndex + 1)}
-                                            {console.log('test:',dayIndex)} */}
-                                            {
-                                                isLastStageDay &&
-                                                handleSetStageDefaultState(stageIndex, countStageDays(stage))
-                                            }
-
                                         </div>
                                     )
                                 })
                             }
-                            
                         </section>
                     )
                 })
