@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
-import { countStageDays } from '../../../helpers/date'
+import { renderTravelTimeRange, countStageDays } from '../../../helpers/date'
 
 
 import idx from 'idx';
@@ -18,35 +18,40 @@ class StagesContainer extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         const { baseTravelData } = this.props
-        const loadesStages = baseTravelData.stages
-        const firstTimeLoadedStages = prevState.stages.length === 0 && loadesStages && loadesStages.length > 0
+        const loadedStages = baseTravelData.stages
+        const firstTimeLoadedStages = prevState.stages.length === 0 && loadedStages && loadedStages.length > 0
+
         if (firstTimeLoadedStages) {
             let defaultStages = []
-            
-            console.log('defaultStages:0',defaultStages)
-            loadesStages.forEach((stage, index) => {
-                console.log('stage', stage)
-                defaultStages.push({})
-                console.log('index:',index)
-                console.log('defaultStages1:',defaultStages)
 
-                Array.from({ length: countStageDays(stage) }).forEach((day, dayIndex) => {
-                    console.log('test:',index, dayIndex)
-                    defaultStages[index][dayIndex] = {target: '', transport: null, price: ''}
+            loadedStages.forEach((stage, index) => {
+                defaultStages.push({})
+                const stagesDefaultConfig = [
+                    {keyName: 'days', keyValue: []},
+                    {keyName: 'title', keyValue: stage.title},
+                    {keyName: 'dateRange', keyValue: renderTravelTimeRange([stage])}
+                ]
+                stagesDefaultConfig.map(({ keyName, keyValue }) => {
+                    return defaultStages[index][keyName] = keyValue
                 })
                 
+                Array.from({ length: countStageDays(stage) }).forEach((day, dayIndex) => {
+                    defaultStages[index]['days'][dayIndex] = ({target: '', transport: null, price: ''})
+                })
+            })
+
+            this.setState({
+                stages: defaultStages
             })
         }
     }
     
-    
-    
     render() {
-        const { baseTravelData } = this.props
+        const { stages } = this.state
 
         return (
             <Stages 
-                stages={baseTravelData && baseTravelData.stages}
+                stages={stages}
                 handleChooseOption={this.handleChooseOption}
                 handleSetDaysInStage={this.handleSetDaysInStage}
                 handleSetInputValue={this.handleSetInputValue}
@@ -62,15 +67,15 @@ class StagesContainer extends Component {
     }
 
     handleSetDaysInStage = (daysInStage, stageIndex) => {
-        console.log('daysInStage:',daysInStage)
-        console.log('stageIndex:',stageIndex)
+        // console.log('daysInStage:',daysInStage)
+        // console.log('stageIndex:',stageIndex)
 
     }
 
     handleSetInputValue = (stageIndex, name, event) => {
-        console.log('value:',event.target.value)
-        console.log('name:',name)
-        console.log('day:',stageIndex)
+        // console.log('value:',event.target.value)
+        // console.log('name:',name)
+        // console.log('day:',stageIndex)
     }
 
     handleSetStageDefaultState = (stageIndex, stageDaysLength) => {

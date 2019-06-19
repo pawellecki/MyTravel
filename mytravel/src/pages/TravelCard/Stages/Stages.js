@@ -57,7 +57,7 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
                 <h3>transport</h3>
                 <h3>price</h3>
             </div>
-           {/* { console.log('stages:',stages)} */}
+           { console.log('---stages:',stages)}
             {
                 stages &&
                 stages.map((stage, stageIndex) => {
