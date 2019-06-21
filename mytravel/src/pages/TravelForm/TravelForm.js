@@ -17,10 +17,14 @@ class TravelForm extends Component {
         stages: [
             {
                 title: '',
-                date: [null, null],
+                date: [new Date(), new Date()],
                 days: []
             }
-        ]
+        ],
+        isCalendarOpen: false,
+        selection: {startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection',}
     }
 
     render() {
@@ -38,8 +42,10 @@ class TravelForm extends Component {
                                         label="The title"
                                     />
                                     <DateRangePicker
-                                        onChange={date => this.handleSetDateRange(date, index)}
-                                        value={this.state.stages[index].date}
+                                        onChange={this.handleSetDateRange}
+                                        // onChange={date => this.handleSetDateRange(date, index)}
+                                        // value={this.state.stages[index].date}
+                                        value={this.state.selection}
                                     />
                                 </span>
                             )
@@ -95,15 +101,16 @@ class TravelForm extends Component {
         this.setState({ stages })
     }
 
-    handleSetDateRange = (date, index) => {
-        console.log('date:',date)
-        console.log('index:',index)
-        const stages = Object.assign(this.state.stages)
-        stages[index] = {
-            ...stages[index],
-            date
-        }
-        this.setState({ stages })
+    handleSetDateRange = range => {
+        console.log('range:',range)
+        // const { startDate, endDate, key} = range
+        // console.log('index:',index)
+        // const stages = Object.assign(this.state.stages)
+        // stages[index] = {
+        //     ...stages[index],
+        //     date: [date, date]
+        // }
+        this.setState({ selection: { startDate: range.selection.startDate, endDate: range.selection.endDate, key: range.selection.key } })
     }
     
 }

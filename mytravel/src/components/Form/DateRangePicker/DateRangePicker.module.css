@@ -1,9 +1,9 @@
 .root > div {
-    background: yellow !important;
+    /* background: yellow !important; */
 }
 
 .root > div > div:first-of-type {
-    border: none;
+    /* border: none; */
 }
 
 .root input::placeholder {
