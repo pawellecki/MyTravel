@@ -1,0 +1,33 @@
+.root {
+    position: relative;
+    display: block;
+    /* width: 100%; */
+    background: grey;
+    text-decoration: none;
+}
+
+.root > p {
+    /* display: block; */
+    height: 30px;
+    border-bottom: 1px solid #000;
+}
+
+.root ul {
+    position: absolute;
+    z-index: 2;
+}
+
+.root li {
+    
+}
+
+.root li svg {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.root li p {
+    display: inline-block;
+    font-size: 14px;
+}
