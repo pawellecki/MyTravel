@@ -16,32 +16,46 @@ class StagesContainer extends Component {
         stages: []
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidMount() {
         const { baseTravelData } = this.props
-        const loadedStages = baseTravelData.stages
-        const firstTimeLoadedStages = prevState.stages.length === 0 && loadedStages && loadedStages.length > 0
+        const loadedStages = baseTravelData && baseTravelData.stages
+        console.log('did mount loadedStages:',loadedStages)
 
+        // this.setState({
+        //     stages: loadedStages
+        // })
+    }
+    
+
+    componentDidUpdate(prevProps, prevState) {
+
+        const { baseTravelData } = this.props
+        const baseStages = baseTravelData && baseTravelData.stages
+        const isLoadedStages = baseStages.length > 0 
+        const firstTimeLoadedStages = prevState.stages.length === 0 && isLoadedStages
+
+        
         if (firstTimeLoadedStages) {
-            let defaultStages = []
+            let extendedStages = []
+            
+            baseStages.forEach((stage, index) => {
+                const defaultStage = {
+                    days: [],
+                    title: stage.title,
+                    dateRange: renderTravelTimeRange([stage])
+                }
+                const defaultDay = {
+                    destination_: '',
+                    option: null,
+                    price: ''
+                }
 
-            loadedStages.forEach((stage, index) => {
-                defaultStages.push({})
-                const stagesDefaultConfig = [
-                    {keyName: 'days', keyValue: []},
-                    {keyName: 'title', keyValue: stage.title},
-                    {keyName: 'dateRange', keyValue: renderTravelTimeRange([stage])}
-                ]
-                stagesDefaultConfig.map(({ keyName, keyValue }) => {
-                    return defaultStages[index][keyName] = keyValue
-                })
-                
-                Array.from({ length: countStageDays(stage) }).forEach((day, dayIndex) => {
-                    defaultStages[index]['days'][dayIndex] = ({target: '', transport: null, price: ''})
-                })
+                extendedStages.push(defaultStage)
+                extendedStages[index].days = Array(countStageDays(stage)).fill(defaultDay)
             })
 
             this.setState({
-                stages: defaultStages
+                stages: extendedStages
             })
         }
     }
@@ -53,9 +67,7 @@ class StagesContainer extends Component {
             <Stages 
                 stages={stages}
                 handleChooseOption={this.handleChooseOption}
-                handleSetDaysInStage={this.handleSetDaysInStage}
                 handleSetInputValue={this.handleSetInputValue}
-                handleSetStageDefaultState={this.handleSetStageDefaultState}
             />
         )
     }
@@ -66,26 +78,21 @@ class StagesContainer extends Component {
         })
     }
 
-    handleSetDaysInStage = (daysInStage, stageIndex) => {
-        // console.log('daysInStage:',daysInStage)
-        // console.log('stageIndex:',stageIndex)
+    handleSetInputValue = (stageIndex, dayIndex, name, event) => {
+        console.log('stageIndex:',stageIndex)
+        console.log('dayIndex:',dayIndex)
+        console.log('name:',name)
+        console.log('value:',event.target.value)
+        const stateStages = this.state.stages
+        const stages = Object.assign(stateStages)
+        console.log('1:',stages[stageIndex].days[dayIndex][name])
 
+stages[stageIndex].days[dayIndex][name] = event.target.value
+console.log('1222:',stages[stageIndex].days[dayIndex][name])
+
+        this.setState({ stages })
     }
 
-    handleSetInputValue = (stageIndex, name, event) => {
-        // console.log('value:',event.target.value)
-        // console.log('name:',name)
-        // console.log('day:',stageIndex)
-    }
-
-    handleSetStageDefaultState = (stageIndex, stageDaysLength) => {
-        const { stages } = this.state
-        const currentStages = {...stages}
-        // const updatedStage = currentStages[stageIndex]
-        // this.setState({
-        //     stages: [...currentStages, updatedStage]
-        // })
-    }
 }
     
 const mapStateToProps = (state, ownProps) => {

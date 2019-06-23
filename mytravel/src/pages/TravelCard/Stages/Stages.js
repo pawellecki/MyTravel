@@ -15,7 +15,7 @@ import { ReactComponent as Plane } from '../../../assets/icons/plane.svg'
 import { ReactComponent as Bicycle } from '../../../assets/icons/bicycle.svg'
 import { ReactComponent as Ufo } from '../../../assets/icons/ufo.svg'
 
-const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handleSetInputValue, handleSetStageDefaultState }) => {
+const Stages = ({ stages = [], handleChooseOption , handleSetInputValue }) => {
     const options = [
         {
             name: "car",
@@ -53,11 +53,11 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
         <div className={styles.root}>
             <div className={styles.columnHeader}>
                 <h3>Day</h3>
-                <h3>Target</h3>
+                <h3>Destination</h3>
                 <h3>Transport</h3>
                 <h3>Price</h3>
             </div>
-           { console.log('---stages:',stages && stages[0])}
+           { console.log('---stages:',stages)}
             {
                 stages &&
                 stages.map(({ title, dateRange, days }, stageIndex) => {
@@ -66,22 +66,26 @@ const Stages = ({ stages = [], handleChooseOption , handleSetDaysInStage, handle
                             <h2>{title}</h2> <h2>{dateRange}</h2>
                             {
                                 days &&
-                                days.map((day, dayIndex) => {
+                                days.map(( { destination, option, price }, dayIndex) => {
                                     dayOfTravel = dayOfTravel + 1
+                                    // console.log('day:',day)
                                     return (
                                         <div className={styles.column} key={dayIndex}>
                                             <p>{dayIndex + 1} ({dayOfTravel - stageIndex})</p>
+                                            {console.log('value:',destination)}
                                             <Input
-                                                name={"target_" + (dayOfTravel - 1)}
-                                                onChange={(event, name) => handleSetInputValue(stageIndex, name, event)}
+                                                value={destination || ''}
+                                                name='destination'
+                                                onChange={(event, name) => handleSetInputValue(stageIndex, dayIndex, name, event)}
                                             />
                                             <Dropdown 
                                                 options={options}
                                                 handleChooseOption={handleChooseOption}
                                             />
-                                            <Input 
-                                                name={"price_" + (dayOfTravel - 1)}
-                                                onChange={(event, name) => handleSetInputValue(stageIndex, name, event)}
+                                            <Input
+                                                value={price || ''}
+                                                name='price'
+                                                onChange={(event, name) => handleSetInputValue(stageIndex, dayIndex, name, event)}
                                             />
                                         </div>
                                     )
