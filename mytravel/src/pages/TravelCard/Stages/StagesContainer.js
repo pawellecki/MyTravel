@@ -45,7 +45,7 @@ class StagesContainer extends Component {
                     dateRange: renderTravelTimeRange([stage])
                 }
                 const defaultDay = {
-                    destination_: '',
+                    destination: '',
                     option: null,
                     price: ''
                 }
@@ -79,18 +79,20 @@ class StagesContainer extends Component {
     }
 
     handleSetInputValue = (stageIndex, dayIndex, name, event) => {
-        console.log('stageIndex:',stageIndex)
-        console.log('dayIndex:',dayIndex)
-        console.log('name:',name)
-        console.log('value:',event.target.value)
+        // console.log('staaaaaaaa:',this.state)
+        // console.log('stageIndex:',stageIndex)
+        // console.log('dayIndex:',dayIndex)
+        // console.log('name:',name)
+        // console.log('value:',event.target.value)
+        // console.log('---------------:',this.state.stages[stageIndex].days)
         const stateStages = this.state.stages
-        const stages = Object.assign(stateStages)
-        console.log('1:',stages[stageIndex].days[dayIndex][name])
+        const stagesy = Object.assign(stateStages)
+        // console.log('1:',stagesy[stageIndex].days)
+// 
+stagesy[stageIndex].days[dayIndex][name] = event.target.value
+// console.log('1222:',stagesy[stageIndex].days)
 
-stages[stageIndex].days[dayIndex][name] = event.target.value
-console.log('1222:',stages[stageIndex].days[dayIndex][name])
-
-        this.setState({ stages })
+        this.setState({ stages: stagesy })
     }
 
 }
