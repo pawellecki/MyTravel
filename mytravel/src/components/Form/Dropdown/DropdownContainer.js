@@ -7,16 +7,16 @@ import Dropdown from "./Dropdown"
 class DropdownContainer extends Component {
 
     state = {
-        chosen: " - "
+        chosenName: " - "
     }
 
     render() {
         const { options, isOpen, handleToggleOpen } = this.props
-        const { chosen } = this.state
+        const { chosenName } = this.state
         return (
             <Dropdown 
                 options={options}
-                chosen={chosen}
+                chosenName={chosenName}
                 isOpen={isOpen}
                 handleSetChosen={this.handleSetChosen}
                 handleToggleOpen={handleToggleOpen}
@@ -24,9 +24,9 @@ class DropdownContainer extends Component {
         )
     }
 
-    handleSetChosen = option => {
+    handleSetChosen = name => {
         this.setState({ 
-            chosen: option
+            chosenName: name
         })
     }
 
