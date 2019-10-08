@@ -11,6 +11,10 @@
     height: 30px;
     border-bottom: 1px solid #000;
 }
+.root > p svg {
+    width: 25px;
+    height: 25px;
+}
 
 .root ul {
     position: absolute;
