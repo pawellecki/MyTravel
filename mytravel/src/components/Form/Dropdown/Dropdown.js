@@ -6,7 +6,7 @@ const Dropdown = React.memo(({ options, chosenName, isOpen, handleSetChosen, han
     const chosenOption = options.filter(option => option.name === chosenName)[0]
     
     return (
-        <div className={`${styles.root} ${'ignore'}`} onClick={handleToggleOpen}>
+        <div className={`${styles.root} ignore`} onClick={handleToggleOpen}>
             <p>{chosenOption && <chosenOption.icon />}</p>
             {
                 isOpen &&

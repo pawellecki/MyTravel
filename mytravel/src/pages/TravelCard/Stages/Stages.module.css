@@ -12,7 +12,7 @@
 }
 
 .columnHeader h3:first-child,
-.column p:first-child {
+.column > p:first-child {
     width: 10%;
 }
 .columnHeader h3:nth-child(2),
