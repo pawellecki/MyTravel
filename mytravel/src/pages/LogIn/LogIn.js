@@ -33,7 +33,7 @@ const LogIn = ({ auth, isLogIn, isLoading, error, handleChangeField, handleToggl
                         <Input
                             onChange={handleChangeField}
                             name="password"
-                            label="Passworddd"
+                            label="Passwordddy"
                             type="password"
                             isRequired
                         />
